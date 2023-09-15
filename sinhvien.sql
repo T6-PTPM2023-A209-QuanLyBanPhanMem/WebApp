@@ -1,0 +1,12 @@
+use master
+go
+
+create database QLSV
+GO
+
+CREATE TABLE SINHVIEN
+(
+	MASV CHAR(10),
+	HOTEN NVARCHAR(30),
+	NGAYSINH DATE,
+)

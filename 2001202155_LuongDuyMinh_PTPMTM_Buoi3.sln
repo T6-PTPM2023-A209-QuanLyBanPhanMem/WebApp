@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buoi3", "Buoi3\Buoi3.csproj", "{5E1F4E45-B4DA-4A53-8BB0-9F061871718F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Winform_Libary", "Winform_Libary\Winform_Libary.csproj", "{31CF81B6-88ED-401A-9005-CE2ABDB3C484}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQL_Libray", "SQL_Libray\SQL_Libray.csproj", "{DDBD9F74-7DF8-4564-8FF0-701504C61CF5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E1F4E45-B4DA-4A53-8BB0-9F061871718F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E1F4E45-B4DA-4A53-8BB0-9F061871718F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E1F4E45-B4DA-4A53-8BB0-9F061871718F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E1F4E45-B4DA-4A53-8BB0-9F061871718F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31CF81B6-88ED-401A-9005-CE2ABDB3C484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31CF81B6-88ED-401A-9005-CE2ABDB3C484}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31CF81B6-88ED-401A-9005-CE2ABDB3C484}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31CF81B6-88ED-401A-9005-CE2ABDB3C484}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDBD9F74-7DF8-4564-8FF0-701504C61CF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDBD9F74-7DF8-4564-8FF0-701504C61CF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDBD9F74-7DF8-4564-8FF0-701504C61CF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDBD9F74-7DF8-4564-8FF0-701504C61CF5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
