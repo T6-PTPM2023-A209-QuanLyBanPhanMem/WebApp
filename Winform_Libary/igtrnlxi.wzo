@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Winform_Libary
+{
+    public partial class UserControl1: UserControl
+    {
+        public UserControl1()
+        {
+            InitializeComponent();
+            this.txt_masv.TextChanged += txt_masv_TextChanged;
+        }
+
+        void txt_masv_TextChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void docfile()
+        {
+            string path = "E:\\dssv.txt";
+
+        }
+
+
+    }
+}

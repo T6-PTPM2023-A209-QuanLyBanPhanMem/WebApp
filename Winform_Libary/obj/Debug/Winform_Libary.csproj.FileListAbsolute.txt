@@ -1,0 +1,6 @@
+E:\LuuDuLieuSinhVien\LuongDuyMinh\2001202155_LuongDuyMinh_PTPMTM_Buoi3\Winform_Libary\bin\Debug\Winform_Libary.dll
+E:\LuuDuLieuSinhVien\LuongDuyMinh\2001202155_LuongDuyMinh_PTPMTM_Buoi3\Winform_Libary\bin\Debug\Winform_Libary.pdb
+E:\LuuDuLieuSinhVien\LuongDuyMinh\2001202155_LuongDuyMinh_PTPMTM_Buoi3\Winform_Libary\obj\Debug\Winform_Libary.UserControl1.resources
+E:\LuuDuLieuSinhVien\LuongDuyMinh\2001202155_LuongDuyMinh_PTPMTM_Buoi3\Winform_Libary\obj\Debug\Winform_Libary.csproj.GenerateResource.Cache
+E:\LuuDuLieuSinhVien\LuongDuyMinh\2001202155_LuongDuyMinh_PTPMTM_Buoi3\Winform_Libary\obj\Debug\Winform_Libary.dll
+E:\LuuDuLieuSinhVien\LuongDuyMinh\2001202155_LuongDuyMinh_PTPMTM_Buoi3\Winform_Libary\obj\Debug\Winform_Libary.pdb
