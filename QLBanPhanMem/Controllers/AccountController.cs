@@ -83,9 +83,11 @@ namespace QLBanPhanMem.Controllers
         // GET: Account/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
-            if (id == null || _context.Accounts == null)
+            string session = HttpContext.Session.GetString("email");
+            @ViewBag.email = session;
+            if (HttpContext.Session.GetString("uid") == null || id == null || _context.Accounts == null)
             {
-                return NotFound();
+                return RedirectToAction("SignIn","Account");
             }
 
             var accountModel = await _context.Accounts.FindAsync(id);
@@ -101,8 +103,9 @@ namespace QLBanPhanMem.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Password,Uid,FullName,Email")] AccountModel accountModel)
+        public async Task<IActionResult> Edit(string id, [Bind("Username,Password,Uid,FullName,Email")] AccountModel accountModel)
         {
+
             if (id != accountModel.Uid)
             {
                 return NotFound();
@@ -126,7 +129,7 @@ namespace QLBanPhanMem.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index","Home");
             }
             return View(accountModel);
         }

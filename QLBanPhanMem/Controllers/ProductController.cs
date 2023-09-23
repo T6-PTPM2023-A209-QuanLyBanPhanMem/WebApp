@@ -56,7 +56,8 @@ namespace QLBanPhanMem.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.email = HttpContext.Session.GetString("email");
+            ViewBag.uid = HttpContext.Session.GetString("uid");
             return View(phanMemModel);
         }
 

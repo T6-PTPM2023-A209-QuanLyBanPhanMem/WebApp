@@ -11,6 +11,7 @@ namespace QLBanPhanMem.Models
         [Column("MATK")]
         public string? Uid { get; set; }
         [Column("TENTK")]
+        [Required]
         public string? Username { get; set; }
         [Column("HOTEN")]
         public string? FullName { get; set; }

@@ -38,8 +38,17 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            <form class="form-inline" style="display:flex;text-align:left" action="/Product/Index/">
+                                <input class="form-control mr-sm-2" type="search" id="search" name="search" placeholder="Tìm kiếm sản phẩm" aria-label="Search" style="margin-right:5px">
+                                <button class="btn btn-outline-success" type="submit" value="Tìm kiếm"><span class="material-symbols-outlined">search</span></button>
+                            </form>
+                        </li>
+                    </ul>
+                    
+                    <ul class="navbar-nav">
                         @{
-                            if (ViewBag.email==null)
+                            if (ViewBag.email == null)
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="SignIn">Đăng nhập</a>
@@ -55,12 +64,9 @@
                                 </li>
                             }
                         }
-                       
                     </ul>
-                    <form class="form-inline" style="display:flex;margin-left:400px" action="/Product/Index/">
-                        <input class="form-control mr-sm-2" type="search" id="search" name="search" placeholder="Tìm kiếm sản phẩm" aria-label="Search" style="margin-right:5px">
-                        <button class="btn btn-outline-success" type="submit" value="Tìm kiếm"><span class="material-symbols-outlined">search</span></button>
-                    </form>
+                    
+
                 </div>
             </div>
         </nav>

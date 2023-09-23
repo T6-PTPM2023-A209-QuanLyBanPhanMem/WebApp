@@ -68,6 +68,14 @@
     </dl>
 </div>
 <div>
+    @if (ViewBag.email != null)
+    {
+        <a asp-action="AddToCart" asp-route-id="@Model?.MAPM">Add to cart</a>
+    }
+    else
+    {
+        <a asp-action="SignIn" asp-controller="Account">Add to cart</a>
+    })
     <a asp-action="Edit" asp-route-id="@Model?.MAPM">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
