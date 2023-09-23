@@ -15,6 +15,9 @@ namespace QLBanPhanMem.Controllers
 
         public IActionResult Index()
         {
+            
+            ViewBag.email = HttpContext.Session.GetString("email");
+            ViewBag.uid = HttpContext.Session.GetString("uid");
             return View();
         }
 

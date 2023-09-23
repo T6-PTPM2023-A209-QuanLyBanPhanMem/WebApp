@@ -14,13 +14,28 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Password)
+                @Html.DisplayNameFor(model => model.Username)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FullName)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.CCCD)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SurPlus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Avatar)
             </th>
             <th></th>
         </tr>
@@ -29,13 +44,28 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Password)
+                @Html.DisplayFor(modelItem => item.Username)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FullName)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.CCCD)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SurPlus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Avatar)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Uid">Edit</a> |
