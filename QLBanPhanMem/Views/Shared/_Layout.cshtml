@@ -12,103 +12,16 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           rel="stylesheet" />
     <!-- MDB -->
-  @*   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css"
-          rel="stylesheet" /> *@
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css"
+          rel="stylesheet" />
     <!-- MDB -->
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    
-@*     <link rel="stylesheet" href="~/QLBanPhanMem.styles.css" asp-append-version="true" />
- *@    
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
-
+    <link rel="stylesheet" href="~/QLBanPhanMem.styles.css" asp-append-version="true" />
 </head>
 <body>
-
-    <header class="header">
-@*         <a href=""><img src="~/image/logo.jpg" width="70px" /></a>
- *@
-        <div class="grid">
-            <nav class="header_navbar">
-                <ul class="header_navbar_list">
-                    <li class="header_navbar_item">
-                        <a href="/Home/Index/" class="header_navbar_item_link">Home </a> |
-                    </li>
-
-                    <li class="header_navbar_item">
-                        <a href="" class="header_navbar_item_link">Giới thiệu</a>
-                    </li>
-                </ul>
-
-                <ul class="header_navbar_list">
-                    <li class="header_navbar_item">
-                        Tư vấn
-                    </li>
-                </ul>
-            </nav>
-
-            <div class="header_search">
-                <a href="/Home/Index/">
-                    <img src="~/image/logo.jpg" width="50px" />
-                </a>
-
-                <form class="search_box" action="/Product/Index/">
-                    <input class="search_input" type="text" id="search" name="search" placeholder="Tìm kiếm sản phẩm" aria-label="Search" style="">
-                    <i class='bx bx-search-alt-2'></i>
-
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function () {
-                            // Chọn biểu tượng sử dụng lớp CSS
-                            var iconSearch = document.querySelector('.bx-search-alt-2');
-
-                            // Chọn form sử dụng thuộc tính form của input
-                            var form = document.querySelector('form');
-
-                            // Thêm sự kiện click vào biểu tượng
-                            iconSearch.addEventListener('click', function (e) {
-                                e.preventDefault(); // Ngăn chặn hành vi mặc định của nút (nếu có)
-                                form.submit(); // Gửi form
-                            });
-                        });
-                    </script>
-                </form>
-
-                <div class="header_icons">
-                    <a href="" class="icon"><i class='bx bx-cart'></i>Giỏ hàng</a>
-
-                    @{
-                        if (ViewBag.email == null)
-                        {
-                            <a class="icon" asp-area="" asp-controller="Account" asp-action="SignIn">
-                                <i class='bx bxs-user-circle'></i>Đăng nhập
-                            </a>
-                        }
-                        else
-                        {
-                            <a class="icon" asp-area="" asp-controller="Account" asp-action="SignOut">
-                                <i class='bx bxs-user-x'></i>Xin chào @ViewBag.email, Đăng xuất
-                            </a>
-
-                            <a class="icon" href="/Account/Edit/@ViewBag.uid">
-                                <i class='bx bxs-user-detail'></i> Cập nhật thông tin
-                            </a>                            
-                        }
-                    }
-
-                </div>
-            </div>
-
-           
-        </div>
-
-       
-    </header>
-
-
-  @*   <header>
+    <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/image/logo.jpg" width="70px"/></a>
@@ -167,16 +80,17 @@
                 </div>
             </div>
         </nav>
-    </header> *@
+    </header>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="footer">
-        &copy; 2023 - QLBanPhanMem - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - QLBanPhanMem - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
