@@ -18,7 +18,6 @@ namespace QLBanPhanMem.Models
         [Column("CCCD")]
         public string? CCCD { get; set; }
         [Column("EMAIL")]
-        [Required]
         public string? Email { get; set; }
         [Column("SDT")]
         public string? PhoneNumber { get; set; }
