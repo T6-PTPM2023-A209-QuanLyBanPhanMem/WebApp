@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "9SZTwwf/ErEUxCTKk1tg7bLsiZpdL8I+6Xvo5AC6mlmJiorTbkIXlJ6Bd5HcDCqP359dZ2Gk+5QeJtxY/N0fGw==",
+  "dgSpecHash": "P9A6a0gnDR5KOtZsyChPrLIQmcACJYfwYq375JbQfEJWD9FNMWw1RJYfHKu4V9B3LpgF00zsB/XvepjaTFRmRQ==",
   "success": true,
   "projectFilePath": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\android17x\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\android17x\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\android17x\\.nuget\\packages\\facebook\\7.0.6\\facebook.7.0.6.nupkg.sha512",
     "C:\\Users\\android17x\\.nuget\\packages\\firebaseauthentication.net\\4.1.0\\firebaseauthentication.net.4.1.0.nupkg.sha512",
     "C:\\Users\\android17x\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\android17x\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
@@ -61,6 +62,7 @@
     "C:\\Users\\android17x\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\android17x\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",
     "C:\\Users\\android17x\\.nuget\\packages\\microsoft.aspnetcore.authentication.facebook\\6.0.22\\microsoft.aspnetcore.authentication.facebook.6.0.22.nupkg.sha512",
+    "C:\\Users\\android17x\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\6.0.22\\microsoft.aspnetcore.authentication.google.6.0.22.nupkg.sha512",
     "C:\\Users\\android17x\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\2.1.1\\microsoft.aspnetcore.cryptography.internal.2.1.1.nupkg.sha512",
     "C:\\Users\\android17x\\.nuget\\packages\\microsoft.aspnetcore.dataprotection\\2.1.1\\microsoft.aspnetcore.dataprotection.2.1.1.nupkg.sha512",
     "C:\\Users\\android17x\\.nuget\\packages\\microsoft.aspnetcore.dataprotection.abstractions\\2.1.1\\microsoft.aspnetcore.dataprotection.abstractions.2.1.1.nupkg.sha512",
@@ -254,5 +256,16 @@
     "C:\\Users\\android17x\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\android17x\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Facebook 7.0.6' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Facebook",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

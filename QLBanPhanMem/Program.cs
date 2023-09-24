@@ -1,6 +1,8 @@
-
+﻿
 using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using QLBanPhanMem.Class;
 
 namespace QLBanPhanMem
 {
@@ -10,16 +12,26 @@ namespace QLBanPhanMem
         {
             var builder = WebApplication.CreateBuilder(args);
             var config = builder.Configuration;
-            
-            builder.Services.AddAuthentication()
 
-                   .AddFacebook(options =>
-                   {
-                       
-                       options.AppId = "256451670702725";
-                       options.AppSecret = "c4d62036e87e81f036cf9be4394b8b3c";
-                       options.CallbackPath = "/login-fb";
-                   });
+            
+            builder.Services.AddAuthentication().AddFacebook(option =>
+            {
+                option.AppId = "256451670702725";
+                option.AppSecret = "c4d62036e87e81f036cf9be4394b8b3c";
+            });
+            builder.Services.AddAuthentication()
+                .AddGoogle(googleOptions =>
+                {
+                    // Đọc thông tin Authentication:Google từ appsettings.json
+                    IConfigurationSection googleAuthNSection = config.GetSection("Authentication:Google");
+
+                    // Thiết lập ClientID và ClientSecret để truy cập API google
+                    googleOptions.ClientId = googleAuthNSection["ClientId"];
+                    googleOptions.ClientSecret = googleAuthNSection["ClientSecret"];
+                    // Cấu hình Url callback lại từ Google (không thiết lập thì mặc định là /signin-google)
+                    googleOptions.CallbackPath = "/dangnhap-google";
+
+                });
             // Add services to the container.
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddControllersWithViews();
@@ -44,10 +56,10 @@ namespace QLBanPhanMem
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseRouting();
+            app.UseRouting();           
             app.UseAuthentication();
-            app.UseAuthorization();
             app.UseSession();
+            app.UseAuthorization();
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");

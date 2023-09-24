@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<QLBanPhanMem.Models.ChiTietHoaDonModel>
+@{
+    int dem = 0;
+}
+@{
+    int stt = 1;
+
+}
+<h1>Index</h1>
+<div class="row bg-light">
+    <p style="margin-left:50px"><a>Trang chủ</a> / <a>Danh mục</a> / <a>Tất cả sản phẩm</a></p>
+</div>
+<div class="row" style="margin-top:20px;text-align:center">
+    @* @{
+        var mylist = (List<GioHang>)Session["cart"];
+    } *@
+    <h2>Giỏ hàng của bạn</h2>
+    
+        <p>
+            Có @ViewBag.dem sản phẩm trong giỏ hàng
+        </p>
+    
+
+    <hr class="dots">
+    <br>
+</div>
+<div class="row">
+    <div class="col-md-8" align="center">
+
+        @* @if (mylist == null)
+        {
+            <a style="text-align:center">Giỏ hàng trống. Hãy <a href="/Collection/Index">mua</a> ngay nhé</a>
+        }
+        else
+        { *@
+            <table class="table">
+                <tr>
+                    <th>#</th>
+                    <th>Sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                    <th></th>
+                </tr>
+           
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @stt
+                    </td>
+                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhanMem.TENPM)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SOLUONG)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.THANHTIEN)
+                    </td>                   
+                    <td>
+                       @*  <a asp-action="Edit" asp-route-id="@item.Uid">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Uid">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.MAPM">Delete</a> *@
+                    </td>
+                </tr>
+                stt++;
+                dem=dem++;
+            }
+                    
+                
+                <caption><a href="/Collection/Index">Tiếp tục mua hàng</a></caption>
+
+            </table>
+        
+
+
+    </div>
+
+    <div class="col-md-4 col-sm-4 col-xs-12">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td colspan="2"><h4>Thông tin đơn hàng</h4></td>
+
+                </tr>
+                <tr>
+                    <td><h5 style="color:gray">Tổng tiền:</h5></td>
+                    
+                        <td>
+                            <h4 style="color:red">
+                                @ViewBag.tongtien
+                            </h4>
+                        </td>
+                    
+
+
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        Phí vận chuyển sẽ được tính ở trang thanh toán.
+                        <br />
+                        Bạn cũng có thể nhập mã giảm giá ở trang thanh toán.
+
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <a href="~/Cart/Checkout" class="btn btn-secondary btn-block">Thanh toán</a>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <a href="~/Collection/Index" class="btn btn-secondary btn-block">Tiếp tục mua hàng</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+

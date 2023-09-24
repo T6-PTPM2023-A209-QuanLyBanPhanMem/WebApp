@@ -20,13 +20,13 @@ namespace QLBanPhanMem.Models
         [Required]
         public string? DONVITHOIHAN { get; set; }
         [Required]
-        public Int32? DONGIA { get; set; }
+        public int? DONGIA { get; set; }
         [Required]
         public int? SOLUONG { get; set; }
         public string? HINHANH { get; set; }
 
         [ForeignKey("MANPH")]
-        public NhaPhatHanhModel? NhaPhatHanh { get; set; }
+        public virtual NhaPhatHanhModel? NhaPhatHanh { get; set; }
         
 
     }

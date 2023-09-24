@@ -70,7 +70,8 @@
 <div>
     @if (ViewBag.email != null)
     {
-        <a asp-action="AddToCart" asp-route-id="@Model?.MAPM">Add to cart</a>
+        <a href="@Url.Action("AddToCart", "Cart", new { productId = Model.MAPM })" class="btn btn-dark">Thêm vào giỏ</a>
+        @* <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@Model.MAPM">Add to cart</a> *@
     }
     else
     {

@@ -9,6 +9,10 @@ using QLBanPhanMem.Models;
 using Firebase.Auth.Providers;
 using Firebase.Auth;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.CodeAnalysis.Differencing;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using QLBanPhanMem.Class;
 
 namespace QLBanPhanMem.Controllers
 {
@@ -103,7 +107,7 @@ namespace QLBanPhanMem.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Username,Password,Uid,FullName,Email")] AccountModel accountModel)
+        public async Task<IActionResult> Edit(string id, [Bind("Username,Uid,FullName,Email,CCCD,PhoneNumber,Address,SurPlus,Avatar")] AccountModel accountModel)
         {
 
             if (id != accountModel.Uid)
@@ -129,7 +133,8 @@ namespace QLBanPhanMem.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Index","Home");
+                ViewBag.notice = "Cập nhật thông tin thành công";
+                return RedirectToAction(nameof(Edit));
             }
             return View(accountModel);
         }
@@ -177,7 +182,10 @@ namespace QLBanPhanMem.Controllers
         }
         public IActionResult SignIn()
         {
-
+            if(HttpContext.Session.GetString("uid")!=null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
         [HttpPost]
@@ -189,16 +197,19 @@ namespace QLBanPhanMem.Controllers
                 var result = await client.SignInWithEmailAndPasswordAsync(model.Email, password);
                 if (result != null)
                 {
-                    HttpContext.Session.Set("uid", System.Text.Encoding.UTF8.GetBytes(result.User.Uid));
-                    HttpContext.Session.Set("email", System.Text.Encoding.UTF8.GetBytes(model.Email));
-                    return RedirectToAction("Index", "Home");
+                    if(result.User.Uid!=null&&model.Email!=null)
+                    {
+                        HttpContext.Session.Set("uid", System.Text.Encoding.UTF8.GetBytes(result.User.Uid));
+                        HttpContext.Session.Set("email", System.Text.Encoding.UTF8.GetBytes(model.Email));
+                        return RedirectToAction("Index", "Home");
+                    }                   
                 }
                 return View();
             }
             catch(Exception ex)
             {
                 
-                @ViewBag.Error = "Email hoặc mật khẩu không đúng";
+                @ViewBag.Error = ex.Message;
                 return View();
             }
             
@@ -206,6 +217,10 @@ namespace QLBanPhanMem.Controllers
         }
         public IActionResult SignUp()
         {
+            if (HttpContext.Session.GetString("uid") != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
         [HttpPost]
@@ -229,9 +244,12 @@ namespace QLBanPhanMem.Controllers
                     _context.Accounts.Add(user);
 
                     await _context.SaveChangesAsync();
-                    HttpContext.Session.Set("uid", System.Text.Encoding.UTF8.GetBytes(result.User.Uid));
-                    HttpContext.Session.Set("email", System.Text.Encoding.UTF8.GetBytes(model.Email));
-                    return RedirectToAction("Index", "Home");
+                    if (result.User.Uid != null && model.Email != null)
+                    {
+                        HttpContext.Session.Set("uid", System.Text.Encoding.UTF8.GetBytes(result.User.Uid));
+                        HttpContext.Session.Set("email", System.Text.Encoding.UTF8.GetBytes(model.Email));
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
                 return View("SignIn");
             }
@@ -249,6 +267,16 @@ namespace QLBanPhanMem.Controllers
             HttpContext.Session.Clear();
             return RedirectToAction("SignIn");
         }
-        
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ExternalLogin(string provider, string returnUrl = null)
+        {
+            // Chuyển hướng đến trang đăng nhập Facebook
+            var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl });
+            var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
+            return Challenge(properties, provider);
+        }
+
+
     }
 }

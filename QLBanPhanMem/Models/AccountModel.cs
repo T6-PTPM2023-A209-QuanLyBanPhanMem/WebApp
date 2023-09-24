@@ -25,7 +25,7 @@ namespace QLBanPhanMem.Models
         [Column("DIACHI")]
         public string? Address { get; set; }
         [Column("SODU")]
-        public string? SurPlus { get; set; }
+        public int? SurPlus { get; set; }
         [Column("HINHDAIDIEN")]
         public string? Avatar { get; set; }
     }

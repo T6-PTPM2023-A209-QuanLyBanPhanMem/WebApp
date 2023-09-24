@@ -103,24 +103,13 @@
                     <button value="SignIn" type="submit" class="btn btn-primary btn-block mb-4">Đăng nhập</button>
                     <div class="text-center mb-3">
                         <p>Hoặc đăng nhập bằng</p>
-                        <a asp-controller="Account" asp-action="">
-                            <button type="button" class="btn btn-link btn-floating mx-1">
-                                <i class="fab fa-facebook-f"></i>
-                            </button>
+                        
+                        <a asp-action="ExternalLogin" asp-route-provider="Facebook" asp-route-returnUrl="/login-facebook" class="btn btn-primary btn-block mb-4" style="background-color: #0866ff;" role="button">
+                            <i class="fab fa-facebook me-2"></i>Đăng nhập bằng Facebook
                         </a>
-
-
-                        <button type="button" class="btn btn-link btn-floating mx-1">
-                            <i class="fab fa-google"></i>
-                        </button>
-
-                        <button type="button" class="btn btn-link btn-floating mx-1">
-                            <i class="fab fa-twitter"></i>
-                        </button>
-
-                        <button type="button" class="btn btn-link btn-floating mx-1">
-                            <i class="fab fa-github"></i>
-                        </button>
+                        <a class="btn btn-primary btn-block mb-4" style="background-color: #ff4b4b;" href="/dangnhap-google" role="button">
+                            <i class="fab fa-google me-2"></i>Đăng nhập bằng Google
+                            </a>
                     </div>
                     <!-- Register buttons -->
                     
@@ -167,15 +156,7 @@
 
                         <button type="button" class="btn btn-link btn-floating mx-1">
                             <i class="fab fa-google"></i>
-                        </button>
-
-                        <button type="button" class="btn btn-link btn-floating mx-1">
-                            <i class="fab fa-twitter"></i>
-                        </button>
-
-                        <button type="button" class="btn btn-link btn-floating mx-1">
-                            <i class="fab fa-github"></i>
-                        </button>
+                        </button>                       
                     </div>
                 </form>
             </div>

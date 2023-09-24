@@ -43,11 +43,19 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Facebook": {
+              "target": "Package",
+              "version": "[7.0.6, )"
+            },
             "FirebaseAuthentication.net": {
               "target": "Package",
               "version": "[4.1.0, )"
             },
             "Microsoft.AspNetCore.Authentication.Facebook": {
+              "target": "Package",
+              "version": "[6.0.22, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Google": {
               "target": "Package",
               "version": "[6.0.22, )"
             },

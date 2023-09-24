@@ -21,6 +21,8 @@ namespace QLBanPhanMem.Controllers
         // GET: Product
         public async Task<IActionResult> Index(string search = "")
         {
+            ViewBag.giohang = HttpContext.Session.GetString("dem");
+            ViewBag.email = HttpContext.Session.GetString("email");
             // Bắt đầu với truy vấn không có điều kiện tìm kiếm
             IQueryable<PhanMemModel> query = _context.PhanMems.Include(p => p.NhaPhatHanh);
 
@@ -58,6 +60,7 @@ namespace QLBanPhanMem.Controllers
             }
             ViewBag.email = HttpContext.Session.GetString("email");
             ViewBag.uid = HttpContext.Session.GetString("uid");
+            ViewBag.giohang = HttpContext.Session.GetString("dem");
             return View(phanMemModel);
         }
 
@@ -183,7 +186,24 @@ namespace QLBanPhanMem.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        public IActionResult AddToCart(int? id)
+        {
+            if (id == null || _context.PhanMems == null)
+            {
+                return NotFound();
+            }
 
+            var phanMemModel = _context.PhanMems
+                .Include(p => p.NhaPhatHanh)
+                .FirstOrDefault(m => m.MAPM == id);
+            if (phanMemModel == null)
+            {
+                return NotFound();
+            }
+            ViewBag.email = HttpContext.Session.GetString("email");
+            ViewBag.uid = HttpContext.Session.GetString("uid");
+            return View(phanMemModel);
+        }
         private bool PhanMemModelExists(int? id)
         {
           return (_context.PhanMems?.Any(e => e.MAPM == id)).GetValueOrDefault();
