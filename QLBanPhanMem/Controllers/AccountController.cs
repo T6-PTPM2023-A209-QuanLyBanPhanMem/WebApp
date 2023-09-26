@@ -87,13 +87,18 @@ namespace QLBanPhanMem.Controllers
         // GET: Account/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
+            //Lấy 
             string session = HttpContext.Session.GetString("email");
             @ViewBag.email = session;
             if (HttpContext.Session.GetString("uid") == null || id == null || _context.Accounts == null)
             {
                 return RedirectToAction("SignIn","Account");
             }
-
+            if (id != HttpContext.Session.GetString("uid"))
+            {
+                return NotFound();
+            }
+            // Xuất nội dung trong Account
             var accountModel = await _context.Accounts.FindAsync(id);
             if (accountModel == null)
             {
@@ -109,7 +114,6 @@ namespace QLBanPhanMem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("Username,Uid,FullName,Email,CCCD,PhoneNumber,Address,SurPlus,Avatar")] AccountModel accountModel)
         {
-
             if (id != accountModel.Uid)
             {
                 return NotFound();
@@ -202,14 +206,17 @@ namespace QLBanPhanMem.Controllers
                         HttpContext.Session.Set("uid", System.Text.Encoding.UTF8.GetBytes(result.User.Uid));
                         HttpContext.Session.Set("email", System.Text.Encoding.UTF8.GetBytes(model.Email));
                         return RedirectToAction("Index", "Home");
-                    }                   
+                    }
+                    return RedirectToAction("Index", "Home");
                 }
+
                 return View();
             }
             catch(Exception ex)
             {
                 
                 @ViewBag.Error = ex.Message;
+                
                 return View();
             }
             
@@ -232,14 +239,15 @@ namespace QLBanPhanMem.Controllers
                 var result = await client.CreateUserWithEmailAndPasswordAsync(model.Email, password);
                 var auth = await client.SignInWithEmailAndPasswordAsync(model.Email, password);
                 if (result != null)
-                {
-                    
-
-                    var user = new AccountModel();
-                    user.FullName = model.FullName;
-                    user.Email = model.Email;
-                    user.Uid = result.User.Uid;
-                    user.Username = model.Email;
+                {                   
+                    var user = new AccountModel()
+                    {
+                        FullName = model.FullName,
+                        Email = model.Email,
+                        Uid = result.User.Uid,
+                        Username = model.Email,
+                    };
+                 
                     // Thực hiện insert chỉ vào các cột Email, Uid và FullName
                     _context.Accounts.Add(user);
 
@@ -269,14 +277,14 @@ namespace QLBanPhanMem.Controllers
         }
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult ExternalLogin(string provider, string returnUrl = null)
+        public IActionResult ExternalLogin(string provider, string? returnUrl = null)
         {
             // Chuyển hướng đến trang đăng nhập Facebook
             var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl });
             var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
             return Challenge(properties, provider);
         }
-
+        
 
     }
 }

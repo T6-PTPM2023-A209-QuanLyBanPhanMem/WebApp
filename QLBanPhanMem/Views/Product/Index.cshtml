@@ -1,10 +1,48 @@
 ﻿@model IEnumerable<QLBanPhanMem.Models.PhanMemModel>
-
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="row" style="display:flex">
+    <div class="col-3">
+    <a>Nhà phát hành</a>
+    <select class="form-select" aria-label="Default select example" id="manph" style="width:100px" name="manph" asp-items="@ViewBag.PublisherList" onchange="navigateToPublisher()">
+        <option value="">Tất cả</option>
+    </select>
+    </div>
+    <div class="col-3">
+        <a>Thể loại</a>
+        <select class="form-select" aria-label="Default select example" id="manph" style="width:100px" name="manph" asp-items="@ViewBag.LoaiPMList" onchange="navigateToPublisher()">
+            <option value="">Tất cả</option>
+        </select>
+    </div>
+    <div class="col-3">
+        <a>Giá</a>
+        <select class="form-select" aria-label="Default select example" id="manph" style="width:100px" name="manph" asp-items="@ViewBag.PublisherList" onchange="navigateToPublisher()">
+            <option value="">Tất cả</option>
+        </select>
+    </div>
+    <div class="col-3">
+        <a>Sắp xếp</a>
+        <select class="form-select" aria-label="Default select example" id="manph" style="width:100px" name="manph" asp-items="@ViewBag.PublisherList" onchange="navigateToPublisher()">
+            <option value="">Tất cả</option>
+        </select>
+    </div>
 
+</div>
+
+
+<script>
+    function navigateToPublisher() {
+        var selectedPublisher = document.getElementById("manph");
+        var selectedPublisherName = selectedPublisher.options[selectedPublisher.selectedIndex].text;
+        if (selectedPublisher) {
+            window.location.href = '/Product/Index?search=' + selectedPublisherName;
+        } else {
+            window.location.href = '/Product/Index'; // Nếu không có lựa chọn, điều hướng đến trang tất cả
+        }
+    }
+</script>
 <h1>Tìm kiếm sản phẩm</h1>
 
 @* <p>

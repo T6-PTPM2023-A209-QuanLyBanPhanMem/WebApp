@@ -28,9 +28,10 @@ namespace QLBanPhanMem.Controllers
             {
                 return RedirectToAction("SignIn", "Account");
             }
+
             ViewBag.giohang = HttpContext.Session.GetString("dem");
             ViewBag.email = HttpContext.Session.GetString("email");
-            string maTK = HttpContext.Session.GetString("uid");
+            string? maTK = HttpContext.Session.GetString("uid");
            
             var hoadon = _context.HoaDons
                 .FirstOrDefault(hd => hd.MATK == maTK && hd.TINHTRANG == "Chưa thanh toán");
@@ -57,8 +58,8 @@ namespace QLBanPhanMem.Controllers
         }
         public async Task<IActionResult> AddToCart(int productId)
         {
-            string maTK = HttpContext.Session.GetString("uid");
-            string maHD = HttpContext.Session.GetString("uid") + DateTime.Now.ToString("ddMMyyyyHHmmss");
+            string? maTK = HttpContext.Session.GetString("uid");
+            string? maHD = HttpContext.Session.GetString("uid") + DateTime.Now.ToString("ddMMyyyyHHmmss");
             var hoadon = _context.HoaDons
             .FirstOrDefault(hd => hd.MATK == maTK && hd.TINHTRANG == "Chưa thanh toán");
             if (hoadon==null)
@@ -82,7 +83,8 @@ namespace QLBanPhanMem.Controllers
                     MAHD = hoadon.MAHD,
                     MAPM = productId,
                     SOLUONG = 1,
-                    THANHTIEN = _context.PhanMems.FirstOrDefault(pm => pm.MAPM == productId).DONGIA
+                    THANHTIEN = _context.PhanMems
+                                    .FirstOrDefault(pm => pm.MAPM == productId).DONGIA
                 };
                 _context.CTHDs.Add(detail);
                 _context.SaveChanges();
@@ -93,8 +95,7 @@ namespace QLBanPhanMem.Controllers
             }
             int dem = 0;
             if (_context.CTHDs != null)
-            {
-                
+            {               
                 dem = await _context.CTHDs
                .Where(p => string.IsNullOrEmpty(maHD) || p.MAHD == maHD)
                .CountAsync();               

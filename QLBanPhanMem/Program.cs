@@ -55,7 +55,7 @@ namespace QLBanPhanMem
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseMiddleware<NotFoundMiddleware>();
             app.UseRouting();           
             app.UseAuthentication();
             app.UseSession();

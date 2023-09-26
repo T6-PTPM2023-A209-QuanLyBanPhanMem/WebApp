@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QLBanPhanMem.Models;
 using Microsoft.EntityFrameworkCore.Query;
+using System.Security.Policy;
+
 namespace QLBanPhanMem.Controllers
 {
     public class ProductController : Controller
@@ -23,8 +25,22 @@ namespace QLBanPhanMem.Controllers
         {
             ViewBag.giohang = HttpContext.Session.GetString("dem");
             ViewBag.email = HttpContext.Session.GetString("email");
+
+            // Lấy danh sách các nhà phát hành từ cơ sở dữ liệu
+            var publishers = await _context.NhaPhatHanhs.ToListAsync();
+
+            var loaipm = await _context.LoaiPMs.ToListAsync();
+            SelectList loaipmList = new SelectList(loaipm, "MALOAI", "TENLOAI");
+            ViewBag.LoaiPMList = loaipmList;
+            // Tạo SelectList từ danh sách các nhà phát hành
+            SelectList publisherList = new SelectList(publishers, "MANPH", "TENNPH");
+
+            // Đặt SelectList vào ViewBag để sử dụng trong view
+            ViewBag.PublisherList = publisherList;
+
             // Bắt đầu với truy vấn không có điều kiện tìm kiếm
             IQueryable<PhanMemModel> query = _context.PhanMems.Include(p => p.NhaPhatHanh);
+            //IQueryable<ThuocLoaiPM> query1 = _context.ThuocLoaiPMs.Include(p => p.LoaiPM).Include(p => p.PhanMem);
 
             // Nếu có từ khóa tìm kiếm, áp dụng điều kiện tìm kiếm vào truy vấn
             if (!string.IsNullOrEmpty(search))
@@ -34,10 +50,26 @@ namespace QLBanPhanMem.Controllers
                     p.MOTA.Contains(search) || // Tìm theo mô tả
                     p.NhaPhatHanh.TENNPH.Contains(search) // Tìm theo tên nhà phát hành
                 );
+                //query1 = query1.Where(p =>
+                //                   p.LoaiPM.TENLOAI.Contains(search)); // Tìm theo tên nhà phát hành
+                                                                     //                );)
             }
 
             // Chuyển kết quả của truy vấn thành danh sách và truyền vào view
             var result = await query.ToListAsync();
+            //var result1 = await query1.ToListAsync();
+            //foreach (var phanMem in result)
+            //{
+            //    // Lấy danh sách các loại phần mềm cho mỗi phần mềm
+            //    var loaiPhanMems = await _context.ThuocLoaiPMs
+            //        .Where(t => t.PhanMem.MAPM == phanMem.MAPM)
+            //        .Select(t => t.LoaiPM)
+            //        .ToListAsync();
+
+            //    // Gán danh sách loại phần mềm vào phần mềm tương ứng
+               
+            //    phanMem.LoaiPMs = loaiPhanMems;
+            //}
             return View(result);
         }
 
@@ -50,7 +82,10 @@ namespace QLBanPhanMem.Controllers
             {
                 return NotFound();
             }
-
+            if (_context.PhanMems == null)
+            {
+                return Problem("Entity set 'AppDbContext.PhanMems'  is null.");
+            }
             var phanMemModel = await _context.PhanMems
                 .Include(p => p.NhaPhatHanh)
                 .FirstOrDefaultAsync(m => m.MAPM == id);
@@ -103,7 +138,10 @@ namespace QLBanPhanMem.Controllers
             {
                 return NotFound();
             }
-
+            if (_context.PhanMems == null)
+            {
+                return Problem("Entity set 'AppDbContext.PhanMems'  is null.");
+            }
             var phanMemModel = await _context.PhanMems.FindAsync(id);
             if (phanMemModel == null)
             {

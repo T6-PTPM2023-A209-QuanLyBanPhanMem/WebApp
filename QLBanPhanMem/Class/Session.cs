@@ -22,7 +22,7 @@ namespace QLBanPhanMem.Class
         }
         public void SetSession(string uid, string email)
         {
-            
+
             _httpContextAccessor.HttpContext.Session.Set("uid", System.Text.Encoding.UTF8.GetBytes(uid));
             _httpContextAccessor.HttpContext.Session.Set("email", System.Text.Encoding.UTF8.GetBytes(email));
         }
