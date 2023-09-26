@@ -562,6 +562,7 @@ D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.genruntimec
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\ref\QLBanPhanMem.dll
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Debug\net6.0\Firebase.Auth.dll
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Facebook.dll
+D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.sourcelink.json
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Debug\net6.0\Microsoft.Data.Sqlite.dll
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Sqlite.dll
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
