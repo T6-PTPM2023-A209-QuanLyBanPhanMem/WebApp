@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using QLBanPhanMem.Models;
 using Microsoft.EntityFrameworkCore.Query;
 using System.Security.Policy;
+using System.ComponentModel.DataAnnotations;
 
 namespace QLBanPhanMem.Controllers
 {
@@ -21,15 +22,16 @@ namespace QLBanPhanMem.Controllers
         }
 
         // GET: Product
-        public async Task<IActionResult> Index(string search = "")
+        public async Task<IActionResult> Index(string search = "", string SortColumn = "Newest", int min=0, int max=0)
         {
             ViewBag.giohang = HttpContext.Session.GetString("dem");
             ViewBag.email = HttpContext.Session.GetString("email");
 
             // Lấy danh sách các nhà phát hành từ cơ sở dữ liệu
             var publishers = await _context.NhaPhatHanhs.ToListAsync();
-
+            // Lấy danh sách loại pm
             var loaipm = await _context.LoaiPMs.ToListAsync();
+
             SelectList loaipmList = new SelectList(loaipm, "MALOAI", "TENLOAI");
             ViewBag.LoaiPMList = loaipmList;
             // Tạo SelectList từ danh sách các nhà phát hành
@@ -40,8 +42,38 @@ namespace QLBanPhanMem.Controllers
 
             // Bắt đầu với truy vấn không có điều kiện tìm kiếm
             IQueryable<PhanMemModel> query = _context.PhanMems.Include(p => p.NhaPhatHanh);
+
             //IQueryable<ThuocLoaiPM> query1 = _context.ThuocLoaiPMs.Include(p => p.LoaiPM).Include(p => p.PhanMem);
 
+            // Sắp xếp theo cột được chọn
+            switch (SortColumn)
+            {              
+                case "3":
+                    query = query.OrderBy(p => p.TENPM);
+                    break;
+                case "4":
+                        query = query.OrderByDescending(p => p.TENPM);
+                    break;
+                
+                case "1":
+                    query = query.OrderBy(p => p.DONGIA);
+                    break;
+                case "2":
+                    query = query.OrderByDescending(p => p.DONGIA);
+                    break;
+
+                
+                 case "5":
+                     query = query.OrderBy(p => p.MAPM);
+                    break;
+                 case "6":
+                     query = query.OrderByDescending(p => p.MAPM);
+                    break;
+            }
+            if (!int.Equals(min, 0) && !int.Equals(max, 0))
+            {
+                query = query.Where(p => p.DONGIA >= min && p.DONGIA <= max);
+            }
             // Nếu có từ khóa tìm kiếm, áp dụng điều kiện tìm kiếm vào truy vấn
             if (!string.IsNullOrEmpty(search))
             {
@@ -49,10 +81,12 @@ namespace QLBanPhanMem.Controllers
                     p.TENPM.Contains(search) || // Tìm theo tên phần mềm
                     p.MOTA.Contains(search) || // Tìm theo mô tả
                     p.NhaPhatHanh.TENNPH.Contains(search) // Tìm theo tên nhà phát hành
+                     // Tìm theo tên nhà phát hành
                 );
+                
                 //query1 = query1.Where(p =>
                 //                   p.LoaiPM.TENLOAI.Contains(search)); // Tìm theo tên nhà phát hành
-                                                                     //                );)
+                //                );)
             }
 
             // Chuyển kết quả của truy vấn thành danh sách và truyền vào view
@@ -67,9 +101,10 @@ namespace QLBanPhanMem.Controllers
             //        .ToListAsync();
 
             //    // Gán danh sách loại phần mềm vào phần mềm tương ứng
-               
+
             //    phanMem.LoaiPMs = loaiPhanMems;
             //}
+            //ViewBag.CurrentSort = SortColumn;
             return View(result);
         }
 

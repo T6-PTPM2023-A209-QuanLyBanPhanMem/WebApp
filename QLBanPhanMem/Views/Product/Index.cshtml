@@ -4,33 +4,59 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="row" style="display:flex">
-    <div class="col-3">
-    <a>Nhà phát hành</a>
-    <select class="form-select" aria-label="Default select example" id="manph" style="width:100px" name="manph" asp-items="@ViewBag.PublisherList" onchange="navigateToPublisher()">
-        <option value="">Tất cả</option>
+    <div class="col-2">
+    
+    <select class="form-select" aria-label="Default select example" id="manph" style="width:130px" name="manph" asp-items="@ViewBag.PublisherList" onchange="navigateToPublisher()">
+        <option value="">Nhà phát hành</option>
     </select>
     </div>
-    <div class="col-3">
-        <a>Thể loại</a>
-        <select class="form-select" aria-label="Default select example" id="manph" style="width:100px" name="manph" asp-items="@ViewBag.LoaiPMList" onchange="navigateToPublisher()">
-            <option value="">Tất cả</option>
+    <div class="col-2">
+        
+        <select class="form-select" aria-label="Default select example" id="manph" style="width:130px" name="manph" asp-items="@ViewBag.LoaiPMList" onchange="navigateToPublisher()">
+            <option value="">Thể loại</option>
         </select>
     </div>
-    <div class="col-3">
-        <a>Giá</a>
-        <select class="form-select" aria-label="Default select example" id="manph" style="width:100px" name="manph" asp-items="@ViewBag.PublisherList" onchange="navigateToPublisher()">
-            <option value="">Tất cả</option>
-        </select>
+    <div class="col-6">
+        
+        <form style="display:flex">
+            <div class="input-group mb-3" style="width:150px;margin-left:20px">
+                
+                <input type="text" class="form-control" placeholder="Giá từ" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3" style="width:150px;margin-left:20px">
+                
+                <input type="text" class="form-control" placeholder="Đến" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <button style="height:30px" type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        
     </div>
-    <div class="col-3">
-        <a>Sắp xếp</a>
-        <select class="form-select" aria-label="Default select example" id="manph" style="width:100px" name="manph" asp-items="@ViewBag.PublisherList" onchange="navigateToPublisher()">
-            <option value="">Tất cả</option>
+    <div class="col-2">
+        
+        
+        <select style="width:130px" class="form-select" id="SortDrop" onclick="navigateSort()">
+            <option value="">Sắp xếp</option>
+            <option value="1">Giá tăng dần</option>
+            <option value="2">Giá giảm dần</option>
+            <option value="3">Tên A-Z</option>
+            <option value="4">Tên Z-A</option>
+            <option value="6">Cũ nhất</option>
+            <option value="5">Mới nhất</option>
         </select>
+        
+    
     </div>
 
 </div>
-
+<script>
+    function navigateSort() {
+        $('#SortDrop').change(() => {
+            const value = $('#SortDrop').val();
+            window.location.href = "/Product/Index?SortColumn=" + value
+        });
+    }
+    
+</script>
 
 <script>
     function navigateToPublisher() {
