@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj": {}
+    "C:\\Users\\android17x\\Downloads\\Compressed\\WebAppKhachHang-381b0615de8f03ac100e91b003222b65a70650d2\\QLBanPhanMem\\QLBanPhanMem.csproj": {}
   },
   "projects": {
-    "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj": {
+    "C:\\Users\\android17x\\Downloads\\Compressed\\WebAppKhachHang-381b0615de8f03ac100e91b003222b65a70650d2\\QLBanPhanMem\\QLBanPhanMem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj",
+        "projectUniqueName": "C:\\Users\\android17x\\Downloads\\Compressed\\WebAppKhachHang-381b0615de8f03ac100e91b003222b65a70650d2\\QLBanPhanMem\\QLBanPhanMem.csproj",
         "projectName": "QLBanPhanMem",
-        "projectPath": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj",
+        "projectPath": "C:\\Users\\android17x\\Downloads\\Compressed\\WebAppKhachHang-381b0615de8f03ac100e91b003222b65a70650d2\\QLBanPhanMem\\QLBanPhanMem.csproj",
         "packagesPath": "C:\\Users\\android17x\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\obj\\",
+        "outputPath": "C:\\Users\\android17x\\Downloads\\Compressed\\WebAppKhachHang-381b0615de8f03ac100e91b003222b65a70650d2\\QLBanPhanMem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\android17x\\AppData\\Roaming\\NuGet\\NuGet.Config",

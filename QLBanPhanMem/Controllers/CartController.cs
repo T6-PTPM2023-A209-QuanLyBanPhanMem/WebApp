@@ -53,8 +53,7 @@ namespace QLBanPhanMem.Controllers
                 return View(cthd);
             }
             
-            return View();
-           
+            return View();          
         }
         public async Task<IActionResult> AddToCart(int productId)
         {
@@ -101,7 +100,7 @@ namespace QLBanPhanMem.Controllers
                .CountAsync();               
                 HttpContext.Session.SetString("dem", dem.ToString());
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Detail", "Product");
         }
 
            
