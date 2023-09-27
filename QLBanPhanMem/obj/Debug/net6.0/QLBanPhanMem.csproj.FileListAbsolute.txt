@@ -1190,3 +1190,4 @@ C:\Users\android17x\Downloads\Compressed\WebAppKhachHang-381b0615de8f03ac100e91b
 C:\Users\android17x\Downloads\Compressed\WebAppKhachHang-381b0615de8f03ac100e91b003222b65a70650d2\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.pdb
 C:\Users\android17x\Downloads\Compressed\WebAppKhachHang-381b0615de8f03ac100e91b003222b65a70650d2\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.genruntimeconfig.cache
 C:\Users\android17x\Downloads\Compressed\WebAppKhachHang-381b0615de8f03ac100e91b003222b65a70650d2\QLBanPhanMem\obj\Debug\net6.0\ref\QLBanPhanMem.dll
+D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.sourcelink.json

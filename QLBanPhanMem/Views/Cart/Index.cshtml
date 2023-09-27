@@ -32,12 +32,12 @@
 <div class="row">
     <div class="col-md-8" align="center">
 
-        @* @if (mylist == null)
+        @if(Model==null)
         {
             <a style="text-align:center">Giỏ hàng trống. Hãy <a href="/Collection/Index">mua</a> ngay nhé</a>
         }
         else
-        { *@
+        {
             <table class="table">
                 <tr>
                     <th>#</th>
@@ -54,9 +54,10 @@
                     <td>
                         @stt
                     </td>
-                    
+
                     <td>
-                        @Html.DisplayFor(modelItem => item.PhanMem.TENPM)
+                        <a asp-action="Details" asp-controller="Product" asp-route-id="@item.MAPM">@Html.DisplayFor(modelItem => item.PhanMem.TENPM)</a>
+
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.SOLUONG)
@@ -65,9 +66,15 @@
                         @Html.DisplayFor(modelItem => item.THANHTIEN)
                     </td>                   
                     <td>
-                       @*  <a asp-action="Edit" asp-route-id="@item.Uid">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Uid">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.MAPM">Delete</a> *@
+                        <td>
+                            <form method="post" asp-action="Delete">
+                            <input type="hidden" name="id" value="@item.MAPM"/>
+                                <input type="submit" value="Xóa" />
+                            </form>
+                           
+                        </td>
+
+                        @* <a asp-action="Delete" asp-route-id="@item.MAPM">Delete</a> *@
                     </td>
                 </tr>
                 stt++;
@@ -78,7 +85,7 @@
                 <caption><a href="/Collection/Index">Tiếp tục mua hàng</a></caption>
 
             </table>
-        
+        }
 
 
     </div>
@@ -112,7 +119,13 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <a href="~/Cart/Checkout" class="btn btn-secondary btn-block">Thanh toán</a>
+
+                        <form method="post" action="@Url.Action("ProcessPayment", "Cart")">
+                            <!-- Các trường thông tin thanh toán ở đây -->
+                            <input type="submit" value="Thanh toán" class="btn btn-primary" />
+                        </form>
+
+                        </td>
                 </tr>
                 <tr>
                     <td colspan="2">

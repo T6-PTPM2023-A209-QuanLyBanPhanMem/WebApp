@@ -35,25 +35,33 @@ namespace QLBanPhanMem.Controllers
            
             var hoadon = _context.HoaDons
                 .FirstOrDefault(hd => hd.MATK == maTK && hd.TINHTRANG == "Chưa thanh toán");
-            string maHD = hoadon.MAHD;
-            ViewBag.tongtien = hoadon.TONGTIEN;
-            int dem = 0;
-            if (_context.CTHDs != null)
+            if(hoadon==null)
             {
-                var cthd = await _context.CTHDs
-                    .Include(p => p.PhanMem)
-                    .Where(string.IsNullOrEmpty(maHD) ? p => p.MAHD == maHD : p => p.MAHD == maHD)
-                    .ToListAsync();
-                dem = await _context.CTHDs
-               .Where(p => string.IsNullOrEmpty(maHD) || p.MAHD == maHD)
-               .CountAsync();
-                ViewBag.dem = dem;
-                HttpContext.Session.SetString("dem", dem.ToString());
-                
-                return View(cthd);
+                return View();
             }
-            
-            return View();          
+            else
+            {
+                string maHD = hoadon.MAHD;
+                ViewBag.tongtien = hoadon.TONGTIEN;
+                int dem = 0;
+                if (_context.CTHDs != null)
+                {
+                    var cthd = await _context.CTHDs
+                        .Include(p => p.PhanMem)
+                        .Where(string.IsNullOrEmpty(maHD) ? p => p.MAHD == maHD : p => p.MAHD == maHD)
+                        .ToListAsync();
+                    dem = await _context.CTHDs
+                   .Where(p => string.IsNullOrEmpty(maHD) || p.MAHD == maHD)
+                   .CountAsync();
+                    ViewBag.dem = dem;
+                    HttpContext.Session.SetString("dem", dem.ToString());
+
+                    return View(cthd);
+                }
+
+                return View();
+            }
+                    
         }
         public async Task<IActionResult> AddToCart(int productId)
         {
@@ -102,9 +110,87 @@ namespace QLBanPhanMem.Controllers
             }
             return RedirectToAction("Detail", "Product");
         }
+        public IActionResult Checkout()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ProcessPayment()
+        {
+            string maTK = HttpContext.Session.GetString("uid");
+            var hoadon = _context.HoaDons
+                .FirstOrDefault(hd => hd.MATK == maTK && hd.TINHTRANG == "Chưa thanh toán");
+            if (hoadon == null) { 
+            
+            }
+            if(hoadon.TINHTRANG=="Chưa thanh toán")
+            {
+                hoadon.TINHTRANG = "Đã thanh toán";
+                _context.Update(hoadon);
+                await _context.SaveChangesAsync();
+            }
+           return RedirectToAction("Index", "Home");
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            string maTK = HttpContext.Session.GetString("uid");
+            var hoadon = _context.HoaDons
+                .FirstOrDefault(hd => hd.MATK == maTK && hd.TINHTRANG == "Chưa thanh toán");
+            if (hoadon == null)
+            {
+                return Problem("Null");
+            }
+            else
+            {
+                string maHD = hoadon.MAHD;
+                var ct = _context.CTHDs
+                    .FirstOrDefault(ct => ct.MAHD == maHD && ct.MAPM == id);
 
-           
-        
+                if (ct != null)
+                {
+                    _context.CTHDs.Remove(ct);
+                    await _context.SaveChangesAsync();
+                }
+                //Cập nhật lại giá tiền
+                int tongtien = (int)_context.CTHDs.Where(ct => ct.MAHD == hoadon.MAHD).Sum(ct => ct.THANHTIEN);
+                hoadon.TONGTIEN = tongtien;
+                _context.Update(hoadon);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Index", "Cart");
+            }
+        }
+
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return BadRequest();
+        //    }
+
+        //    var cthd = await _context.CTHDs.FindAsync(id);
+        //    if (cthd == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    _context.CTHDs.Remove(cthd);
+        //    await _context.SaveChangesAsync();
+
+        //    return RedirectToAction(nameof(Index));
+        //}
+
+
+
+
+
+
+
+
+
 
     }
 }
