@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\android17x\\Downloads\\Compressed\\WebAppKhachHang-381b0615de8f03ac100e91b003222b65a70650d2\\QLBanPhanMem\\QLBanPhanMem.csproj": {}
+    "D:\\Github\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\android17x\\Downloads\\Compressed\\WebAppKhachHang-381b0615de8f03ac100e91b003222b65a70650d2\\QLBanPhanMem\\QLBanPhanMem.csproj": {
+    "D:\\Github\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\android17x\\Downloads\\Compressed\\WebAppKhachHang-381b0615de8f03ac100e91b003222b65a70650d2\\QLBanPhanMem\\QLBanPhanMem.csproj",
+        "projectUniqueName": "D:\\Github\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj",
         "projectName": "QLBanPhanMem",
-        "projectPath": "C:\\Users\\android17x\\Downloads\\Compressed\\WebAppKhachHang-381b0615de8f03ac100e91b003222b65a70650d2\\QLBanPhanMem\\QLBanPhanMem.csproj",
-        "packagesPath": "C:\\Users\\android17x\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\android17x\\Downloads\\Compressed\\WebAppKhachHang-381b0615de8f03ac100e91b003222b65a70650d2\\QLBanPhanMem\\obj\\",
+        "projectPath": "D:\\Github\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj",
+        "packagesPath": "C:\\Users\\zenon\\.nuget\\packages\\",
+        "outputPath": "D:\\Github\\WebAppKhachHang\\QLBanPhanMem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\android17x\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\zenon\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,9 +34,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "default"
         }
       },
       "frameworks": {
@@ -113,7 +110,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100-rc.1.23463.5\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -54,7 +54,7 @@ VALUES
     (23, N'FIFA 23 (EA)', N'Fifa 23 Game', 11, '17-9-2020', 6, N'Tháng', 1200000, 1),
     (24, N'Bandicam', N'Quay màn hình', 12, '8-2-2016', 1, N'Năm', 1500000, 1),
     (25, N'Adobe Acrobat Pro 1PC', N'Adobe', 13, '19-3-2020', 100, N'Năm', 2000000, 1),
-    (26, N'Windows 11 Education  CD Key', N'Window', 1, '17-9-2020', 100, N'Năm', 3000000, 2);
+    (26, N'Windows 11 Education CD Key', N'Window', 1, '17-9-2020', 100, N'Năm', 3000000, 2);
 
 INSERT INTO THUOCLOAIPM(MAPM, MALOAI)
 VALUES
@@ -84,3 +84,8 @@ VALUES
     (24, 1),
     (25, 2),
     (26, 1);
+
+
+UPDATE PHANMEM
+SET DONVITHOIHAN = N'Vĩnh viễn', THOIHAN = 0
+WHERE TENPM LIKE N'Windows%';
