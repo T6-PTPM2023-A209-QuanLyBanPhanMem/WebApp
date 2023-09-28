@@ -82,9 +82,6 @@ namespace QLBanPhanMem.Controllers
                 _context.HoaDons.Add(order);
                 _context.SaveChanges();
 
-            } 
-            else
-            {
                 var detail = new ChiTietHoaDonModel
                 {
                     MAHD = hoadon.MAHD,
@@ -95,7 +92,36 @@ namespace QLBanPhanMem.Controllers
                 };
                 _context.CTHDs.Add(detail);
                 _context.SaveChanges();
+                detail = _context.CTHDs.FirstOrDefaultAsync(ct => ct.MAHD == hoadon.MAHD && ct.MAPM == productId).Result;
+                int soluong = (int)detail.SOLUONG;
                 int tongtien = (int)_context.CTHDs.Where(ct => ct.MAHD == hoadon.MAHD).Sum(ct => ct.THANHTIEN);
+                hoadon.TONGTIEN = tongtien;
+                _context.Update(hoadon);
+                _context.SaveChanges();
+            } 
+            else
+            {
+                hoadon = _context.HoaDons.FirstOrDefaultAsync(hd => hd.MATK == maTK && hd.TINHTRANG == "Chưa thanh toán").Result;
+                string mahd = hoadon.MAHD;
+                var cthd = _context.CTHDs.FirstOrDefaultAsync(ct => ct.MAHD == mahd && ct.MAPM == productId).Result;
+                if (cthd != null)
+                {
+                    cthd.SOLUONG = cthd.SOLUONG + 1;
+                }
+                else if (cthd == null)
+                {
+                    var detail = new ChiTietHoaDonModel
+                    {
+                        MAHD = hoadon.MAHD,
+                        MAPM = productId,
+                        THANHTIEN = _context.PhanMems
+                                    .FirstOrDefault(pm => pm.MAPM == productId).DONGIA
+                    };
+                    _context.CTHDs.Add(detail);
+                }
+                int soluong = (int)cthd.SOLUONG;
+                _context.SaveChanges();
+                int tongtien = (int)_context.CTHDs.Where(ct => ct.MAHD == hoadon.MAHD).Sum(ct => ct.THANHTIEN)*soluong;
                 hoadon.TONGTIEN = tongtien;
                 _context.Update(hoadon);
                 _context.SaveChanges();
@@ -108,7 +134,7 @@ namespace QLBanPhanMem.Controllers
                .CountAsync();               
                 HttpContext.Session.SetString("dem", dem.ToString());
             }
-            return RedirectToAction("Detail", "Product");
+            return RedirectToAction("Index", "Cart");
         }
         public IActionResult Checkout()
         {
@@ -120,6 +146,7 @@ namespace QLBanPhanMem.Controllers
             string maTK = HttpContext.Session.GetString("uid");
             var hoadon = _context.HoaDons
                 .FirstOrDefault(hd => hd.MATK == maTK && hd.TINHTRANG == "Chưa thanh toán");
+            
             if (hoadon == null) { 
             
             }
@@ -129,7 +156,22 @@ namespace QLBanPhanMem.Controllers
                 _context.Update(hoadon);
                 await _context.SaveChangesAsync();
             }
-           return RedirectToAction("Index", "Home");
+            var account = _context.Accounts
+                .FirstOrDefault(tk => tk.Uid == maTK);
+            if(account.SurPlus<hoadon.TONGTIEN)
+            {
+                ViewBag.error = "Số dư không đủ để thanh toán";
+                return RedirectToAction("Index", "Cart");
+            }
+            else
+            {
+                account.SurPlus = account.SurPlus - hoadon.TONGTIEN;
+                _context.Update(account);
+                await _context.SaveChangesAsync();
+            }    
+            
+
+            return RedirectToAction("Index", "Home");
         }
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
@@ -161,7 +203,10 @@ namespace QLBanPhanMem.Controllers
                 return RedirectToAction("Index", "Cart");
             }
         }
-
+        public IActionResult TopUp()
+        {
+            return View();
+        }
         //[HttpPost, ActionName("Delete")]
         //[ValidateAntiForgeryToken]
         //public async Task<IActionResult> Delete(int? id)

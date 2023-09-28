@@ -246,6 +246,7 @@ namespace QLBanPhanMem.Controllers
                         Email = model.Email,
                         Uid = result.User.Uid,
                         Username = model.Email,
+                        SurPlus = 0
                     };
                  
                     // Thực hiện insert chỉ vào các cột Email, Uid và FullName
@@ -284,7 +285,33 @@ namespace QLBanPhanMem.Controllers
             var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
             return Challenge(properties, provider);
         }
-        
+        public IActionResult TopUp()
+        {
+            
 
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> TopUp(int soTien)
+        {
+            string session = HttpContext.Session.GetString("uid");
+            if (session == null)
+            {
+                return RedirectToAction("SignIn", "Account");
+            }
+            var account = _context.Accounts.FirstOrDefault(a => a.Uid == session);
+            if (account == null)
+            {
+                return NotFound();
+            }
+            account.SurPlus += soTien;
+            _context.Update(account);
+            _context.SaveChanges();
+            ViewBag.notice = "Nạp tiền thành công";
+            return View(ViewBag);
+
+        }
+        
+            
     }
 }
