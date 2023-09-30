@@ -88,7 +88,7 @@ namespace QLBanPhanMem.Controllers
         public async Task<IActionResult> Edit(string id)
         {
             //Lấy 
-            string session = HttpContext.Session.GetString("email");
+            string? session = HttpContext.Session.GetString("email");
             @ViewBag.email = session;
             if (HttpContext.Session.GetString("uid") == null || id == null || _context.Accounts == null)
             {
@@ -118,7 +118,6 @@ namespace QLBanPhanMem.Controllers
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
@@ -209,18 +208,13 @@ namespace QLBanPhanMem.Controllers
                     }
                     return RedirectToAction("Index", "Home");
                 }
-
                 return View();
             }
             catch(Exception ex)
-            {
-                
-                @ViewBag.Error = ex.Message;
-                
+            {                
+                @ViewBag.Error = ex.Message;              
                 return View();
-            }
-            
-            
+            }                       
         }
         public IActionResult SignUp()
         {
@@ -248,11 +242,19 @@ namespace QLBanPhanMem.Controllers
                         Username = model.Email,
                         SurPlus = 0
                     };
-                 
-                    // Thực hiện insert chỉ vào các cột Email, Uid và FullName
-                    _context.Accounts.Add(user);
+                 try
+                    {
+                        _context.Accounts.Add(user);
 
-                    await _context.SaveChangesAsync();
+                        await _context.SaveChangesAsync();
+                    }
+                    catch(Exception ex)
+                    {
+                        ViewBag.Error = ex.Message;
+                        return View("SignUp");
+                    }
+                    // Thực hiện insert chỉ vào các cột Email, Uid và FullName
+                   
                     if (result.User.Uid != null && model.Email != null)
                     {
                         HttpContext.Session.Set("uid", System.Text.Encoding.UTF8.GetBytes(result.User.Uid));
@@ -271,11 +273,14 @@ namespace QLBanPhanMem.Controllers
         }
         public IActionResult SignOut()
         {
-            var client = new FirebaseAuthClient(config);
-            client.SignOut();
-            HttpContext.Session.Clear();
-            return RedirectToAction("SignIn");
+            
+                var client = new FirebaseAuthClient(config);
+                client.SignOut();
+                HttpContext.Session.Clear();
+                return RedirectToAction("SignIn");
+            
         }
+
         [HttpGet]
         [AllowAnonymous]
         public IActionResult ExternalLogin(string provider, string? returnUrl = null)
@@ -286,15 +291,13 @@ namespace QLBanPhanMem.Controllers
             return Challenge(properties, provider);
         }
         public IActionResult TopUp()
-        {
-            
-
+        {            
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> TopUp(int soTien)
+        public IActionResult TopUp(int soTien)
         {
-            string session = HttpContext.Session.GetString("uid");
+            string? session = HttpContext.Session.GetString("uid");
             if (session == null)
             {
                 return RedirectToAction("SignIn", "Account");
@@ -305,13 +308,23 @@ namespace QLBanPhanMem.Controllers
                 return NotFound();
             }
             account.SurPlus += soTien;
-            _context.Update(account);
-            _context.SaveChanges();
-            ViewBag.notice = "Nạp tiền thành công";
-            return View(ViewBag);
+            try
+            {
+                _context.Update(account);
+                _context.SaveChanges();
+                ViewBag.notice = "Nạp tiền thành công";
+                return View(ViewBag);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                ViewBag.notice = "Nạp tiền thất bại";
+                return View(ViewBag);
+            }
+
 
         }
-        
-            
+
+
     }
 }
