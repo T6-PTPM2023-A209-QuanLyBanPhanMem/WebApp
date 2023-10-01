@@ -278,7 +278,6 @@ D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\QLBanPhanMem.Generated
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\QLBanPhanMem.AssemblyInfoInputs.cache
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\QLBanPhanMem.AssemblyInfo.cs
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\QLBanPhanMem.csproj.CoreCompileInputs.cache
-D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\QLBanPhanMem.MvcApplicationPartsAssemblyInfo.cache
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\QLBanPhanMem.RazorAssemblyInfo.cache
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\QLBanPhanMem.RazorAssemblyInfo.cs
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\QLBanPhanMem.sourcelink.json
