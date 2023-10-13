@@ -89,15 +89,16 @@ namespace QLBanPhanMem.Controllers
                 //                );)
             }
             //Phân trang
-            int ItemOfPage = 8;
+            int ItemOfPage = 8; // Số sản phẩm trên mỗi trang
             int TotalPage = (int)Math.Ceiling((double)query.Count() / ItemOfPage);
             int Start = (page - 1) * ItemOfPage;
-            int End = page * ItemOfPage;
-            ViewBag.ToTalPage = TotalPage;
+            int End = Math.Min(page * ItemOfPage, query.Count()); // Đảm bảo không vượt quá số lượng sản phẩm
+            ViewBag.TotalPage = TotalPage;
             ViewBag.Start = Start;
             ViewBag.End = End;
             ViewBag.Page = page;
-            var result=  await query.Skip(Start).Take(TotalPage).ToListAsync();
+            var result = await query.Skip(Start).Take(ItemOfPage).ToListAsync(); // Sử dụng ItemOfPage thay vì TotalPage
+
 
             // Chuyển kết quả của truy vấn thành danh sách và truyền vào view
             //var result = await query.ToListAsync();

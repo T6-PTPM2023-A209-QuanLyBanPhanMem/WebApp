@@ -1,6 +1,7 @@
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\PubTmp\Out\QLBanPhanMem.exe
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\PubTmp\Out\appsettings.json
+D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\PubTmp\Out\bundleconfig.json
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\PubTmp\Out\QLBanPhanMem.dll
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\PubTmp\Out\QLBanPhanMem.runtimeconfig.json
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\PubTmp\Out\QLBanPhanMem.pdb

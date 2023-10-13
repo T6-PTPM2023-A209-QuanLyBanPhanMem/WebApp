@@ -1,14 +1,14 @@
 ﻿@model QLBanPhanMem.Models.PhanMemModel
 
 @{
-    ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Chi tiết";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
 <h1>Details</h1>
 
 <div>
-    <h4>PhanMemModel</h4>
+    
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -73,7 +73,6 @@
         <a href="@Url.Action("AddToCart", "Cart", new { productId = Model.MAPM })" class="btn btn-dark" id="liveToastBtn">Thêm vào giỏ</a>
         @* <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@Model.MAPM">Add to cart</a> *@
         <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
-
         <div class="toast-container position-fixed bottom-0 end-0 p-3">
             <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
@@ -87,12 +86,21 @@
                 </div>
             </div>
         </div>
+        <script>
+            const toastTrigger = document.getElementById('liveToastBtn')
+            const toastLiveExample = document.getElementById('liveToast')
+
+            if (toastTrigger) {
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+                toastTrigger.addEventListener('click', () => {
+                    toastBootstrap.show()
+                })
+            }
+        </script>
     }
     else
     {
         <a asp-action="SignIn" asp-controller="Account">Add to cart</a>
     })
-    <a asp-action="Edit" asp-route-id="@Model?.MAPM">Edit</a> |
-    <a asp-action="Index">Back to List</a>
 </div>
-<script src="~/js/snippets.js"></script>
+

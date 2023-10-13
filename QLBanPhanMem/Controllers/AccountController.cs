@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.CodeAnalysis.Differencing;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using QLBanPhanMem.Class;
+using QLBanPhanMem;
 
 namespace QLBanPhanMem.Controllers
 {

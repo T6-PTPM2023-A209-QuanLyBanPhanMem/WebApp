@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\login.css"
     },
     {
+      "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\css\\productIndex.css",
+      "PackagePath": "staticwebassets\\css\\productIndex.css"
+    },
+    {
       "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -31,6 +35,10 @@
     {
       "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\image\\Logo.jpg",
       "PackagePath": "staticwebassets\\image\\Logo.jpg"
+    },
+    {
+      "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\image\\demo.jpg",
+      "PackagePath": "staticwebassets\\image\\demo.jpg"
     },
     {
       "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\js\\site.js",

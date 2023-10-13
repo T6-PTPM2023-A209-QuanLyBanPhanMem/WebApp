@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\login.css"
     },
     {
+      "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\css\\productIndex.css",
+      "PackagePath": "staticwebassets\\css\\productIndex.css"
+    },
+    {
       "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -31,6 +35,10 @@
     {
       "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\image\\Logo.jpg",
       "PackagePath": "staticwebassets\\image\\Logo.jpg"
+    },
+    {
+      "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\image\\demo.jpg",
+      "PackagePath": "staticwebassets\\image\\demo.jpg"
     },
     {
       "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\js\\site.js",
@@ -107,6 +115,22 @@
     {
       "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css"
+    },
+    {
+      "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css.map"
+    },
+    {
+      "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css"
+    },
+    {
+      "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css.map"
     },
     {
       "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
