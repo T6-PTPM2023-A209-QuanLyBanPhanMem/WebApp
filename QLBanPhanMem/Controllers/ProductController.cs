@@ -84,9 +84,7 @@ namespace QLBanPhanMem.Controllers
                                                           // Tìm theo tên nhà phát hành
                 );
 
-                //query1 = query1.Where(p =>
-                //                   p.LoaiPM.TENLOAI.Contains(search)); // Tìm theo tên nhà phát hành
-                //                );)
+                
             }
             //Phân trang
             int ItemOfPage = 8; // Số sản phẩm trên mỗi trang

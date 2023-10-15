@@ -283,13 +283,13 @@ namespace QLBanPhanMem.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult ExternalLogin(string provider, string? returnUrl = null)
-        {
-            // Chuyển hướng đến trang đăng nhập Facebook
-            var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl });
-            var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
-            return Challenge(properties, provider);
-        }
+        //public IActionResult ExternalLogin(string provider, string? returnUrl = null)
+        //{
+        //    // Chuyển hướng đến trang đăng nhập Facebook
+        //    var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl });
+        //    var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
+        //    return Challenge(properties, provider);
+        //}
         public IActionResult TopUp()
         {            
             return View();
@@ -321,10 +321,6 @@ namespace QLBanPhanMem.Controllers
                 ViewBag.notice = "Nạp tiền thất bại";
                 return View(ViewBag);
             }
-
-
         }
-
-
     }
 }

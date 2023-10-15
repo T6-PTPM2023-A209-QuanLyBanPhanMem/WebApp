@@ -67,8 +67,8 @@ namespace QLBanPhanMem.Controllers
         {
             try
             {
-                string maTK = HttpContext.Session.GetString("uid");
-                string maHD = HttpContext.Session.GetString("uid") + DateTime.Now.ToString("ddMMyyyyHHmmss");
+                string? maTK = HttpContext.Session.GetString("uid");
+                string? maHD = HttpContext.Session.GetString("uid") + DateTime.Now.ToString("ddMMyyyyHHmmss");
                 var hoadon = await _context.HoaDons
                     .FirstOrDefaultAsync(hd => hd.MATK == maTK && hd.TINHTRANG == "Chưa thanh toán");
 

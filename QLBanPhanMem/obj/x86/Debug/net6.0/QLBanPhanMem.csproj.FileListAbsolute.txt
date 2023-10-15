@@ -8,7 +8,6 @@ D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\x86\Debug\net6.0\QLBanPhanMem.dll
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\x86\Debug\net6.0\QLBanPhanMem.pdb
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\x86\Debug\net6.0\Azure.Core.dll
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\x86\Debug\net6.0\Azure.Identity.dll
-D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\x86\Debug\net6.0\Facebook.dll
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\x86\Debug\net6.0\Firebase.Auth.dll
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\x86\Debug\net6.0\Humanizer.dll
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\x86\Debug\net6.0\MessagePack.dll

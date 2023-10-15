@@ -541,7 +541,6 @@ D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.GeneratedMS
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.AssemblyInfoInputs.cache
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.AssemblyInfo.cs
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.csproj.CoreCompileInputs.cache
-D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.MvcApplicationPartsAssemblyInfo.cache
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.RazorAssemblyInfo.cache
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.RazorAssemblyInfo.cs
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\staticwebassets\msbuild.QLBanPhanMem.Microsoft.AspNetCore.StaticWebAssets.props
@@ -590,7 +589,6 @@ D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Debug\net6.0\runtimes\win-arm\native\
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Debug\net6.0\runtimes\win-arm64\native\e_sqlite3.dll
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Debug\net6.0\runtimes\win-x64\native\e_sqlite3.dll
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Debug\net6.0\runtimes\win-x86\native\e_sqlite3.dll
-D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Debug\net6.0\Facebook.dll
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Google.dll
 C:\Users\android17x\Downloads\Compressed\WebAppKhachHang-168ff4a10bce5a69498c59dd872e1673cef5b789\QLBanPhanMem\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\android17x\Downloads\Compressed\WebAppKhachHang-168ff4a10bce5a69498c59dd872e1673cef5b789\QLBanPhanMem\bin\Debug\net6.0\appsettings.json
@@ -1190,4 +1188,4 @@ C:\Users\android17x\Downloads\Compressed\WebAppKhachHang-381b0615de8f03ac100e91b
 C:\Users\android17x\Downloads\Compressed\WebAppKhachHang-381b0615de8f03ac100e91b003222b65a70650d2\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.pdb
 C:\Users\android17x\Downloads\Compressed\WebAppKhachHang-381b0615de8f03ac100e91b003222b65a70650d2\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.genruntimeconfig.cache
 C:\Users\android17x\Downloads\Compressed\WebAppKhachHang-381b0615de8f03ac100e91b003222b65a70650d2\QLBanPhanMem\obj\Debug\net6.0\ref\QLBanPhanMem.dll
-D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.sourcelink.json
+D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Debug\net6.0\bundleconfig.json
