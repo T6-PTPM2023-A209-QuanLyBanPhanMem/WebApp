@@ -38,6 +38,9 @@ namespace QLBanPhanMem.Controllers
         //GET: Account
         public async Task<IActionResult> Index()
         {
+            ViewBag.email = HttpContext.Session.GetString("email");
+            ViewBag.uid = HttpContext.Session.GetString("uid");
+
             return _context.Accounts != null ?
                         View(await _context.Accounts.ToListAsync()) :
                         Problem("Entity set 'AppDbContext.Accounts'  is null.");
@@ -204,8 +207,15 @@ namespace QLBanPhanMem.Controllers
                     {
                         HttpContext.Session.Set("uid", System.Text.Encoding.UTF8.GetBytes(result.User.Uid));
                         HttpContext.Session.Set("email", System.Text.Encoding.UTF8.GetBytes(model.Email));
+
+                        ViewBag.email = HttpContext.Session.GetString("email");
+                        ViewBag.uid = HttpContext.Session.GetString("uid");
+
                         return RedirectToAction("Index", "Home");
                     }
+
+                   
+
                     return RedirectToAction("Index", "Home");
                 }
                 return View();
@@ -291,7 +301,9 @@ namespace QLBanPhanMem.Controllers
         //    return Challenge(properties, provider);
         //}
         public IActionResult TopUp()
-        {            
+        {
+            ViewBag.email = HttpContext.Session.GetString("email");
+            ViewBag.uid = HttpContext.Session.GetString("uid");
             return View();
         }
         [HttpPost]

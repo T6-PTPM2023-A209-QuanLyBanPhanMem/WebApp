@@ -1,4 +1,13 @@
-* {
+.myfoother ul {
+    list-style: none;
+}
+
+.myfoother ul>li>a {
+    text-decoration: none;
+    color: #8b8e96;
+}
+
+/** {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -150,10 +159,10 @@ body {
     width: auto;
     border: none;
     border-radius: 0;
-}
+}*/
 
 /*Keyframes Animaton*/
-@keyframes slideRight {
+/*@keyframes slideRight {
     0% {
         transform: translateX(-100px);
         opacity: 0;
@@ -175,4 +184,4 @@ body {
         transform: translateY(0);
         opacity: 1;
     }
-}
+}*/

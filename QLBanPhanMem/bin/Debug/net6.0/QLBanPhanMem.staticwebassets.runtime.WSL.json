@@ -1,7 +1,7 @@
 {
   "ContentRoots": [
-    "/mnt/d/GitHub/WebAppKhachHang/QLBanPhanMem/wwwroot/",
-    "/mnt/d/GitHub/WebAppKhachHang/QLBanPhanMem/obj/Debug/net6.0/scopedcss/bundle/"
+    "/mnt/d/Github/WebAppKhachHang/QLBanPhanMem/wwwroot/",
+    "/mnt/d/Github/WebAppKhachHang/QLBanPhanMem/obj/Debug/net6.0/scopedcss/bundle/"
   ],
   "Root": {
     "Children": {

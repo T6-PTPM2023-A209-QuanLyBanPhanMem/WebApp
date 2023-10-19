@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Chi tiết";
-    Layout = "~/Views/Shared/_Layout2.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Details</h1>
@@ -70,9 +70,8 @@
 <div>
     @if (ViewBag.email != null)
     {
-        <a href="@Url.Action("AddToCart", "Cart", new { productId = Model.MAPM })" class="btn btn-dark" id="liveToastBtn">Thêm vào giỏ</a>
-        @* <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@Model.MAPM">Add to cart</a> *@
-        <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+        <a href="@Url.Action("AddToCart", "Cart", new { productID = Model.MAPM })" class="btn btn-dark" id="liveToastBtn">Thêm vào giỏ</a>
+        <button type="button" class="btn btn-primary" id="liveToastShowBtn">Hiển thị thông báo</button>
         <div class="toast-container position-fixed bottom-0 end-0 p-3">
             <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
@@ -86,21 +85,23 @@
                 </div>
             </div>
         </div>
-        <script>
-            const toastTrigger = document.getElementById('liveToastBtn')
-            const toastLiveExample = document.getElementById('liveToast')
-
-            if (toastTrigger) {
-                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-                toastTrigger.addEventListener('click', () => {
-                    toastBootstrap.show()
-                })
-            }
-        </script>
     }
     else
     {
-        <a asp-action="SignIn" asp-controller="Account">Add to cart</a>
-    })
+        <a asp-action="SignIn" asp-controller="Account">Thêm vào giỏ</a>
+    }
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const toastShowBtn = document.getElementById('liveToastShowBtn');
+        const toast = new bootstrap.Toast(document.getElementById('liveToast'));
+
+        if (toastShowBtn) {
+            toastShowBtn.addEventListener('click', () => {
+                toast.show();
+            });
+        }
+    });
+</script>
 

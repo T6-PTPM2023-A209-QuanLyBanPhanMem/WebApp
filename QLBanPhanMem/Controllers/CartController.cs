@@ -31,6 +31,8 @@ namespace QLBanPhanMem.Controllers
 
             ViewBag.giohang = HttpContext.Session.GetString("dem");
             ViewBag.email = HttpContext.Session.GetString("email");
+            ViewBag.uid = HttpContext.Session.GetString("uid");
+
             string? maTK = HttpContext.Session.GetString("uid");
            
             var hoadon = _context.HoaDons

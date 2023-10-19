@@ -26,6 +26,7 @@ namespace QLBanPhanMem.Controllers
         {
             ViewBag.giohang = HttpContext.Session.GetString("dem");
             ViewBag.email = HttpContext.Session.GetString("email");
+            ViewBag.uid = HttpContext.Session.GetString("uid");
 
             // Lấy danh sách các nhà phát hành từ cơ sở dữ liệu
             var publishers = await _context.NhaPhatHanhs.ToListAsync();
