@@ -891,7 +891,6 @@ C:\Users\android17x\Downloads\Compressed\WebAppKhachHang-381b0615de8f03ac100e91b
 C:\Users\android17x\Downloads\Compressed\WebAppKhachHang-381b0615de8f03ac100e91b003222b65a70650d2\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.pdb
 C:\Users\android17x\Downloads\Compressed\WebAppKhachHang-381b0615de8f03ac100e91b003222b65a70650d2\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.genruntimeconfig.cache
 C:\Users\android17x\Downloads\Compressed\WebAppKhachHang-381b0615de8f03ac100e91b003222b65a70650d2\QLBanPhanMem\obj\Debug\net6.0\ref\QLBanPhanMem.dll
-<<<<<<< Updated upstream
 D:\Github\WebAppKhachHang\QLBanPhanMem\bin\Debug\net6.0\appsettings.Development.json
 D:\Github\WebAppKhachHang\QLBanPhanMem\bin\Debug\net6.0\appsettings.json
 D:\Github\WebAppKhachHang\QLBanPhanMem\bin\Debug\net6.0\bundleconfig.json
@@ -1190,7 +1189,3 @@ D:\Github\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\refint\QLBanPhanMem.dll
 D:\Github\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.pdb
 D:\Github\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.genruntimeconfig.cache
 D:\Github\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\ref\QLBanPhanMem.dll
-=======
-D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Debug\net6.0\bundleconfig.json
->>>>>>> Stashed changes
-D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.sourcelink.json

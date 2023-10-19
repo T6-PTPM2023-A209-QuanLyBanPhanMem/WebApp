@@ -7,21 +7,13 @@
 <br/>
 <div class="filter-container">
     <div>
-<<<<<<< Updated upstream
-        <select class="form-select" aria-label="Default select example" id="nhaphathanh" style="width:130px" name="manph" asp-items="@ViewBag.PublisherList">
-=======
-        <select class="form-select" aria-label="Default select example" id="nhaphathanh" style="width:130px" name="manph" asp-items="@ViewBag.PublisherList" >
->>>>>>> Stashed changes
+        <select class="form-select" aria-label="Default select example" id="manph" style="width:130px" name="manph" asp-items="@ViewBag.PublisherList" onchange="navigateToPublisher">
             <option value="">Nhà phát hành</option>
         </select>
     </div>
 
     <div>
-<<<<<<< Updated upstream
-        <select class="form-select" aria-label="Default select example" id="theloai" style="width:130px" name="manph" asp-items="@ViewBag.LoaiPMList">
-=======
-        <select class="form-select" aria-label="Default select example" id="theloai" style="width:130px" name="manph" asp-items="@ViewBag.LoaiPMList" >
->>>>>>> Stashed changes
+        <select class="form-select" aria-label="Default select example" id="manph" style="width:130px" name="manph" asp-items="@ViewBag.LoaiPMList" onchange="navigateToPublisher">
             <option value="">Thể loại</option>
         </select>
     </div>
@@ -29,20 +21,20 @@
     <div>
         <form style="display: flex;">
             <div class="input-group mb-3" style="width:150px; margin-left:20px;">
-                <input type="number" id="min" name="min" class="form-control" placeholder="Giá từ" aria-label="Giá từ">
+                <input type="number" id="min" name="min" class="form-control" placeholder="Giá từ" aria-label="Username" aria-describedby="basic-addon1">
             </div>
             <div class="input-group mb-3" style="width:150px; margin-left:20px;">
-                <input type="number" id="max" name="max" class="form-control" placeholder="Đến" aria-label="Đến">
+                <input type="number" id="max" name="max" class="form-control" placeholder="Đến" aria-label="Username" aria-describedby="basic-addon1">
             </div>
-<<<<<<< Updated upstream
-=======
+            <div class="input-group mb-3" style="width:150px; margin-left:20px;">
+                <button style="height:30px" type="submit" class="btn btn-primary">Lọc</button>
+            </div>
             
-            
->>>>>>> Stashed changes
         </form>
     </div>
+
     <div>
-        <select style="width:130px" class="form-select" id="SortDrop">
+        <select style="width:130px" class="form-select" id="SortDrop" onclick="navigateSort">
             <option value="">Sắp xếp</option>
             <option value="1">Giá tăng dần</option>
             <option value="2">Giá giảm dần</option>
@@ -52,75 +44,31 @@
             <option value="5">Mới nhất</option>
         </select>
     </div>
-<<<<<<< Updated upstream
-    <div class="input-group mb-3" style="width:150px; margin-left:20px;">
-        <button style="height:35px;" type="button" id="FilterButton" class="btn btn-primary">Lọc</button>
-    </div>
 </div>
 
+
+
 <script>
-    // Xử lý sự kiện khi nút "Lọc" được nhấn
-=======
-    <!-- Thêm một id cho nút "Lọc" (ở đây tôi đặt id="filterButton") -->
-    <div class="input-group mb-3" style="width:150px; margin-left:20px;">
-        <button style="height:35px;" type="button" id="FilterButton" class="btn btn-primary">Lọc</button>
-    </div>
+    function navigateSort() {
+        $('#SortDrop').change(() => {
+            const value = $('#SortDrop').val();
+            window.location.href = "/Product/Index?SortColumn=" + value
+        });
+    }
 
-</div>
-<script>
-    // Xử lý sự kiện khi nút "Lọc và Sắp xếp" được nhấn
->>>>>>> Stashed changes
-    document.getElementById("FilterButton").addEventListener("click", function () {
-        var selectedPublisher = $('#nhaphathanh').val();
-        var sortValue = $('#SortDrop').val();
-        var minPrice = $('#min').val();
-        var maxPrice = $('#max').val();
-        var type = $('#theloai').val();
-        var filterUrl = "/Product/Index";
-<<<<<<< Updated upstream
-        var filters = [];
-        if (selectedPublisher) {
-            filters.push("search=" + selectedPublisher);
-        }
-        if (sortValue) {
-            filters.push("SortColumn=" + sortValue);
-        }
-        if (minPrice) {
-            filters.push("min=" + minPrice);
-        }
-        if (maxPrice) {
-            filters.push("max=" + maxPrice);
-        }
-        if (type) {
-=======
-
-        var filters = [];
-
-        if (selectedPublisher) {
-            filters.push("search=" + selectedPublisher);
-        }
-
-        if (sortValue) {
-            filters.push("SortColumn=" + sortValue);
-        }
-
-        if (minPrice && maxPrice) {
-            filters.push("min=" + minPrice);
-            filters.push("max=" + maxPrice);
-        }
-        if(type)
-        {
->>>>>>> Stashed changes
-            filters.push("type=" + type);
-        }
-        if (filters.length > 0) {
-            filterUrl += "?" + filters.join("&");
-        }
-
-        window.location.href = filterUrl;
-    });
 </script>
 
+<script>
+    function navigateToPublisher() {
+        var selectedPublisher = document.getElementById("manph");
+        var selectedPublisherName = selectedPublisher.options[selectedPublisher.selectedIndex].text;
+        if (selectedPublisher) {
+            window.location.href = '/Product/Index?search=' + selectedPublisherName;
+        } else {
+            window.location.href = '/Product/Index'; // Nếu không có lựa chọn, điều hướng đến trang tất cả
+        }
+    }
+</script>
 <h1>Duyệt qua danh mục sản phẩm</h1>
 
 @* <p>
