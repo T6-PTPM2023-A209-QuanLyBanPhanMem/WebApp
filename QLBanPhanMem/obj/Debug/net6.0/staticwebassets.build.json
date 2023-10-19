@@ -1,6 +1,10 @@
 {
   "Version": 1,
+<<<<<<< Updated upstream
   "Hash": "ESQDOcOgIg1Teha2vH07GvMwKEeeRXR6anOngPPEvk4=",
+=======
+  "Hash": "5VArM/4erHe/pO8kSi392y4Qut7CX3xtFzhMk7y7hC4=",
+>>>>>>> Stashed changes
   "Source": "QLBanPhanMem",
   "BasePath": "_content/QLBanPhanMem",
   "Mode": "Default",
@@ -416,6 +420,7 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
+<<<<<<< Updated upstream
       "Identity": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "SourceId": "QLBanPhanMem",
       "SourceType": "Discovered",
@@ -796,6 +801,8 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
+=======
+>>>>>>> Stashed changes
       "Identity": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css",
       "SourceId": "QLBanPhanMem",
       "SourceType": "Discovered",
@@ -872,6 +879,7 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css.map"
     },
     {
+<<<<<<< Updated upstream
       "Identity": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "SourceId": "QLBanPhanMem",
       "SourceType": "Discovered",
@@ -1176,6 +1184,8 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
+=======
+>>>>>>> Stashed changes
       "Identity": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "SourceId": "QLBanPhanMem",
       "SourceType": "Discovered",
@@ -1195,6 +1205,7 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
+<<<<<<< Updated upstream
       "Identity": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "SourceId": "QLBanPhanMem",
       "SourceType": "Discovered",
@@ -1214,6 +1225,8 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
+=======
+>>>>>>> Stashed changes
       "Identity": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "SourceId": "QLBanPhanMem",
       "SourceType": "Discovered",
@@ -1233,6 +1246,7 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
+<<<<<<< Updated upstream
       "Identity": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "SourceId": "QLBanPhanMem",
       "SourceType": "Discovered",
@@ -1252,6 +1266,8 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
+=======
+>>>>>>> Stashed changes
       "Identity": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\lib\\bootstrap\\LICENSE",
       "SourceId": "QLBanPhanMem",
       "SourceType": "Discovered",

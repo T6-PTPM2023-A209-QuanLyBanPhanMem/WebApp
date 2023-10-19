@@ -26,11 +26,16 @@
 }
 .filter-container {
     display: flex;
+<<<<<<< Updated upstream
    
+=======
+    
+>>>>>>> Stashed changes
     justify-content: space-between;
 }
 
     .filter-container > div {
+<<<<<<< Updated upstream
         
         margin: 5px;
         /* Ngăn các mục bên trong không bị xuống hàng */
@@ -47,3 +52,18 @@
             margin-right: 5px;
             margin-left: 5px;
         }
+=======
+        margin: 5px;
+         /* Ngăn các mục bên trong không bị xuống hàng */
+    }
+        .filter-container > div > select {
+            min-width: 100px;
+            margin-right:5px;
+            margin-left:5px;
+        }
+        .filter-container > div > input {
+            min-width: 100px;
+            margin-right:5px;
+            margin-left:5px;
+        }
+>>>>>>> Stashed changes

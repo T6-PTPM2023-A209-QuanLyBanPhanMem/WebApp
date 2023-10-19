@@ -7,13 +7,21 @@
 <br/>
 <div class="filter-container">
     <div>
+<<<<<<< Updated upstream
         <select class="form-select" aria-label="Default select example" id="nhaphathanh" style="width:130px" name="manph" asp-items="@ViewBag.PublisherList">
+=======
+        <select class="form-select" aria-label="Default select example" id="nhaphathanh" style="width:130px" name="manph" asp-items="@ViewBag.PublisherList" >
+>>>>>>> Stashed changes
             <option value="">Nhà phát hành</option>
         </select>
     </div>
 
     <div>
+<<<<<<< Updated upstream
         <select class="form-select" aria-label="Default select example" id="theloai" style="width:130px" name="manph" asp-items="@ViewBag.LoaiPMList">
+=======
+        <select class="form-select" aria-label="Default select example" id="theloai" style="width:130px" name="manph" asp-items="@ViewBag.LoaiPMList" >
+>>>>>>> Stashed changes
             <option value="">Thể loại</option>
         </select>
     </div>
@@ -26,9 +34,13 @@
             <div class="input-group mb-3" style="width:150px; margin-left:20px;">
                 <input type="number" id="max" name="max" class="form-control" placeholder="Đến" aria-label="Đến">
             </div>
+<<<<<<< Updated upstream
+=======
+            
+            
+>>>>>>> Stashed changes
         </form>
     </div>
-
     <div>
         <select style="width:130px" class="form-select" id="SortDrop">
             <option value="">Sắp xếp</option>
@@ -40,6 +52,7 @@
             <option value="5">Mới nhất</option>
         </select>
     </div>
+<<<<<<< Updated upstream
     <div class="input-group mb-3" style="width:150px; margin-left:20px;">
         <button style="height:35px;" type="button" id="FilterButton" class="btn btn-primary">Lọc</button>
     </div>
@@ -47,6 +60,16 @@
 
 <script>
     // Xử lý sự kiện khi nút "Lọc" được nhấn
+=======
+    <!-- Thêm một id cho nút "Lọc" (ở đây tôi đặt id="filterButton") -->
+    <div class="input-group mb-3" style="width:150px; margin-left:20px;">
+        <button style="height:35px;" type="button" id="FilterButton" class="btn btn-primary">Lọc</button>
+    </div>
+
+</div>
+<script>
+    // Xử lý sự kiện khi nút "Lọc và Sắp xếp" được nhấn
+>>>>>>> Stashed changes
     document.getElementById("FilterButton").addEventListener("click", function () {
         var selectedPublisher = $('#nhaphathanh').val();
         var sortValue = $('#SortDrop').val();
@@ -54,6 +77,7 @@
         var maxPrice = $('#max').val();
         var type = $('#theloai').val();
         var filterUrl = "/Product/Index";
+<<<<<<< Updated upstream
         var filters = [];
         if (selectedPublisher) {
             filters.push("search=" + selectedPublisher);
@@ -68,6 +92,25 @@
             filters.push("max=" + maxPrice);
         }
         if (type) {
+=======
+
+        var filters = [];
+
+        if (selectedPublisher) {
+            filters.push("search=" + selectedPublisher);
+        }
+
+        if (sortValue) {
+            filters.push("SortColumn=" + sortValue);
+        }
+
+        if (minPrice && maxPrice) {
+            filters.push("min=" + minPrice);
+            filters.push("max=" + maxPrice);
+        }
+        if(type)
+        {
+>>>>>>> Stashed changes
             filters.push("type=" + type);
         }
         if (filters.length > 0) {
