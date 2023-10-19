@@ -7,13 +7,13 @@
 <br/>
 <div class="filter-container">
     <div>
-        <select class="form-select" aria-label="Default select example" id="manph" style="width:130px" name="manph" asp-items="@ViewBag.PublisherList" onchange="navigateToPublisher">
+        <select class="form-select" aria-label="Default select example" id="nhaphathanh" style="width:130px" name="manph" asp-items="@ViewBag.PublisherList">
             <option value="">Nhà phát hành</option>
         </select>
     </div>
 
     <div>
-        <select class="form-select" aria-label="Default select example" id="manph" style="width:130px" name="manph" asp-items="@ViewBag.LoaiPMList" onchange="navigateToPublisher">
+        <select class="form-select" aria-label="Default select example" id="theloai" style="width:130px" name="manph" asp-items="@ViewBag.LoaiPMList">
             <option value="">Thể loại</option>
         </select>
     </div>
@@ -21,20 +21,16 @@
     <div>
         <form style="display: flex;">
             <div class="input-group mb-3" style="width:150px; margin-left:20px;">
-                <input type="number" id="min" name="min" class="form-control" placeholder="Giá từ" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="number" id="min" name="min" class="form-control" placeholder="Giá từ" aria-label="Giá từ">
             </div>
             <div class="input-group mb-3" style="width:150px; margin-left:20px;">
-                <input type="number" id="max" name="max" class="form-control" placeholder="Đến" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="number" id="max" name="max" class="form-control" placeholder="Đến" aria-label="Đến">
             </div>
-            <div class="input-group mb-3" style="width:150px; margin-left:20px;">
-                <button style="height:30px" type="submit" class="btn btn-primary">Lọc</button>
-            </div>
-            
         </form>
     </div>
 
     <div>
-        <select style="width:130px" class="form-select" id="SortDrop" onclick="navigateSort">
+        <select style="width:130px" class="form-select" id="SortDrop">
             <option value="">Sắp xếp</option>
             <option value="1">Giá tăng dần</option>
             <option value="2">Giá giảm dần</option>
@@ -44,31 +40,44 @@
             <option value="5">Mới nhất</option>
         </select>
     </div>
+    <div class="input-group mb-3" style="width:150px; margin-left:20px;">
+        <button style="height:35px;" type="button" id="FilterButton" class="btn btn-primary">Lọc</button>
+    </div>
 </div>
 
-
-
 <script>
-    function navigateSort() {
-        $('#SortDrop').change(() => {
-            const value = $('#SortDrop').val();
-            window.location.href = "/Product/Index?SortColumn=" + value
-        });
-    }
-
-</script>
-
-<script>
-    function navigateToPublisher() {
-        var selectedPublisher = document.getElementById("manph");
-        var selectedPublisherName = selectedPublisher.options[selectedPublisher.selectedIndex].text;
+    // Xử lý sự kiện khi nút "Lọc" được nhấn
+    document.getElementById("FilterButton").addEventListener("click", function () {
+        var selectedPublisher = $('#nhaphathanh').val();
+        var sortValue = $('#SortDrop').val();
+        var minPrice = $('#min').val();
+        var maxPrice = $('#max').val();
+        var type = $('#theloai').val();
+        var filterUrl = "/Product/Index";
+        var filters = [];
         if (selectedPublisher) {
-            window.location.href = '/Product/Index?search=' + selectedPublisherName;
-        } else {
-            window.location.href = '/Product/Index'; // Nếu không có lựa chọn, điều hướng đến trang tất cả
+            filters.push("search=" + selectedPublisher);
         }
-    }
+        if (sortValue) {
+            filters.push("SortColumn=" + sortValue);
+        }
+        if (minPrice) {
+            filters.push("min=" + minPrice);
+        }
+        if (maxPrice) {
+            filters.push("max=" + maxPrice);
+        }
+        if (type) {
+            filters.push("type=" + type);
+        }
+        if (filters.length > 0) {
+            filterUrl += "?" + filters.join("&");
+        }
+
+        window.location.href = filterUrl;
+    });
 </script>
+
 <h1>Duyệt qua danh mục sản phẩm</h1>
 
 @* <p>

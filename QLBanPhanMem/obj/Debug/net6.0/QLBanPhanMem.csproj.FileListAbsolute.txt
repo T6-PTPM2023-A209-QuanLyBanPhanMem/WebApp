@@ -1189,3 +1189,4 @@ D:\Github\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\refint\QLBanPhanMem.dll
 D:\Github\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.pdb
 D:\Github\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.genruntimeconfig.cache
 D:\Github\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\ref\QLBanPhanMem.dll
+D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Debug\net6.0\QLBanPhanMem.sourcelink.json
