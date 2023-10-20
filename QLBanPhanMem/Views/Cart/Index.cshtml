@@ -9,12 +9,8 @@
 }
 @{
     int stt = 1;
-
 }
 <div class="row" style="margin-top:20px;text-align:center">
-    @* @{
-        var mylist = (List<GioHang>)Session["cart"];
-    } *@
     <h2>Giỏ hàng của bạn</h2>
         @if(ViewBag.dem==0||ViewBag.dem==null)
         {
@@ -27,10 +23,7 @@
             <p>
                 Có @ViewBag.dem sản phẩm trong giỏ hàng
             </p>
-        }
-        
-    
-
+        }        
     <hr class="dots">
     <br>
 </div>
@@ -49,17 +42,14 @@
                         <th>Số lượng</th>
                         <th>Đơn giá</th>
                     </tr>
-
                     @foreach (var item in Model)
                     {
                         <tr>
                             <td>
                                 @stt
                             </td>
-
                             <td>
                                 <a asp-action="Details" asp-controller="Product" asp-route-id="@item.MAPM">@Html.DisplayFor(modelItem => item.PhanMem.TENPM)</a>
-
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.SOLUONG)
@@ -73,59 +63,40 @@
                                     <input type="hidden" name="id" value="@item.MAPM" />
                                     <input type="submit" value="Xóa" />
                                 </form>
-
-                            </td>
-
-                                @* <a asp-action="Delete" asp-route-id="@item.MAPM">Delete</a> *@
-                            </td>
+                            </td>                        
                         </tr>
                         stt++;
                         dem = dem++;
                     }
-
-
-
-                </table>
-            
-
-
+                </table>           
         </div>
-
         <div class="col-md-4 col-sm-4 col-xs-12">
             <table class="table">
                 <tbody>
                     <tr>
                         <td colspan="2"><h4>Thông tin đơn hàng</h4></td>
-
                     </tr>
                     <tr>
                         <td><h5 style="color:gray">Tổng tiền:</h5></td>
-
                         <td>
                             <h4 style="color:red">
                                 @ViewBag.tongtien ₫
                             </h4>
                         </td>
-
-
-
                     </tr>
                     <tr>
                         <td colspan="2">
                             Phí vận chuyển sẽ được tính ở trang thanh toán.
                             <br />
                             Bạn cũng có thể nhập mã giảm giá ở trang thanh toán.
-
-                        </td>
+                       </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-
                             <form method="post" action="@Url.Action("ProcessPayment", "Cart")">
                                 <!-- Các trường thông tin thanh toán ở đây -->
                                 <input type="submit" value="Thanh toán" class="btn btn-primary" />
                             </form>
-
                         </td>
                     </tr>
                     <tr>
@@ -136,8 +107,6 @@
                 </tbody>
             </table>
         </div>
-    }
-    
-
+    }  
 </div>
 

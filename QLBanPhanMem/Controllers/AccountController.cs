@@ -334,5 +334,45 @@ namespace QLBanPhanMem.Controllers
                 return View(ViewBag);
             }
         }
+        public async Task<IActionResult> History(string id)
+        {
+            string? session = HttpContext.Session.GetString("email");
+            @ViewBag.email = session;
+            if (HttpContext.Session.GetString("uid") == null || id == null || _context.Accounts == null)
+            {
+                return RedirectToAction("SignIn", "Account");
+            }
+            if (id != HttpContext.Session.GetString("uid"))
+            {
+                return NotFound();
+            }
+            // Xuất nội dung trong Account
+            var accountModel = await _context.Accounts.FindAsync(id);
+            if (accountModel == null)
+            {
+                return NotFound();
+            }
+            return View(accountModel);
+        }
+        public async Task<IActionResult> ChangePassword(string id)
+        {
+            string? session = HttpContext.Session.GetString("email");
+            @ViewBag.email = session;
+            if (HttpContext.Session.GetString("uid") == null || id == null || _context.Accounts == null)
+            {
+                return RedirectToAction("SignIn", "Account");
+            }
+            if (id != HttpContext.Session.GetString("uid"))
+            {
+                return NotFound();
+            }
+            // Xuất nội dung trong Account
+            var accountModel = await _context.Accounts.FindAsync(id);
+            if (accountModel == null)
+            {
+                return NotFound();
+            }
+            return View(accountModel);
+        }
     }
 }
