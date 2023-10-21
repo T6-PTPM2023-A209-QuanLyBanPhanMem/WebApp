@@ -95,7 +95,7 @@ namespace QLBanPhanMem.Controllers
             @ViewBag.email = session;
             if (HttpContext.Session.GetString("uid") == null || id == null || _context.Accounts == null)
             {
-                return RedirectToAction("SignIn","Account");
+                return RedirectToAction("SignIn", "Account");
             }
             if (id != HttpContext.Session.GetString("uid"))
             {
@@ -184,11 +184,11 @@ namespace QLBanPhanMem.Controllers
 
         private bool AccountModelExists(string id)
         {
-          return (_context.Accounts?.Any(e => e.Uid == id)).GetValueOrDefault();
+            return (_context.Accounts?.Any(e => e.Uid == id)).GetValueOrDefault();
         }
         public IActionResult SignIn()
         {
-            if(HttpContext.Session.GetString("uid")!=null)
+            if (HttpContext.Session.GetString("uid") != null)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -203,7 +203,7 @@ namespace QLBanPhanMem.Controllers
                 var result = await client.SignInWithEmailAndPasswordAsync(model.Email, password);
                 if (result != null)
                 {
-                    if(result.User.Uid!=null&&model.Email!=null)
+                    if (result.User.Uid != null && model.Email != null)
                     {
                         HttpContext.Session.Set("uid", System.Text.Encoding.UTF8.GetBytes(result.User.Uid));
                         HttpContext.Session.Set("email", System.Text.Encoding.UTF8.GetBytes(model.Email));
@@ -214,17 +214,28 @@ namespace QLBanPhanMem.Controllers
                         return RedirectToAction("Index", "Home");
                     }
 
-                   
+
 
                     return RedirectToAction("Index", "Home");
                 }
                 return View();
             }
-            catch(Exception ex)
-            {                
-                @ViewBag.Error = ex.Message;              
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("INVALID_PASSWORD"))
+                {
+                    ViewBag.Error = "Sai mật khẩu";
+                }
+                else if(ex.Message.Contains("TOO_MANY_ATTEMPTS_TRY_LATER"))
+                {
+                    ViewBag.Error = "Đăng nhập quá nhiều lần, vui lòng thử lại sau";
+                }
+                else
+                {
+                    ViewBag.Error = ex.Message;
+                }
                 return View();
-            }                       
+            }
         }
         public IActionResult SignUp()
         {
@@ -232,10 +243,11 @@ namespace QLBanPhanMem.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> SignUp(AccountModel model,string password)
+        public async Task<IActionResult> SignUp(AccountModel model, string password)
         {
             var client = new FirebaseAuthClient(config);
             try
@@ -243,7 +255,7 @@ namespace QLBanPhanMem.Controllers
                 var result = await client.CreateUserWithEmailAndPasswordAsync(model.Email, password);
                 var auth = await client.SignInWithEmailAndPasswordAsync(model.Email, password);
                 if (result != null)
-                {                   
+                {
                     var user = new AccountModel()
                     {
                         FullName = model.FullName,
@@ -252,19 +264,26 @@ namespace QLBanPhanMem.Controllers
                         Username = model.Email,
                         SurPlus = 0
                     };
-                 try
+                    try
                     {
                         _context.Accounts.Add(user);
 
                         await _context.SaveChangesAsync();
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
-                        ViewBag.Error = ex.Message;
+                        if(ex.Message.Contains("EmailExists"))
+                        {
+                            ViewBag.Error = "Email đã tồn tại";
+                        }
+                        else
+                        {
+                            ViewBag.Error = ex.Message;
+                        }
                         return View("SignUp");
                     }
                     // Thực hiện insert chỉ vào các cột Email, Uid và FullName
-                   
+
                     if (result.User.Uid != null && model.Email != null)
                     {
                         HttpContext.Session.Set("uid", System.Text.Encoding.UTF8.GetBytes(result.User.Uid));
@@ -276,19 +295,25 @@ namespace QLBanPhanMem.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex.Message;
-                Console.WriteLine(ex.ToString());
+                if (ex.Message.Contains("EmailExists"))
+                {
+                    ViewBag.Error = "Email đã tồn tại";
+                }
+                else
+                {
+                    ViewBag.Error = ex.Message;
+                }
                 return View("SignIn");
             }
         }
         public IActionResult SignOut()
         {
-            
-                var client = new FirebaseAuthClient(config);
-                client.SignOut();
-                HttpContext.Session.Clear();
-                return RedirectToAction("SignIn");
-            
+
+            var client = new FirebaseAuthClient(config);
+            client.SignOut();
+            HttpContext.Session.Clear();
+            return RedirectToAction("SignIn");
+
         }
 
         [HttpGet]
@@ -358,21 +383,42 @@ namespace QLBanPhanMem.Controllers
         {
             string? session = HttpContext.Session.GetString("email");
             @ViewBag.email = session;
-            if (HttpContext.Session.GetString("uid") == null || id == null || _context.Accounts == null)
+            if (HttpContext.Session.GetString("uid") == null || _context.Accounts == null)
             {
                 return RedirectToAction("SignIn", "Account");
             }
-            if (id != HttpContext.Session.GetString("uid"))
-            {
-                return NotFound();
-            }
-            // Xuất nội dung trong Account
             var accountModel = await _context.Accounts.FindAsync(id);
             if (accountModel == null)
             {
                 return NotFound();
             }
             return View(accountModel);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword(string oldPassword, string newPassword)
+        {
+            string? email = HttpContext.Session.GetString("email");   
+            
+            var client = new FirebaseAuthClient(config);
+            try
+            {
+                var result = await client.SignInWithEmailAndPasswordAsync(email, oldPassword);
+                if (result != null)
+                {
+                    //await client.
+                    //Đổi mk thành công
+                    await client.User.ChangePasswordAsync(newPassword);
+                    @ViewBag.notice = "Đổi mật khẩu thành công";
+                    return View();
+                }
+                return View();
+            }
+            catch (Exception ex)
+            {
+                @ViewBag.notice = ex.Message;
+                return View();
+            }
         }
     }
 }

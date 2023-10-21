@@ -57,7 +57,7 @@ namespace QLBanPhanMem.Controllers
                    .CountAsync();
                     ViewBag.dem = dem;
                     HttpContext.Session.SetString("dem", dem.ToString());
-
+                        
                     return View(cthd);
                 }
 
