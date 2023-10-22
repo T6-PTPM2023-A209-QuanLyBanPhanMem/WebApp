@@ -1,4 +1,4 @@
-﻿@model QLBanPhanMem.Models.AccountModel
+﻿@model QLBanPhanMem.Models.HistoryViewModel
 @{
     ViewData["Title"] = "History";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,14 +7,56 @@
 <div class="row">
     <div class="col-md-4">
         <ul class="list-group">
-            <li class="list-group-item" aria-current="true"><a href="/Account/Edit/@Model.Uid">Tài khoản</a></li>
-            <li class="list-group-item active" aria-current="true"><a href="/Account/History/@Model.Uid">Lịch sử đơn hàng</a></li>
-            <li class="list-group-item" aria-current="true"><a href="/Account/ChangePassword/@Model.Uid">Mật khẩu</a></li>
+            <li class="list-group-item" aria-current="true"><a href="/Account/Edit/@Model.accountModel.Uid">Tài khoản</a></li>
+            <li class="list-group-item active" aria-current="true"><a href="/Account/History/@Model.accountModel.Uid">Lịch sử đơn hàng</a></li>
+            <li class="list-group-item" aria-current="true"><a href="/Account/ChangePassword/@Model.accountModel.Uid">Mật khẩu</a></li>
             <li class="list-group-item" aria-current="true"><a asp-action="FavoriteProduct" asp-controller="Account">Sản phẩm yêu thích</a></li>
             <li class="list-group-item" aria-current="true"><a asp-action="ShareWebsite" asp-controller="Account">Giới thiệu bạn bè</a></li>
         </ul>
     </div>
     <div class="col-md-8">
-    </div>
+        <h5>Lịch sử đơn hàng</h5>
+        <a>Hiển thị thông tin các sản phẩm bạn đã mua tại Divine Shop</a>
+        <br />
+<br />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Thời gian</th>
+                    <th scope="col">Mã đơn hàng</th>
+                    <th scope="col">Sản phẩm</th>
+                    <th scope="col">Tổng tiền</th>
+                    <th scope="col">Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.hoaDonModel)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.THOIGIANLAP)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MAHD)
+                        </td>
+                        <td>
+                           @foreach (var item1 in Model.chiTietHoaDonModel)
+                            {
+                                if (item1.MAHD == item.MAHD)
+                                {
+                                    @Html.DisplayFor(modelItem => item1.PhanMem.TENPM)
+                                }
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TONGTIEN)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TINHTRANG)
+                        </td>
+                    </tr>
+                }
+
+           </table>
 </div>
 

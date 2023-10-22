@@ -359,26 +359,44 @@ namespace QLBanPhanMem.Controllers
                 return View(ViewBag);
             }
         }
-        public async Task<IActionResult> History(string id)
+        public async Task<IActionResult> History()
         {
-            string? session = HttpContext.Session.GetString("email");
-            @ViewBag.email = session;
-            if (HttpContext.Session.GetString("uid") == null || id == null || _context.Accounts == null)
+            var session = HttpContext.Session.GetString("email");
+            var id = HttpContext.Session.GetString("uid");
+
+            if (string.IsNullOrEmpty(session) || string.IsNullOrEmpty(id))
             {
                 return RedirectToAction("SignIn", "Account");
             }
-            if (id != HttpContext.Session.GetString("uid"))
-            {
-                return NotFound();
-            }
-            // Xuất nội dung trong Account
+
+            var hoaDonModel = await _context.HoaDons.Where(hd => hd.MATK == id).ToListAsync();
             var accountModel = await _context.Accounts.FindAsync(id);
-            if (accountModel == null)
+
+            // Kiểm tra xem có dữ liệu hay không
+            if (accountModel == null || hoaDonModel == null || hoaDonModel.Count == 0)
             {
-                return NotFound();
+                return RedirectToAction("NoHistory"); // Redirect đến một trang khác để thông báo không có lịch sử giao dịch
             }
-            return View(accountModel);
+
+            var result = new HistoryViewModel
+            {
+                accountModel = accountModel,
+                hoaDonModel = hoaDonModel,
+                chiTietHoaDonModel = new List<ChiTietHoaDonModel>()
+            };
+
+            // Lặp qua danh sách hoaDonModel và lấy chi tiết của từng hóa đơn
+            foreach (var hoaDon in hoaDonModel)
+            {
+                var chiTietHoaDonModel = await _context.CTHDs
+                    .Include(p=>p.PhanMem)
+                    .Where(ct => ct.MAHD == hoaDon.MAHD).ToListAsync();
+                result.chiTietHoaDonModel.AddRange(chiTietHoaDonModel);
+            }
+
+            return View(result);
         }
+
         public async Task<IActionResult> ChangePassword(string id)
         {
             string? session = HttpContext.Session.GetString("email");
