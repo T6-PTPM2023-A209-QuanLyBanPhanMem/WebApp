@@ -24,6 +24,7 @@ namespace QLBanPhanMem.Controllers
 
         public IActionResult Privacy()
         {
+            ViewBag.email = HttpContext.Session.GetString("email");
             return View();
         }
 

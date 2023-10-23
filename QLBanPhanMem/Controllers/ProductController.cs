@@ -123,6 +123,9 @@ namespace QLBanPhanMem.Controllers
         // GET: Product/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            ViewBag.email = HttpContext.Session.GetString("email");
+            ViewBag.uid = HttpContext.Session.GetString("uid");
+            ViewBag.giohang = HttpContext.Session.GetString("dem");
             if (id == null || _context.PhanMems == null)
             {
                 return NotFound();
@@ -138,15 +141,16 @@ namespace QLBanPhanMem.Controllers
             {
                 return NotFound();
             }
-            ViewBag.email = HttpContext.Session.GetString("email");
-            ViewBag.uid = HttpContext.Session.GetString("uid");
-            ViewBag.giohang = HttpContext.Session.GetString("dem");
+            
             return View(phanMemModel);
         }
 
         // GET: Product/Create
         public IActionResult Create()
         {
+            ViewBag.email = HttpContext.Session.GetString("email");
+            ViewBag.uid = HttpContext.Session.GetString("uid");
+            ViewBag.giohang = HttpContext.Session.GetString("dem");
             ViewData["MANPH"] = new SelectList(_context.NhaPhatHanhs, "MANPH", "TENNPH");
             return View();
         }

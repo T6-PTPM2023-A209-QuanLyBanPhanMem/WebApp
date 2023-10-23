@@ -362,7 +362,9 @@ namespace QLBanPhanMem.Controllers
         public async Task<IActionResult> History()
         {
             var session = HttpContext.Session.GetString("email");
+            @ViewBag.email = session;
             var id = HttpContext.Session.GetString("uid");
+           
 
             if (string.IsNullOrEmpty(session) || string.IsNullOrEmpty(id))
             {
