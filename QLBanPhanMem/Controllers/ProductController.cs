@@ -121,7 +121,7 @@ namespace QLBanPhanMem.Controllers
 
 
         // GET: Product/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id,string MyData)
         {
             ViewBag.email = HttpContext.Session.GetString("email");
             ViewBag.uid = HttpContext.Session.GetString("uid");
@@ -141,7 +141,7 @@ namespace QLBanPhanMem.Controllers
             {
                 return NotFound();
             }
-            
+            ViewBag.MyData = MyData;
             return View(phanMemModel);
         }
 

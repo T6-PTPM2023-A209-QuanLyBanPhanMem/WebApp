@@ -4,95 +4,55 @@
     ViewData["Title"] = "Chi tiết";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h1>Details</h1>
-
-<div>
-    
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TENPM)
-        </dt>
-        <dd class = "col-sm-10">
+<div class="row">
+    <div class="col-md-4">
+        <img src="~/image/demp.jpg" alt="..." class="img" width="200px"> 
+    </div>
+    <div class="col-md-4">
             @Html.DisplayFor(model => model.TENPM)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MOTA)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MOTA)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NGAYPHATHANH)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NGAYPHATHANH)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.THOIHAN)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.THOIHAN)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DONVITHOIHAN)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DONVITHOIHAN)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DONGIA)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DONGIA)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SOLUONG)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SOLUONG)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HINHANH)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HINHANH)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NhaPhatHanh)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NhaPhatHanh.TENNPH)
-        </dd>
-    </dl>
-</div>
-<div>
+            <p>Tình trạng: Còn hàng</p>
+            <p>Thể loại: Phần mềm trả phí</p>
+            <p>@Html.DisplayFor(model => model.DONGIA)</p>
+            <p>Nhà phát hành: @Html.DisplayFor(model => model.NhaPhatHanh.TENNPH)</p>
+            <p>Hạn sử dụng: @Html.DisplayFor(model => model.THOIHAN) @Html.DisplayFor(model => model.DONVITHOIHAN)</p>
+        
+        <button id="addToCartBtn" data-product-id="@Model.MAPM"">Thêm</button>
+        <a href="@Url.Action("AddToCart", "Cart", new { productID = Model.MAPM })" class="btn btn-dark" id="liveToastBtn">Thêm vào giỏ</a>
+        <p>
+            @ViewBag.MyData
+        </p>
+    </div>
+    <div class="col-md-4">
+            <p>Mã sản phẩm</p>
+    </div>
+    
+@* </div>
     @if (ViewBag.email != null)
     {
         <a href="@Url.Action("AddToCart", "Cart", new { productID = Model.MAPM })" class="btn btn-dark" id="liveToastBtn">Thêm vào giỏ</a>
         <button type="button" class="btn btn-primary" id="liveToastShowBtn">Hiển thị thông báo</button>
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <img src="..." class="rounded me-2" alt="...">
-                    <strong class="me-auto">Bootstrap</strong>
-                    <small>11 mins ago</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    Hello, world! This is a toast message.
-                </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="..." class="rounded me-2" alt="...">
+                <strong class="me-auto">Bootstrap</strong>
+                <small>11 mins ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Hello, world! This is a toast message.
             </div>
         </div>
+    </div>
+
     }
     else
     {
         <a asp-action="SignIn" asp-controller="Account">Thêm vào giỏ</a>
     }
-</div>
+</div> *@
 
-<script>
+@* <script>
     document.addEventListener("DOMContentLoaded", function () {
         const toastShowBtn = document.getElementById('liveToastShowBtn');
         const toast = new bootstrap.Toast(document.getElementById('liveToast'));
@@ -103,5 +63,86 @@
             });
         }
     });
+</script> *@
+<script>
+    $(document).ready(function () {
+        $("#addToCartBtn").click(function () {
+            var productID = $(this).data("@Model.MAPM");
+            $.ajax({
+                url: "@Url.Action("AddToCart", "Cart")",
+                type: "POST",
+                data: { productID: productID },
+                success: function (data) {
+                    // Xử lý phản hồi JSON tại đây
+                    if (data.success) {
+                        // Hiển thị thông báo hoặc cập nhật giao diện người dùng
+                        // Ví dụ: Hiển thị thông báo Toast
+                        showToast("Sản phẩm đã được thêm vào giỏ hàng");
+                    } else {
+                        // Xử lý lỗi
+                        // Ví dụ: Hiển thị thông báo lỗi Toast
+                        showToast("Lỗi khi thêm sản phẩm vào giỏ hàng");
+                    }
+                },
+                error: function () {
+                    // Xử lý lỗi kết nối
+                    // Ví dụ: Hiển thị thông báo lỗi Toast
+                    showToast("Lỗi kết nối");
+                }
+            });
+        });
+    });
+
+    function showToast(message) {
+        // Hiển thị thông báo Toast dựa trên thông điệp
+        // Sử dụng thư viện hiển thị Toast (ví dụ: Toastr)
+        toastr.success(message); // Hoặc toastr.error(message) cho thông báo lỗi
+    }
+
 </script>
+@* <script>
+    $("#liveToastBtn").click(function () {
+        $.ajax({
+            url: "@Url.Action("AddToCart", "Cart")",
+            type: "POST",
+            data: { productID: productID },
+            success: function (data) {
+                if (data.success) {
+                    // Cập nhật tiêu đề và nội dung của thông báo toast
+                    updateToast("Thành công", data.message);
+                    // Hiển thị thông báo
+                    showToast();
+                    // Cập nhật giao diện người dùng tại đây (nếu cần)
+                } else {
+                    // Cập nhật tiêu đề và nội dung của thông báo toast
+                    updateToast("Lỗi", data.message);
+                    // Hiển thị thông báo
+                    showToast();
+                }
+            },
+            error: function () {
+                // Cập nhật tiêu đề và nội dung của thông báo toast
+                updateToast("Lỗi", "Lỗi kết nối");
+                // Hiển thị thông báo
+                showToast();
+            }
+        });
+    });
+
+    function updateToast(title, message) {
+        var toast = $("#liveToast");
+        var toastHeader = toast.find(".toast-header");
+        var toastBody = toast.find(".toast-body");
+
+        // Cập nhật tiêu đề và nội dung của thông báo
+        toastHeader.find("strong").text(title);
+        toastBody.text(message);
+    }
+
+    function showToast() {
+        var toast = new bootstrap.Toast($("#liveToast")); // Tạo một đối tượng toast
+        toast.show(); // Hiển thị thông báo
+    }
+
+</script> *@
 

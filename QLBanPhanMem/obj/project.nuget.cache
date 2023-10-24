@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IwxW99EvnoE2Ik1jyVAWn65kUf7mxv31UcNcFUjG/wP5Akr0Q6A6EBgQj6OaxRNZsWWig/KQsUGaH9qwbUb1Gg==",
+  "dgSpecHash": "DLIhd0S1/P0IpTYTvnRCW8+3kCCLikZseiAK1NRFg2jrgZIKmGM/0hakb60jkiDnpfl1UHxo2VA+beE9dqb1KQ==",
   "success": true,
-  "projectFilePath": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj",
+  "projectFilePath": "D:\\GitHub\\WebAppKhachHang - Sao chép\\QLBanPhanMem\\QLBanPhanMem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\android\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\android\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
@@ -253,11 +253,7 @@
     "C:\\Users\\android\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\android\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
     "C:\\Users\\android\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "C:\\Users\\android\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\android\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.22\\microsoft.windowsdesktop.app.ref.6.0.22.nupkg.sha512",
-    "C:\\Users\\android\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.22\\microsoft.netcore.app.ref.6.0.22.nupkg.sha512",
-    "C:\\Users\\android\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.22\\microsoft.aspnetcore.app.ref.6.0.22.nupkg.sha512",
-    "C:\\Users\\android\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.22\\microsoft.netcore.app.host.win-x64.6.0.22.nupkg.sha512"
+    "C:\\Users\\android\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

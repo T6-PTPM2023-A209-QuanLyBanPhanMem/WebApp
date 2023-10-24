@@ -130,8 +130,16 @@ namespace QLBanPhanMem.Controllers
                     _context.Update(hoadon);
                     await _context.SaveChangesAsync();
                 }
+                ViewBag.giohang = HttpContext.Session.GetString("dem");
+                //return Json(new 
+                //{ 
+                //    success = true, 
+                //    message = "Sản phẩm đã được thêm vào giỏ hàng" 
+                //});
+                // return RedirectToAction("Details", "Product", new { id = productID });
+                ViewBag.MyData = "Sản phẩm đã được thêm vào giỏ hàng";
+                return RedirectToAction("Details", "Product", new { id = productID, myData = ViewBag.MyData });
 
-                return RedirectToAction("Index", "Cart");
             }
             catch (Exception ex)
             {
