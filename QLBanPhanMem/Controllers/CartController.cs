@@ -294,14 +294,46 @@ namespace QLBanPhanMem.Controllers
             if (hoadon == null) { 
             
             }
+            var hoaDonThanhToan = _context.HoaDons
+                .FirstOrDefault(hd => hd.MATK == maTK && hd.TINHTRANG == "Chưa thanh toán");
+
+            if (hoaDonThanhToan != null)
+            {
+                var cthdList = _context.CTHDs
+                    .Where(ct => ct.MAHD == hoaDonThanhToan.MAHD)
+                    .ToList(); // Lấy danh sách cthd thay vì dùng FirstOrDefault
+
+                if (cthdList.Any())
+                {
+                    foreach (var cthd in cthdList)
+                    {
+                        var key = _context.KEYPMs.FirstOrDefault(k => k.MAPM == cthd.MAPM);
+
+                        if (key != null)
+                        {
+                            var cthdkey = new CTHDKeyModel()
+                            {
+                                MAHD = hoaDonThanhToan.MAHD,
+                                MAPM = cthd.MAPM,
+                                MAKEY = key.MAKEY
+                            };
+
+                            await _context.CTHDKeys.AddAsync(cthdkey);
+                        }
+                    }
+
+                    await _context.SaveChangesAsync();
+                }
+            }
+
             if(hoadon.TINHTRANG=="Chưa thanh toán")
             {
                 hoadon.TINHTRANG = "Đã thanh toán";
                 _context.Update(hoadon);
                 await _context.SaveChangesAsync();
             }
-            var account = _context.Accounts
-                .FirstOrDefault(tk => tk.Uid == maTK);
+            var account = await _context.Accounts
+                .FirstOrDefaultAsync(tk => tk.Uid == maTK);
             if(account.SurPlus<hoadon.TONGTIEN)
             {
                 ViewBag.error = "Số dư không đủ để thanh toán";
@@ -312,9 +344,8 @@ namespace QLBanPhanMem.Controllers
                 account.SurPlus = account.SurPlus - hoadon.TONGTIEN;
                 _context.Update(account);
                 await _context.SaveChangesAsync();
-            }    
-            
-
+            }
+           
             return RedirectToAction("Index", "Home");
         }
         [HttpPost]
@@ -343,6 +374,10 @@ namespace QLBanPhanMem.Controllers
                 hoadon.TONGTIEN = tongtien;
                 _context.Update(hoadon);
                 await _context.SaveChangesAsync();
+                //Thêm key vào cthd
+                int dem = 0;
+                
+
 
                 return RedirectToAction("Index", "Cart");
             }

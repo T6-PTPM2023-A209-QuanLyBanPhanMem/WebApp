@@ -237,15 +237,15 @@ namespace QLBanPhanMem.Controllers
                 return View();
             }
         }
-        public IActionResult SignUp()
-        {
-            if (HttpContext.Session.GetString("uid") != null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
+        //public IActionResult SignUp()
+        //{
+        //    if (HttpContext.Session.GetString("uid") != null)
+        //    {
+        //        return RedirectToAction("Index", "Home");
+        //    }
 
-            return View();
-        }
+        //    return View();
+        //}
         [HttpPost]
         public async Task<IActionResult> SignUp(AccountModel model, string password)
         {
@@ -280,7 +280,7 @@ namespace QLBanPhanMem.Controllers
                         {
                             ViewBag.Error = ex.Message;
                         }
-                        return View("SignUp");
+                        return View("SignIn");
                     }
                     // Thực hiện insert chỉ vào các cột Email, Uid và FullName
 
@@ -377,7 +377,9 @@ namespace QLBanPhanMem.Controllers
             // Kiểm tra xem có dữ liệu hay không
             if (accountModel == null || hoaDonModel == null || hoaDonModel.Count == 0)
             {
-                return RedirectToAction("NoHistory"); // Redirect đến một trang khác để thông báo không có lịch sử giao dịch
+                return
+                    RedirectToAction(
+                        "NoHistory"); // Redirect đến một trang khác để thông báo không có lịch sử giao dịch
             }
 
             var result = new HistoryViewModel
@@ -440,5 +442,39 @@ namespace QLBanPhanMem.Controllers
                 return View();
             }
         }
+
+        public async Task<IActionResult> OrderDetail(string id)
+        {
+            string? session = HttpContext.Session.GetString("email");
+            @ViewBag.email = session;
+            if (HttpContext.Session.GetString("uid") == null || _context.Accounts == null)
+            {
+                return RedirectToAction("SignIn", "Account");
+            }
+
+            
+
+            var result = new OrderDetailViewModel()
+            {
+                chiTietHoaDonModel = new List<ChiTietHoaDonModel>(),
+                keyPMModel = new List<KEYPMModel>(),
+                cthdKeyModel = new List<CTHDKeyModel>()
+            };
+            var ChiTietHoaDonModel = _context.CTHDs
+                .Where(ct => ct.MAHD == id)
+                .Include(p => p.PhanMem)
+                .ToList();
+            var cthdKeyModel = _context.CTHDKeys
+                .Where(hd => hd.MAHD == id)
+                .Include(p => p.PhanMem)
+                .Include(k => k.KEYPM)
+                .ToList();
+            
+            result.chiTietHoaDonModel.AddRange(ChiTietHoaDonModel);
+            result.cthdKeyModel.AddRange(cthdKeyModel);
+            return View(result);
+            
+        }
+        
     }
 }

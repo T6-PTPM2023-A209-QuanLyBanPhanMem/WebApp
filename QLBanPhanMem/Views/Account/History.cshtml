@@ -18,58 +18,59 @@
         <h5>Lịch sử đơn hàng</h5>
         <a>Hiển thị thông tin các sản phẩm bạn đã mua tại shop</a>
         <br />
-<br />
+        <br />
         <table class="table table-striped">
             <thead>
-                <tr>
-                    <th scope="col">Thời gian</th>
-                    <th scope="col">Mã đơn hàng</th>
-                    <th scope="col">Sản phẩm</th>
-                    <th scope="col">Tổng tiền</th>
-                    <th scope="col">Trạng thái</th>
-                </tr>
+            <tr>
+                <th scope="col">Thời gian</th>
+                <th scope="col">Mã đơn hàng</th>
+                <th scope="col">Sản phẩm</th>
+                <th scope="col">Tổng tiền</th>
+                <th scope="col">Trạng thái</th>
+            </tr>
             </thead>
             <tbody>
 
-                @foreach (var item in Model.hoaDonModel)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.THOIGIANLAP)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MAHD)
-                        </td>
-                        <td>
-                            @{
-                                int displayedCount = 0; // Biến đếm số lượng sản phẩm đã hiển thị
-                            }
+            @foreach (var item in Model.hoaDonModel)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.THOIGIANLAP)
+                    </td>
+                    <td>
+                        <a href="/Account/OrderDetail/@item.MAHD">@Html.DisplayFor(modelItem => item.MAHD)</a>
+                            
+                    </td>
+                    <td>
+                        @{
+                            int displayedCount = 0; // Biến đếm số lượng sản phẩm đã hiển thị
+                        }
 
-                            @foreach (var item1 in Model.chiTietHoaDonModel)
+                        @foreach (var item1 in Model.chiTietHoaDonModel)
+                        {
+                            if (item1.MAHD == item.MAHD)
                             {
-                                if (item1.MAHD == item.MAHD)
-                                {
-                                    @Html.DisplayFor(modelItem => item1.PhanMem.TENPM)
-                                    <a>, </a>
-                                    displayedCount++;
+                                @Html.DisplayFor(modelItem => item1.PhanMem.TENPM)
+                                <a>, </a>
+                                displayedCount++;
 
-                                    if (displayedCount >= 3)
-                                    {
-                                        @:...
-                                        break; // Dừng vòng lặp
-                                    }
+                                if (displayedCount >= 3)
+                                {
+                                    @:...
+                                    break; // Dừng vòng lặp
                                 }
                             }
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TONGTIEN) ₫
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TINHTRANG)
-                        </td>
-                    </tr>
-                }
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TONGTIEN) ₫
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TINHTRANG)
+                    </td>
+                </tr>
+            }
 
-           </table>
-</div>
-
+        </table>
+    </div>
+    </div>
