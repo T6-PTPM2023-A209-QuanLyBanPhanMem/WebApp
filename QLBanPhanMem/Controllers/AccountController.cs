@@ -41,9 +41,7 @@ namespace QLBanPhanMem.Controllers
             ViewBag.email = HttpContext.Session.GetString("email");
             ViewBag.uid = HttpContext.Session.GetString("uid");
 
-            return _context.Accounts != null ?
-                        View(await _context.Accounts.ToListAsync()) :
-                        Problem("Entity set 'AppDbContext.Accounts'  is null.");
+            return View(await _context.Accounts.ToListAsync());
         }
 
         //// GET: Account/Details/5
@@ -332,14 +330,14 @@ namespace QLBanPhanMem.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult TopUp(int soTien)
+        public async Task<IActionResult> TopUp(int soTien)
         {
             string? session = HttpContext.Session.GetString("uid");
             if (session == null)
             {
                 return RedirectToAction("SignIn", "Account");
             }
-            var account = _context.Accounts.FirstOrDefault(a => a.Uid == session);
+            var account = await _context.Accounts.FirstOrDefaultAsync(a => a.Uid == session)!;
             if (account == null)
             {
                 return NotFound();
@@ -348,7 +346,7 @@ namespace QLBanPhanMem.Controllers
             try
             {
                 _context.Update(account);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 ViewBag.notice = "Nạp tiền thành công";
                 return View(ViewBag);
             }
@@ -377,9 +375,7 @@ namespace QLBanPhanMem.Controllers
             // Kiểm tra xem có dữ liệu hay không
             if (accountModel == null || hoaDonModel == null || hoaDonModel.Count == 0)
             {
-                return
-                    RedirectToAction(
-                        "NoHistory"); // Redirect đến một trang khác để thông báo không có lịch sử giao dịch
+                return Problem("NotFound"); // Redirect đến một trang khác để thông báo không có lịch sử giao dịch
             }
 
             var result = new HistoryViewModel
@@ -460,15 +456,15 @@ namespace QLBanPhanMem.Controllers
                 keyPMModel = new List<KEYPMModel>(),
                 cthdKeyModel = new List<CTHDKeyModel>()
             };
-            var ChiTietHoaDonModel = _context.CTHDs
+            var ChiTietHoaDonModel = await _context.CTHDs
                 .Where(ct => ct.MAHD == id)
                 .Include(p => p.PhanMem)
-                .ToList();
-            var cthdKeyModel = _context.CTHDKeys
+                .ToListAsync();
+            var cthdKeyModel = await _context.CTHDKeys
                 .Where(hd => hd.MAHD == id)
                 .Include(p => p.PhanMem)
                 .Include(k => k.KEYPM)
-                .ToList();
+                .ToListAsync();
             
             result.chiTietHoaDonModel.AddRange(ChiTietHoaDonModel);
             result.cthdKeyModel.AddRange(cthdKeyModel);

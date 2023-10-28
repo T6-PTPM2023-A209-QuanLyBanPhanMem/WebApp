@@ -35,8 +35,8 @@ namespace QLBanPhanMem.Controllers
 
             string? maTK = HttpContext.Session.GetString("uid");
            
-            var hoadon = _context.HoaDons
-                .FirstOrDefault(hd => hd.MATK == maTK && hd.TINHTRANG == "Chưa thanh toán");
+            var hoadon = await _context.HoaDons
+                .FirstOrDefaultAsync(hd => hd.MATK == maTK && hd.TINHTRANG == "Chưa thanh toán");
             if(hoadon==null)
             {
                 return View();
@@ -288,26 +288,26 @@ namespace QLBanPhanMem.Controllers
         public async Task<IActionResult> ProcessPayment()
         {
             string maTK = HttpContext.Session.GetString("uid");
-            var hoadon = _context.HoaDons
-                .FirstOrDefault(hd => hd.MATK == maTK && hd.TINHTRANG == "Chưa thanh toán");
+            var hoadon = await _context.HoaDons
+                .FirstOrDefaultAsync(hd => hd.MATK == maTK && hd.TINHTRANG == "Chưa thanh toán");
             
             if (hoadon == null) { 
             
             }
-            var hoaDonThanhToan = _context.HoaDons
-                .FirstOrDefault(hd => hd.MATK == maTK && hd.TINHTRANG == "Chưa thanh toán");
+            var hoaDonThanhToan = await _context.HoaDons
+                .FirstOrDefaultAsync(hd => hd.MATK == maTK && hd.TINHTRANG == "Chưa thanh toán");
 
             if (hoaDonThanhToan != null)
             {
-                var cthdList = _context.CTHDs
+                var cthdList = await _context.CTHDs
                     .Where(ct => ct.MAHD == hoaDonThanhToan.MAHD)
-                    .ToList(); // Lấy danh sách cthd thay vì dùng FirstOrDefault
+                    .ToListAsync(); // Lấy danh sách cthd thay vì dùng FirstOrDefault
 
                 if (cthdList.Any())
                 {
                     foreach (var cthd in cthdList)
                     {
-                        var key = _context.KEYPMs.FirstOrDefault(k => k.MAPM == cthd.MAPM);
+                        var key = await _context.KEYPMs.FirstOrDefaultAsync(k => k.MAPM == cthd.MAPM);
 
                         if (key != null)
                         {
@@ -361,8 +361,8 @@ namespace QLBanPhanMem.Controllers
             else
             {
                 string maHD = hoadon.MAHD;
-                var ct = _context.CTHDs
-                    .FirstOrDefault(ct => ct.MAHD == maHD && ct.MAPM == id);
+                var ct = await _context.CTHDs
+                    .FirstOrDefaultAsync(ct => ct.MAHD == maHD && ct.MAPM == id);
 
                 if (ct != null)
                 {
