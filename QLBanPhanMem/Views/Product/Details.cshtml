@@ -4,28 +4,28 @@
     ViewData["Title"] = "Chi tiết";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="row">
+<div class="row justify-content-center py-3">
     <div class="col-md-4">
-        <img src="~/image/demp.jpg" alt="..." class="img" width="200px"> 
+        <img src="~/image/demp.jpg" alt="..." class="img img-thumbnail" width="200px">
     </div>
-    <div class="col-md-4">
-            @Html.DisplayFor(model => model.TENPM)
-            <p>Tình trạng: Còn hàng</p>
-            <p>Thể loại: Phần mềm trả phí</p>
-            <p>Giá: @Html.DisplayFor(model => model.DONGIA) ₫</p>
-            <p>Nhà phát hành: @Html.DisplayFor(model => model.NhaPhatHanh.TENNPH)</p>
-            <p>Hạn sử dụng: @Html.DisplayFor(model => model.THOIHAN) @Html.DisplayFor(model => model.DONVITHOIHAN)</p>
-        
-        <button id="addToCartBtn" data-product-id="@Model.MAPM">Thêm</button>
+    <div class="col-md-5">
+        <p class="fw-bold">@Html.DisplayFor(model => model.TENPM)</p>
+        <p>Tình trạng: Còn hàng</p>
+        <p>Thể loại: Phần mềm trả phí</p>
+        <p>Giá: <span class="text-danger fw-bold">@Html.DisplayFor(model => model.DONGIA)</span>  ₫</p>
+        <p>Nhà phát hành: @Html.DisplayFor(model => model.NhaPhatHanh.TENNPH)</p>
+        <p>Hạn sử dụng: @Html.DisplayFor(model => model.THOIHAN) @Html.DisplayFor(model => model.DONVITHOIHAN)</p>
+
+        <button id="addToCartBtn" type="button" class="btn btn-primary" data-product-id="@Model.MAPM">Thêm</button>
         <a href="@Url.Action("AddToCart", "Cart", new { productID = Model.MAPM })" class="btn btn-dark" id="liveToastBtn">Thêm vào giỏ</a>
         <p>
             @ViewBag.MyData
         </p>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
             <p>Mã sản phẩm</p>
     </div>
-    
+ </div>   
 @* </div>
     @if (ViewBag.email != null)
     {
