@@ -8,7 +8,6 @@
     ".NETCoreApp,Version=v6.0": {
       "QLBanPhanMem/1.0.0": {
         "dependencies": {
-          "Facebook": "7.0.6",
           "FirebaseAuthentication.net": "4.1.0",
           "Microsoft.AspNetCore.Authentication.Facebook": "6.0.22",
           "Microsoft.AspNetCore.Authentication.Google": "6.0.22",
@@ -56,14 +55,6 @@
           "lib/netstandard2.0/Azure.Identity.dll": {
             "assemblyVersion": "1.7.0.0",
             "fileVersion": "1.700.22.46903"
-          }
-        }
-      },
-      "Facebook/7.0.6": {
-        "runtime": {
-          "lib/net45/Facebook.dll": {
-            "assemblyVersion": "6.0.10.0",
-            "fileVersion": "7.0.6.0"
           }
         }
       },
@@ -2963,13 +2954,6 @@
       "sha512": "sha512-eHEiCO/8+MfNc9nH5dVew/+FvxdaGrkRL4OMNwIz0W79+wtJyEoeRlXJ3SrXhoy9XR58geBYKmzMR83VO7bcAw==",
       "path": "azure.identity/1.7.0",
       "hashPath": "azure.identity.1.7.0.nupkg.sha512"
-    },
-    "Facebook/7.0.6": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-D9nlWZb88S4U+eh1pUDQ+AkSkiht6m0eFpxKFddZnQSSFTnncvDMBEnNODy4fOIOjWQIiOXRVbuY04jCPyWqkw==",
-      "path": "facebook/7.0.6",
-      "hashPath": "facebook.7.0.6.nupkg.sha512"
     },
     "FirebaseAuthentication.net/4.1.0": {
       "type": "package",

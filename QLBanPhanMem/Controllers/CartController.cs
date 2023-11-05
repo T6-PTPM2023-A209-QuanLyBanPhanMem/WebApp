@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using QLBanPhanMem.Models;
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.VisualStudio.Debugger.Contracts.HotReload;
 
 namespace QLBanPhanMem.Controllers
 {

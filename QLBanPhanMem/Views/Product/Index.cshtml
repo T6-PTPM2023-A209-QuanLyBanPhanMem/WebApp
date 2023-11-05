@@ -12,7 +12,6 @@
 
     <!-- Đường dẫn tới tệp CSS của bạn -->
     <link rel="stylesheet" href="~/css/productIndex.css" />
-
     <!-- Các thẻ khác trong phần đầu của trang (head) -->
 </head>
 <body>
@@ -97,9 +96,14 @@
     <!-- Nội dung trang -->
     <script>
         document.getElementById("btnSearch").addEventListener("click", function () { 
+            //lấy text nhà phát hành
             var selectElement = document.getElementById("manph");
             var selectedOption = selectElement.options[selectElement.selectedIndex];
             var selectedNPH = selectedOption.text;
+            //lấy text thể loại
+            var selectElement = document.getElementById("theloai");
+            var selectedOption = selectElement.options[selectElement.selectedIndex];
+            var selectedTheLoai = selectedOption.text;
             var sort = document.getElementById("SortDrop").value;
             var theloai = document.getElementById("theloai").value;
             var min = document.getElementById("min").value;
@@ -107,13 +111,13 @@
             var filterUrl = "/Product/Index?";
             var array = [];
             if (selectedNPH != "") {
-                array.push("search=" + selectedNPH);
+                array.push("nph=" + selectedNPH);
             }
             if (sort != "") {
                 array.push("SortColumn=" + sort);
             }
             if (theloai != "") {
-                array.push("type=" + theloai);
+                array.push("type=" + selectedTheLoai);
             }
             if (min != "" && max != "") {
                 array.push("min=" + min+"&max="+max);

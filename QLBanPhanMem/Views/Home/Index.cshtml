@@ -6,6 +6,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <link href="~/css/homeindex.css" rel="stylesheet" />
 </head>
 <body>
     <div id="carouselExampleIndicators" class="carousel slide carousel-dark">
@@ -35,12 +36,79 @@
         </button>
     </div>
 
-    <div class="text-center">
-        <h1 class="display-4">Welcome</h1>
-        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    </div>
+    
     <div>
-        <a>Bạn chưa có tài khoản? Đăng ký ngay</a>
+        <h5>Sản phẩm nổi bật</h5>
+        <p>Danh sách những sản phẩm theo xu hướng mà có thể bạn sẽ thích</p>
+    </div>
+<div>
+    <h5>Từ khóa nổi bật</h5>
+    
+    <div class="card-container">
+        <div class="card" style="background-color:#3d5a80">
+            <div class="card-body">
+                <p class="card-text"><a href="/Product/Index?type=Văn+phòng"><b>Văn phòng</b></a></p>
+            </div>
+        </div>
+        <div class="card" style="background-color:#98c1d9">
+            <div class="card-body">
+                <p class="card-text"><a href="/Product/Index?type=Giải+trí"><b>Giải trí</b></a></p>
+            </div>
+        </div>
+        <div class="card" style="background-color:#ee6c4d">
+            <div class="card-body">
+                <p class="card-text"><a href="/Product/Index?type=Học+tập"><b>Học tập</b></a></p>
+            </div>
+        </div>
+        <div class="card" style="background-color:#293241">
+            <div class="card-body">
+                <p class="card-text"><a href="/Product/Index?nph=Microsoft"><b>Microsoft</b></a></p>
+            </div>
+        </div>
+        <div class="card" style="background-color:#293241">
+            <div class="card-body">
+                <p class="card-text"><a href="/Product/Index?nph=Google"><b>Google</b></a></p>
+            </div>
+        </div>
+        <div class="card" style="background-color:#293241">
+            <div class="card-body">
+                <p class="card-text"><a href="/Product/Index?nph=Spotify"><b>Spotify</b></a></p>
+            </div>
+        </div>
+    </div>
+</div>
+    <h5>Giá phù hợp</h5>
+    <div class="card-container">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text card-gia"><a href="/Product/Index?min=0&max=20000"><b>20.000đ</b></a></p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text card-gia"><a href="/Product/Index?min=0&max=50000"><b>50.000đ</b></a></p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text card-gia"><a href="/Product/Index?min=0&max=100000"><b>100.000đ</b></a></p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text card-gia"><a href="/Product/Index?min=0&max=200000"><b>200.000đ</b></a></p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text card-gia"><a href="/Product/Index?min=0&max=500000"><b>500.000đ</b></a></p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text card-gia"><a href="/Product/Index?min=0&max=1000000"><b>1.000.000đ</b></a></p>
+            </div>
+        </div>
     </div>
     <!-- Nội dung trang -->
 </body>

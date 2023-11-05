@@ -10,20 +10,30 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = QLBanPhanMem
 build_property.RootNamespace = QLBanPhanMem
 build_property.ProjectDir = D:\GitHub\WebAppKhachHang\QLBanPhanMem\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = D:\GitHub\WebAppKhachHang\QLBanPhanMem
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/GitHub/WebAppKhachHang/QLBanPhanMem/Views/Account/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/GitHub/WebAppKhachHang/QLBanPhanMem/Views/Account/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/GitHub/WebAppKhachHang/QLBanPhanMem/Views/Account/History.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxIaXN0b3J5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/GitHub/WebAppKhachHang/QLBanPhanMem/Views/Account/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/WebAppKhachHang/QLBanPhanMem/Views/Account/OrderDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxPcmRlckRldGFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/GitHub/WebAppKhachHang/QLBanPhanMem/Views/Account/SignIn.cshtml]

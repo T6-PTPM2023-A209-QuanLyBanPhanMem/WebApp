@@ -22,7 +22,7 @@ namespace QLBanPhanMem.Controllers
         }
 
         // GET: Product
-        public async Task<IActionResult> Index(string search = "", string SortColumn = "Newest", int min = 0, int max = 0, int page = 1)
+        public async Task<IActionResult> Index(string search = "", string SortColumn = "Newest", int min = 0, int max = 0, int page = 1, string type="", string nph="")
         {
             ViewBag.giohang = HttpContext.Session.GetString("dem");
             ViewBag.email = HttpContext.Session.GetString("email");
@@ -32,7 +32,8 @@ namespace QLBanPhanMem.Controllers
             var publishers = await _context.NhaPhatHanhs.ToListAsync();
             // Lấy danh sách loại pm
             var loaipm = await _context.LoaiPMs.ToListAsync();
-
+            //Lấy danh sách thuôc loại pm
+            var thuocloai = await _context.ThuocLoaiPMs.ToListAsync();
             SelectList loaipmList = new SelectList(loaipm, "MALOAI", "TENLOAI");
             ViewBag.LoaiPMList = loaipmList;
             // Tạo SelectList từ danh sách các nhà phát hành
@@ -43,7 +44,8 @@ namespace QLBanPhanMem.Controllers
 
             // Bắt đầu với truy vấn không có điều kiện tìm kiếm
             IQueryable<PhanMemModel> query = _context.PhanMems.Include(p => p.NhaPhatHanh);
-
+            IQueryable<LoaiPM> query2 = _context.LoaiPMs.Include(l => l.MALOAI);
+            IQueryable<ThuocLoaiPM> query3 = _context.ThuocLoaiPMs.Include(t => t.PhanMem);
             //IQueryable<ThuocLoaiPM> query1 = _context.ThuocLoaiPMs.Include(p => p.LoaiPM).Include(p => p.PhanMem);
 
             // Sắp xếp theo cột được chọn
@@ -96,25 +98,34 @@ namespace QLBanPhanMem.Controllers
             ViewBag.Start = Start;
             ViewBag.End = End;
             ViewBag.Page = page;
-            var result = await query.Skip(Start).Take(ItemOfPage).ToListAsync(); // Sử dụng ItemOfPage thay vì TotalPage
+             // Sử dụng ItemOfPage thay vì TotalPage
+            // Lọc theo loại
+            if (!string.IsNullOrEmpty(type))
+            {
+                //query =
+                //    (IQueryable<PhanMemModel>)(from p in _context.PhanMems
+                //                               join t in _context.ThuocLoaiPMs on p.MAPM equals t.MAPM
+                //                               join l in _context.LoaiPMs on t.MALOAI equals l.MALOAI
+                //                               select new
+                //                               {
+                //                                   TenPhanMem = p.TENPM,
+                //                                   TenLoai = l.TENLOAI
+                //                               });
+                //Tìm theo loại phần mềm
+                query = query3.Where(p => p.LoaiPM.TENLOAI.Contains(type)).Select(p => p.PhanMem).Select(p => p);
 
+            }
+            //Lọc theo nhà phát hành
+            if (!string.IsNullOrEmpty(nph))
+            {
+                query = query.Where(p =>
+                        p.NhaPhatHanh.TENNPH.Contains(nph) // Tìm theo tên nhà phát hành
+                    // Tìm theo tên nhà phát hành
+                );
 
-            // Chuyển kết quả của truy vấn thành danh sách và truyền vào view
-            //var result = await query.ToListAsync();
-            //var result1 = await query1.ToListAsync();
-            //foreach (var phanMem in result)
-            //{
-            //    // Lấy danh sách các loại phần mềm cho mỗi phần mềm
-            //    var loaiPhanMems = await _context.ThuocLoaiPMs
-            //        .Where(t => t.PhanMem.MAPM == phanMem.MAPM)
-            //        .Select(t => t.LoaiPM)
-            //        .ToListAsync();
-
-            //    // Gán danh sách loại phần mềm vào phần mềm tương ứng
-
-            //    phanMem.LoaiPMs = loaiPhanMems;
-            //}
-            //ViewBag.CurrentSort = SortColumn;
+                
+            }
+            var result = await query.Skip(Start).Take(ItemOfPage).ToListAsync();
             return View(result);
         }
 

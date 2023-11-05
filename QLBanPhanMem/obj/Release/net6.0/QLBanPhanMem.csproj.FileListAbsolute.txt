@@ -8,7 +8,6 @@ D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Release\net6.0\QLBanPhanMem.dll
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Release\net6.0\QLBanPhanMem.pdb
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Release\net6.0\Azure.Core.dll
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Release\net6.0\Azure.Identity.dll
-D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Release\net6.0\Facebook.dll
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Release\net6.0\Firebase.Auth.dll
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Release\net6.0\Humanizer.dll
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Release\net6.0\MessagePack.dll
@@ -280,7 +279,6 @@ D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\QLBanPhanMem.AssemblyI
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\QLBanPhanMem.csproj.CoreCompileInputs.cache
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\QLBanPhanMem.RazorAssemblyInfo.cache
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\QLBanPhanMem.RazorAssemblyInfo.cs
-D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\QLBanPhanMem.sourcelink.json
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\staticwebassets.build.json
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\staticwebassets.development.json
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\obj\Release\net6.0\staticwebassets\msbuild.QLBanPhanMem.Microsoft.AspNetCore.StaticWebAssets.props
