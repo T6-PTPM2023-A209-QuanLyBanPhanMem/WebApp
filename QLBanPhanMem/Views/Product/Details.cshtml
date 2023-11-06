@@ -4,20 +4,65 @@
     ViewData["Title"] = "Chi tiết";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <div class="row justify-content-center py-3">
     <div class="col-md-4">
         <img src="~/image/demp.jpg" alt="..." class="img img-thumbnail" width="200px">
     </div>
     <div class="col-md-5">
-        <p class="fw-bold">@Html.DisplayFor(model => model.TENPM)</p>
-        <p>Tình trạng: Còn hàng</p>
+        <p>Sản phẩm</p>
+        <h2>@Html.DisplayFor(model => model.TENPM)</h2>
+        <p>Tình trạng: <a style="color:red">@ViewBag.SoldOut</a></p>
         <p>Thể loại: Phần mềm trả phí</p>
         <p>Giá: <span class="text-danger fw-bold">@Html.DisplayFor(model => model.DONGIA)</span>  ₫</p>
         <p>Nhà phát hành: @Html.DisplayFor(model => model.NhaPhatHanh.TENNPH)</p>
         <p>Hạn sử dụng: @Html.DisplayFor(model => model.THOIHAN) @Html.DisplayFor(model => model.DONVITHOIHAN)</p>
+        <hr style="border-color: #5d5d5d; border-style: solid; border-width: 1px;">
 
-        <button id="addToCartBtn" type="button" class="btn btn-primary" data-product-id="@Model.MAPM">Thêm</button>
-        <a href="@Url.Action("AddToCart", "Cart", new { productID = Model.MAPM })" class="btn btn-dark" id="liveToastBtn">Thêm vào giỏ</a>
+        <div>
+            <div class="col-md-4">
+                <p>Chọn số lượng </p>
+            </div>
+            <div class="col-md-8 input group form-outline" style="display:flex">
+                <button type="button" class="btn btn-link btn-sm"id="decreaseQuantity" style="margin-right:10px">
+                    -
+                    </button>
+                <input style="width:50px" type="number" name="quantity" id="quantity" min=1 max=5 class="form-control" value=2>
+
+                <button type="button" class="btn btn-link btn-sm" id="increaseQuantity">
+                    +
+                </button>
+            </div>
+        </div>      
+        <hr style="border-color: #5d5d5d; border-style: solid; border-width: 1px;">
+
+        @* <button id="addToCartBtn" type="button" class="btn btn-primary" data-product-id="@Model.MAPM">Thêm</button> *@
+        @* <a href="@Url.Action("AddToCart", "Cart", new { productID = Model.MAPM, quantity =1 })" class="btn btn-primary" id="addToCartButton">Thêm vào giỏ</a> *@
+        <button class="btn btn-primary" id="addToCartButton" onclick="addToCart()">Thêm vào giỏ</button>
+
+        
+        <script>
+            function addToCart() {
+                var quantity = $("#quantity").val()// Lấy giá trị từ ô nhập liệu
+                var productID = @Model.MAPM; // Lấy giá trị từ Model.MAPM
+
+                // Tạo URL với tham số quantity và productID
+                var url = "@Url.Action("AddToCart", "Cart")" + "?productID=" + productID + "&quantity=" + quantity;
+
+                // Điều hướng người dùng đến URL
+                window.location.href = url;
+            }
+        </script>
+
+
+        @* <script>
+            document.getElementById("addToCartButton").addEventListener("click", function (e) {
+                e.preventDefault(); // Ngăn chặn hành vi mặc định khi người dùng nhấn liên kết
+                document.getElementById("addToCartForm").submit(); // Gửi biểu mẫu khi người dùng nhấn nút "Thêm vào giỏ"
+            });
+        </script> *@
+        <br/>
+        <br />
         <p>
             @ViewBag.MyData
         </p>
@@ -100,6 +145,23 @@
     }
 
 </script>
+
+<script>
+    $(document).ready(function () {
+        $("#increaseQuantity").click(function () {
+            var quantity = parseInt($("#quantity").val());
+            $("#quantity").val(quantity + 1);
+        });
+
+        $("#decreaseQuantity").click(function () {
+            var quantity = parseInt($("#quantity").val());
+            if (quantity > 1) {
+                $("#quantity").val(quantity - 1);
+            }
+        });
+    });
+</script>
+
 @* <script>
     $("#liveToastBtn").click(function () {
         $.ajax({

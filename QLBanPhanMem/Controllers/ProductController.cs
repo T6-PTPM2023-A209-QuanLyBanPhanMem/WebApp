@@ -9,6 +9,7 @@ using QLBanPhanMem.Models;
 using Microsoft.EntityFrameworkCore.Query;
 using System.Security.Policy;
 using System.Reflection;
+using Microsoft.CodeAnalysis;
 
 namespace QLBanPhanMem.Controllers
 {
@@ -152,6 +153,20 @@ namespace QLBanPhanMem.Controllers
             {
                 return NotFound();
             }
+            //Check so luong key con lai
+            //Check số lượng key
+                var key = await _context.KEYPMs.FirstOrDefaultAsync(k => k.MAPM == id && k.TINHTRANG == 0);
+                if (key == null)
+                {
+                    
+                    ViewBag.SoldOut = "Đã bán hết";
+                    //return RedirectToAction("Index", "Cart", new { MyData = ViewBag.MyData });
+                }
+                else
+                {
+                    ViewBag.SoldOut = "Còn hàng";
+                }
+            
             ViewBag.MyData = MyData;
             return View(phanMemModel);
         }

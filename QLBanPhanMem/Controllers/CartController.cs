@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using QLBanPhanMem.Models;
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis;
+using System.Xml.Linq;
 
 namespace QLBanPhanMem.Controllers
 {
@@ -21,13 +23,13 @@ namespace QLBanPhanMem.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string MyData)
         {
             if(HttpContext.Session.GetString("uid") == null)
             {
                 return RedirectToAction("SignIn", "Account");
             }
-
+            ViewBag.notice = MyData;
             ViewBag.giohang = HttpContext.Session.GetString("dem");
             ViewBag.email = HttpContext.Session.GetString("email");
             ViewBag.uid = HttpContext.Session.GetString("uid");
@@ -55,16 +57,18 @@ namespace QLBanPhanMem.Controllers
                    .Where(p => string.IsNullOrEmpty(maHD) || p.MAHD == maHD)
                    .CountAsync();
                     ViewBag.dem = dem;
+                    
                     HttpContext.Session.SetString("dem", dem.ToString());
                         
                     return View(cthd);
                 }
-
+                
                 return View();
             }
                     
         }
-        public async Task<IActionResult> AddToCart(int productID)
+        
+        public async Task<IActionResult> AddToCart(int productID, int quantity)
         {
             try
             {
@@ -72,7 +76,14 @@ namespace QLBanPhanMem.Controllers
                 string? maHD = HttpContext.Session.GetString("uid") + DateTime.Now.ToString("ddMMyyyyHHmmss");
                 var hoadon = await _context.HoaDons
                     .FirstOrDefaultAsync(hd => hd.MATK == maTK && hd.TINHTRANG == "Chưa thanh toán");
-
+                //Check số lượng key
+                var key = await _context.KEYPMs.FirstOrDefaultAsync(k => k.MAPM == productID && k.TINHTRANG == 0);
+                if (key == null)
+                {
+                    
+                    ViewBag.MyData = "Xin lỗi, sản phẩm này vừa bán hết 😢.";
+                    return RedirectToAction("Details", "Product", new { id= productID, MyData = ViewBag.MyData });
+                }
                 if (hoadon == null)
                 {
                     hoadon = new HoaDonModel
@@ -91,7 +102,7 @@ namespace QLBanPhanMem.Controllers
                     {
                         MAHD = hoadon.MAHD,
                         MAPM = productID,
-                        SOLUONG = 1,
+                        SOLUONG = quantity,
                         THANHTIEN = (await _context.PhanMems.FirstOrDefaultAsync(pm => pm.MAPM == productID)).DONGIA
                     };
                     _context.CTHDs.Add(cthd);
@@ -136,7 +147,7 @@ namespace QLBanPhanMem.Controllers
                 //    message = "Sản phẩm đã được thêm vào giỏ hàng" 
                 //});
                 // return RedirectToAction("Details", "Product", new { id = productID });
-                ViewBag.MyData = "Sản phẩm đã được thêm vào giỏ hàng";
+                ViewBag.MyData = "Sản phẩm đã được thêm vào giỏ hàng.";
                 return RedirectToAction("Details", "Product", new { id = productID, myData = ViewBag.MyData });
 
             }
@@ -306,8 +317,7 @@ namespace QLBanPhanMem.Controllers
                 {
                     foreach (var cthd in cthdList)
                     {
-                        var key = await _context.KEYPMs.FirstOrDefaultAsync(k => k.MAPM == cthd.MAPM);
-
+                        var key = await _context.KEYPMs.FirstOrDefaultAsync(k => k.MAPM == cthd.MAPM&&k.TINHTRANG==0);
                         if (key != null)
                         {
                             var cthdkey = new CTHDKeyModel()
@@ -318,11 +328,26 @@ namespace QLBanPhanMem.Controllers
                             };
 
                             await _context.CTHDKeys.AddAsync(cthdkey);
+                            //Cap nhat tinh trang key
+                            key.TINHTRANG = 1;
+                             _context.Entry(key).State = EntityState.Modified;
+                        }
+                        else
+                        {
+                            await _context.CTHDs.Include(p => p.PhanMem).Where(ct => ct.MAHD == hoaDonThanhToan.MAHD).ToListAsync();
+                            List<string> productsSoldOut = new List<string>();
+                            foreach(var ct in cthdList)
+                            {
+                                productsSoldOut.Add(ct.PhanMem.TENPM);
+                            }
+                            ViewBag.MyData = "Xin lỗi, sản phẩm "+string.Join(", ", productsSoldOut)+" vừa bán hết 😢.";
+                            return RedirectToAction("Index", "Cart", new { MyData = ViewBag.MyData });
                         }
                     }
 
                     await _context.SaveChangesAsync();
                 }
+
             }
 
             if(hoadon.TINHTRANG=="Chưa thanh toán")
@@ -335,8 +360,8 @@ namespace QLBanPhanMem.Controllers
                 .FirstOrDefaultAsync(tk => tk.Uid == maTK);
             if(account.SurPlus<hoadon.TONGTIEN)
             {
-                ViewBag.error = "Số dư không đủ để thanh toán";
-                return RedirectToAction("Index", "Cart");
+                ViewBag.MyData = "Số dư hiện tại không đủ để thanh toán. <a href=\"Account/TopUp\">Nạp ngay?<a/>";
+                 return RedirectToAction("Index", "Cart", new { MyData = ViewBag.MyData });
             }
             else
             {

@@ -222,11 +222,15 @@ namespace QLBanPhanMem.Controllers
             {
                 if (ex.Message.Contains("INVALID_PASSWORD"))
                 {
-                    ViewBag.Error = "Sai mật khẩu";
+                    ViewBag.Error = "Sai mật khẩu.";
                 }
                 else if(ex.Message.Contains("TOO_MANY_ATTEMPTS_TRY_LATER"))
                 {
-                    ViewBag.Error = "Đăng nhập quá nhiều lần, vui lòng thử lại sau";
+                    ViewBag.Error = "Đăng nhập quá nhiều lần, vui lòng thử lại sau.";
+                }
+                else if(ex.Message.Contains("EMAIL_NOT_FOUND"))
+                {
+                    ViewBag.Error = "Không tìm thấy email này.";
                 }
                 else
                 {

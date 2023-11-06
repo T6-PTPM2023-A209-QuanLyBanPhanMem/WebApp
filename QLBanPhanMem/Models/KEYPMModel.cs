@@ -14,7 +14,7 @@ namespace QLBanPhanMem.Models
         public string? GIATRI { get; set; }
         public string? TAIKHOAN { get; set; }
         public string? MATKHAU { get; set; }
-
+        public int? TINHTRANG { get; set; }
         [ForeignKey("MAPM")]
         public virtual PhanMemModel? PhanMem { get; set; }
 

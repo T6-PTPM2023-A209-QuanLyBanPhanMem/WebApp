@@ -81,6 +81,7 @@
                         <td>
                             <h4 style="color:red">
                                 @ViewBag.tongtien ₫
+                                
                             </h4>
                         </td>
                     </tr>
@@ -89,10 +90,12 @@
                             Phí vận chuyển sẽ được tính ở trang thanh toán.
                             <br />
                             Bạn cũng có thể nhập mã giảm giá ở trang thanh toán.
+                            
                        </td>
                     </tr>
                     <tr>
                         <td colspan="2">
+                            <p><a style="color:red">@ViewBag.notice</a></p>
                             <form method="post" action="@Url.Action("ProcessPayment", "Cart")">
                                 <!-- Các trường thông tin thanh toán ở đây -->
                                 <input type="submit" value="Thanh toán" class="btn btn-primary" />
@@ -109,4 +112,5 @@
         </div>
     }  
 </div>
+
 
