@@ -35,7 +35,7 @@
         white-space: nowrap; /* Ngăn các mục bên trong không bị xuống hàng */
     }
 
-.image-container {
+/*.image-container {
     display: flex;
     justify-content: center;  
     align-items: center;  
@@ -48,3 +48,4 @@
     max-width: 100%;  
     height: auto; 
 }
+*/
