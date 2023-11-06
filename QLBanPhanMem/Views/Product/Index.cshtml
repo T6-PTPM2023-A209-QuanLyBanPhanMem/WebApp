@@ -61,8 +61,8 @@
     <div class="card-container">
         @foreach (var item in Model)
         {
-            <div class="card image-container" onclick="navigateToLink('/Product/Details/@Html.DisplayFor(modelItem => item.MAPM)')">
-                <img src="@item.HINHANH" class="card-img-top" height="160" width="284">
+            <div class="card" onclick="navigateToLink('/Product/Details/@Html.DisplayFor(modelItem => item.MAPM)')">
+                <img src="@item.HINHANH" class="card-img-top" height="170" width="284">
                 <div class="card-body">
                     <p class="card-text">@Html.DisplayFor(modelItem => item.TENPM)</p>
                     <p class="card-text"><b>@Html.DisplayFor(modelItem => item.DONGIA) ₫</b></p>
