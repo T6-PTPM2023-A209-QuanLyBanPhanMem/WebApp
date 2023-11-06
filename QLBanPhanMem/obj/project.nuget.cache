@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lCzMVEn01RxtbIAqg6Vak2t68A/zLqC/cXc0om+WEj+jqq/SYbtnSMPhcNex3R5pVOSkQDSUMnZzqNBNKLCo8Q==",
+  "dgSpecHash": "fJXYC6UZK8XTWSe8O7P5hly2m/ehaAh27mIXS60XCC6ghEi8PbTiilb5dL7c4EGzMZgdCBUNs5W09omOSsbboQ==",
   "success": true,
-  "projectFilePath": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj",
+  "projectFilePath": "D:\\GitHub\\WebAppKhachHang - Sao chép\\QLBanPhanMem\\QLBanPhanMem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\android\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\android\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
