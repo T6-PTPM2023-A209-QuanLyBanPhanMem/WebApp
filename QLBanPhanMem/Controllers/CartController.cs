@@ -128,7 +128,7 @@ namespace QLBanPhanMem.Controllers
                         {
                             MAHD = hoadon.MAHD,
                             MAPM = productID,
-                            SOLUONG = 1,
+                            SOLUONG = quantity,
                             THANHTIEN = (await _context.PhanMems.FirstOrDefaultAsync(pm => pm.MAPM == productID)).DONGIA
                         };
                         _context.CTHDs.Add(cthd);
