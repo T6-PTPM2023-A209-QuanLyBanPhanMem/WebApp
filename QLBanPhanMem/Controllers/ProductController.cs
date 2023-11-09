@@ -28,6 +28,7 @@ namespace QLBanPhanMem.Controllers
             ViewBag.giohang = HttpContext.Session.GetString("dem");
             ViewBag.email = HttpContext.Session.GetString("email");
             ViewBag.uid = HttpContext.Session.GetString("uid");
+            ViewBag.idspvuaxem = HttpContext.Session.GetString("idspvuaxem");
 
             // Lấy danh sách các nhà phát hành từ cơ sở dữ liệu
             var publishers = await _context.NhaPhatHanhs.ToListAsync();
@@ -166,7 +167,9 @@ namespace QLBanPhanMem.Controllers
                 {
                     ViewBag.SoldOut = "Còn hàng";
                 }
-            
+            HttpContext.Session.SetString("idspvuaxem", id.Value.ToString());
+            ViewBag.idspvuaxem = HttpContext.Session.GetString("idspvuaxem");
+
             ViewBag.MyData = MyData;
             return View(phanMemModel);
         }

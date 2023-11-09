@@ -3,6 +3,9 @@
     ViewData["Title"] = "Lịch sử đơn hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
+
 <style>
     table {
         
@@ -54,10 +57,20 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.THOIGIANLAP)
                     </td>
-                    <td>
-                        <a href="/Account/OrderDetail/@item.MAHD">@Html.DisplayFor(modelItem => item.MAHD)</a>
-                            
-                    </td>
+                        <td>
+                            <a href="/Account/OrderDetail/@item.MAHD" title="@Html.DisplayFor(modelItem => item.MAHD)">
+                                @if (item.MAHD.Length > 15)
+                                {
+                                    @item.MAHD.Substring(0, 15);
+                                    <span>...</span>
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => item.MAHD)
+                                }
+                            </a>
+                        </td>
+
                     <td>
                         @{
                             int displayedCount = 0; // Biến đếm số lượng sản phẩm đã hiển thị
@@ -68,7 +81,7 @@
                             if (item1.MAHD == item.MAHD)
                             {
                                 @Html.DisplayFor(modelItem => item1.PhanMem.TENPM)
-                                <a>, </a>
+                                <a>; <br> </a>
                                 displayedCount++;
 
                                 if (displayedCount >= 3)

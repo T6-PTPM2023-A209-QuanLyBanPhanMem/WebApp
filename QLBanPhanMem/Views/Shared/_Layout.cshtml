@@ -63,28 +63,28 @@
                     </form>
 
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-auto">
                     <div class="row">
-                        <div class="col-1">
+                        <div class="col-md-2">
                             <div class="fs-2">
                                 <i class="fa-regular fa-circle-user text-danger"></i>                               
                             </div>                           
                         </div>    
                         
-                        <div class="col-11">
+                        <div class="col-md-auto p-2">
                             @{
                                 if (ViewBag.email == null)
                                 {
-                                    <a asp-area="" asp-controller="Account" asp-action="SignIn" style="text-decoration: none">
-                                        <span class="text-danger" style="font-size: 30px; font-weight: bold">Đăng nhập</span>
+                                    <a asp-area="" asp-controller="Account" asp-action="SignIn" style="text-decoration: none; display: flex; align-items: center; margin-left: 10px;">
+                                        <span class="text-danger" style="font-size: 20px"> Đăng nhập</span>
                                     </a>
                                 }
                                 else
                                 {
                                     <div class="dropdown">
-                                        <a id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <a id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; display: flex; align-items: center; margin-left: 10px;">
                                             <i class='bx bxs-user-detail'></i>
-                                            <span style="vertical-align: middle; font-size: 30px">@ViewBag.email</span>
+                                            <span style="vertical-align: middle; font-size: 20px">@ViewBag.email</span>
 
                                         </a>
 
@@ -104,21 +104,24 @@
                     </div>                   
                 </div>
                 <div class="col-md-2">
-                    <a asp-action="Index" asp-controller="Cart" class="position-relative">
-                        <span class="fs-3 text-black">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </span>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            @if (ViewBag.giohang == null)
-                            {
-                                <text>0</text>
-                            }
-                            else
-                            {
-                                @ViewBag.giohang
-                            }
-                        </span>
-                    </a>
+                    @if (ViewBag.email != null)
+                    {
+                        <a asp-action="Index" asp-controller="Cart" class="position-relative">
+                            <span class="fs-3 text-black">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </span>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                @if (ViewBag.giohang == null)
+                                {
+                                    <text>0</text>
+                                }
+                                else
+                                {
+                                    @ViewBag.giohang
+                                }
+                            </span>
+                        </a>
+                    }
                 </div>
 
 
@@ -141,24 +144,33 @@
                             <div class="collapse navbar-collapse " id="navbarSupportedContent">
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                     <li class="nav-item">
-                                        <a class="nav-link active text-white" aria-cu rrent="page" href="/Home/Index/">Sản phẩm mua nhiều</a>
+                                        @{
+                                            if(ViewBag.idspvuaxem == null)
+                                            {
+                                                <a class="nav-link active text-white" aria-current="page" href="/Product/Index/?search=">Sản phẩm vừa xem</a>
+                                            }
+                                            else
+                                            {
+                                                <a class="nav-link active text-white" aria-current="page" href="/Product/Details/@ViewBag.idspvuaxem">Sản phẩm vừa xem</a>
+                                            }
+                                        }
                                     </li>
-                                  
+
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             Danh mục phần mềm
                                         </a>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Action</a></li>
-                                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                                            <li><hr class="dropdown-divider"></li>
-                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                            <li><a class="dropdown-item" href="/Product/Index?type=Văn phòng">Văn phòng</a></li>
+                                            <li><a class="dropdown-item" href="/Product/Index?type=Học tập">Học tập</a></li>
+                                            <li><a class="dropdown-item" href="/Product/Index?type=Giải trí">Giải trí</a></li>
+                                            <li><a class="dropdown-item" href="/Product/Index?type=Game">Game</a></li>
+                                            <li><a class="dropdown-item" href="/Product/Index?type=Diệt virus">Diệt virus</a></li>
                                         </ul>
                                     </li>
 
-                                    <li class="nav-item">
-                                        <a class="nav-link text-white" aria-disabled="true">Sản phẩm khuyến mại</a>
-                                    </li>
+
+
 
                                     <li class="nav-item">
                                         <a class="nav-link text-white" href="/Product/Index/" aria-disabled="true">Tất cả sản phẩm</a>
@@ -182,41 +194,7 @@
             </div>
     </div>
     
-    @{
-        if (ViewBag.email == null)
-        {
-            <section class="mycontent1 bg-dark text-white py-4">
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img src="~/image/yeucaudangnhap.svg" class="img-fluid" />
-                        </div>
-
-                        <div class="col-md-9">
-                            <p>
-                                Bạn chưa có tài khoản?
-                            </p>
-                            <p>
-                                Hãy tạo ngay một tài khoản để sử dụng đầy đủ các tính năng, tích lũy ưu đãi khi thanh toán các sản phẩm và tham gia vào chương trình Giới thiệu bạn bè nhận hoa hồng vĩnh viễn tại Up Modern.
-                            </p>
-                            <p>
-                                <a asp-area="" asp-controller="Account" asp-action="SignIn" style="text-decoration: none">
-                                    <button class="btn btn-primary">Đăng ký ngay</button>
-                                </a>
-
-                                Hoặc bạn đã có tài khoản?
-                                <a asp-area="" asp-controller="Account" asp-action="SignIn" style="text-decoration: none">
-                                    <span class="text-danger" style="font-size: 30px; font-weight: bold">Đăng nhập</span>
-                                </a>
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-        }
-    }
+   
 
     <section class="myfoother text-dark py-4" style="background: #f3f4f6">
         <div class="container">
@@ -253,48 +231,8 @@
 
                
             </div>
-            <div class="row">
-                <div class="col-md-6">
-					<h4>
-						<span>
-							Website phần mềm Up Modern
-						</span>
-					</h4>
-                    <ul class="list-menu">
-                        <p class="m-0">Copyright 2021 Công ty cổ phần thương mại Up Modern</p>
-                        <p class="m-0">Chứng nhận ĐKKD số: 0388282938 do sở KH &amp; ĐT TP.Hà Nội cấp</p>
-                        <p class="m-0">Địa chỉ: Tòa nhà Ladeco 266 Đội Cấn, Ba Đình, Hà Nội</p>
-                        <p class="m-0">
-                            Điện thoại: 111111
-                        </p>
-					</ul>
-				</div>
-
-                <div class="col-md-6">
-                    <h4>
-                        <span>
-                            Nhận tin khuyến mãi
-                        </span>
-                    </h4>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Đăng ký nhận email" aria-label="Đăng ký nhận email" aria-describedby="basic-addon2">
-                        <span class="input-group-text text-white bg-danger" id="basic-addon2">Đăng ký</span>
-                    </div>
-
-                    
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div>
-                        Bản quyền thuộc về <a href="https://boronco-template.mysapo.net/">Ego Creative</a>
-                        <span class="opacity1">
-                            Cung cấp bởi Sapo
-                        </span>
-                    </div>
-                </div>             
-            </div>
+          
+         
         </div>
     </section>
 

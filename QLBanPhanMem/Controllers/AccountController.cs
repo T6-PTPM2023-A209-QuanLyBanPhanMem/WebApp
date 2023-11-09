@@ -40,6 +40,7 @@ namespace QLBanPhanMem.Controllers
         {
             ViewBag.email = HttpContext.Session.GetString("email");
             ViewBag.uid = HttpContext.Session.GetString("uid");
+            ViewBag.idspvuaxem = HttpContext.Session.GetString("idspvuaxem");
 
             return View(await _context.Accounts.ToListAsync());
         }
@@ -195,6 +196,8 @@ namespace QLBanPhanMem.Controllers
         [HttpPost]
         public async Task<IActionResult> SignIn(AccountModel model, string password)
         {
+            ViewBag.idspvuaxem = HttpContext.Session.GetString("idspvuaxem");
+
             var client = new FirebaseAuthClient(config);
             try
             {

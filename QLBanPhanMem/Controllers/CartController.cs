@@ -25,7 +25,9 @@ namespace QLBanPhanMem.Controllers
         }
         public async Task<IActionResult> Index(string MyData)
         {
-            if(HttpContext.Session.GetString("uid") == null)
+            ViewBag.idspvuaxem = HttpContext.Session.GetString("idspvuaxem");
+
+            if (HttpContext.Session.GetString("uid") == null)
             {
                 return RedirectToAction("SignIn", "Account");
             }
@@ -35,7 +37,8 @@ namespace QLBanPhanMem.Controllers
             ViewBag.uid = HttpContext.Session.GetString("uid");
 
             string? maTK = HttpContext.Session.GetString("uid");
-           
+
+
             var hoadon = await _context.HoaDons
                 .FirstOrDefaultAsync(hd => hd.MATK == maTK && hd.TINHTRANG == "Chưa thanh toán");
             if(hoadon==null)

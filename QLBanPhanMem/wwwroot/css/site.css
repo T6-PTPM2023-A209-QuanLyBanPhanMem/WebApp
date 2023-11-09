@@ -1,4 +1,4 @@
-.myfoother ul {
+﻿.myfoother ul {
     list-style: none;
 }
 
@@ -6,6 +6,22 @@
     text-decoration: none;
     color: black;
 }
+
+#list-example {
+    max-height: 300px; /* Đặt chiều cao tối đa của list group */
+    overflow: auto; /* Hiển thị thanh cuộn khi cần */
+}
+
+    #list-example::-webkit-scrollbar {
+        width: 0 !important; /* Ẩn thanh cuộn trên Chrome và Safari */
+    }
+
+#list-example {
+    scrollbar-width: thin; /* Firefox: Đặt chiều rộng thanh cuộn là mảnh */
+    scrollbar-color: transparent transparent; /* Firefox: Đặt màu thanh cuộn là trong suốt */
+}
+
+
 
 /** {
     margin: 0;
