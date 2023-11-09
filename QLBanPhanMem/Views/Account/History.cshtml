@@ -3,6 +3,23 @@
     ViewData["Title"] = "Lịch sử đơn hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    table {
+        
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
 <br />
 <div class="row">
     <div class="col-md-4">
@@ -22,11 +39,11 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th scope="col">Thời gian</th>
-                <th scope="col">Mã đơn hàng</th>
-                <th scope="col">Sản phẩm</th>
-                <th scope="col">Tổng tiền</th>
-                <th scope="col">Trạng thái</th>
+                <th >Thời gian</th>
+                <th style="width:13%">Mã đơn hàng</th>
+                <th style="width:50%">Sản phẩm</th>
+                <th >Tổng tiền</th>
+                <th >Trạng thái</th>
             </tr>
             </thead>
             <tbody>

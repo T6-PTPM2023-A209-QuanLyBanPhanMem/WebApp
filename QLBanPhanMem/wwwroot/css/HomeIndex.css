@@ -1,4 +1,4 @@
-﻿.card-container {
+﻿.card-container-dx {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -6,13 +6,13 @@
     text-align: left;
 }
 
-.card {
+.card-dx {
     width: 15%;
     margin-bottom: 15px; /* Khoảng cách giữa các dòng */
     transition: transform 0.2s
 }
 
-    .card:hover {
+    .card-dx:hover {
         transform: scale(1.05); /* Khi hover, làm phóng to card */
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Đổ bóng card */
     }
@@ -26,3 +26,22 @@
 .card-gia>a{
     color:black;
 }
+
+.card-container-xh {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px; /* Khoảng cách giữa các thẻ card */
+    text-align: left;
+}
+
+.card-xh {
+    width: 24%;
+    margin-bottom: 10px; /* Khoảng cách giữa các dòng */
+    transition: transform 0.2s
+}
+
+    .card-xh:hover {
+        transform: scale(1.05); /* Khi hover, làm phóng to card */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Đổ bóng card */
+    }

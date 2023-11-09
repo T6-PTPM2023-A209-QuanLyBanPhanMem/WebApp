@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <link href="~/css/homeindex.css" rel="stylesheet" />
+    <link href="~/css/HomeIndex.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -50,10 +50,10 @@
     <div class="col-12">
         <h5>Sản phẩm nổi bật</h5>
         <p>Danh sách những sản phẩm theo xu hướng mà có thể bạn sẽ thích</p>
-        <div class="card-container card-container-spxh">
+        <div class="card-container card-container-xh">
             @foreach (var item in Model.GroupedResult)
             {
-                <div class="card card-spxh" onclick="navigateToLink('/Product/Details/@Html.DisplayFor(modelItem => item.MAPM)')">
+                <div class="card card-xh" onclick="navigateToLink('/Product/Details/@Html.DisplayFor(modelItem => item.MAPM)')">
                     <img src="@item.HINHANH" class="card-img-top" height="170" width="284">
                     <div class="card-body">
                         <p class="card-text">@Html.DisplayFor(modelItem => item.TENPM)</p>
@@ -75,33 +75,33 @@
     <div class="col-12">
         <h5>Từ khóa nổi bật</h5>
 
-        <div class="card-container">
-            <div class="card" style="background-color:#3d5a80">
+        <div class="card-container card-container-dx">
+            <div class="card card-dx" style="background-color:#3d5a80">
                 <div class="card-body">
                     <p class="card-text"><a href="/Product/Index?type=Văn+phòng"><b>Văn phòng</b></a></p>
                 </div>
             </div>
-            <div class="card" style="background-color:#98c1d9">
+            <div class="card card-dx" style="background-color:#98c1d9">
                 <div class="card-body">
                     <p class="card-text"><a href="/Product/Index?type=Giải+trí"><b>Giải trí</b></a></p>
                 </div>
             </div>
-            <div class="card" style="background-color:#ee6c4d">
+            <div class="card card-dx" style="background-color:#ee6c4d">
                 <div class="card-body">
                     <p class="card-text"><a href="/Product/Index?type=Học+tập"><b>Học tập</b></a></p>
                 </div>
             </div>
-            <div class="card" style="background-color:#293241">
+            <div class="card card-dx" style="background-color:#293241">
                 <div class="card-body">
                     <p class="card-text"><a href="/Product/Index?nph=Microsoft"><b>Microsoft</b></a></p>
                 </div>
             </div>
-            <div class="card" style="background-color:#293241">
+            <div class="card card-dx" style="background-color:#293241">
                 <div class="card-body">
                     <p class="card-text"><a href="/Product/Index?nph=Google"><b>Google</b></a></p>
                 </div>
             </div>
-            <div class="card" style="background-color:#293241">
+            <div class="card card-dx" style="background-color:#293241">
                 <div class="card-body">
                     <p class="card-text"><a href="/Product/Index?nph=Spotify"><b>Spotify</b></a></p>
                 </div>
@@ -113,33 +113,33 @@
     
     <div class="col-12">
         <h5>Giá phù hợp</h5>
-        <div class="card-container">
-            <div class="card">
+        <div class="card-container card-container-dx">
+            <div class="card card-dx">
                 <div class="card-body">
                     <p class="card-text card-gia"><a href="/Product/Index?min=0&max=20000"><b>20.000đ</b></a></p>
                 </div>
             </div>
-            <div class="card">
+            <div class="card card-dx">
                 <div class="card-body">
                     <p class="card-text card-gia"><a href="/Product/Index?min=0&max=50000"><b>50.000đ</b></a></p>
                 </div>
             </div>
-            <div class="card">
+            <div class="card card-dx">
                 <div class="card-body">
                     <p class="card-text card-gia"><a href="/Product/Index?min=0&max=100000"><b>100.000đ</b></a></p>
                 </div>
             </div>
-            <div class="card">
+            <div class="card card-dx">
                 <div class="card-body">
                     <p class="card-text card-gia"><a href="/Product/Index?min=0&max=200000"><b>200.000đ</b></a></p>
                 </div>
             </div>
-            <div class="card">
+            <div class="card card-dx">
                 <div class="card-body">
                     <p class="card-text card-gia"><a href="/Product/Index?min=0&max=500000"><b>500.000đ</b></a></p>
                 </div>
             </div>
-            <div class="card">
+            <div class="card card-dx">
                 <div class="card-body">
                     <p class="card-text card-gia"><a href="/Product/Index?min=0&max=1000000"><b>1.000.000đ</b></a></p>
                 </div>

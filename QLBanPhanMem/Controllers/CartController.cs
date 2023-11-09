@@ -369,8 +369,9 @@ namespace QLBanPhanMem.Controllers
                 _context.Update(account);
                 await _context.SaveChangesAsync();
             }
-           
-            return RedirectToAction("Index", "Home");
+           ViewBag.maHD = hoadon.MAHD;
+           HttpContext.Session.SetString("maHD", hoadon.MAHD);
+            return RedirectToAction("PaymentSuccess", "Home");
         }
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
