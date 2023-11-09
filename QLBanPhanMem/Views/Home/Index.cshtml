@@ -1,4 +1,5 @@
-﻿@{
+﻿@model QLBanPhanMem.Models.TrangChuViewModel;
+@{
    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Phần mềm bảng quyền";
 }
@@ -49,6 +50,23 @@
     <div class="col-12">
         <h5>Sản phẩm nổi bật</h5>
         <p>Danh sách những sản phẩm theo xu hướng mà có thể bạn sẽ thích</p>
+        <div class="card-container card-container-spxh">
+            @foreach (var item in Model.GroupedResult)
+            {
+                <div class="card card-spxh" onclick="navigateToLink('/Product/Details/@Html.DisplayFor(modelItem => item.MAPM)')">
+                    <img src="@item.HINHANH" class="card-img-top" height="170" width="284">
+                    <div class="card-body">
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.TENPM)</p>
+                        <p class="card-text"><b>@Html.DisplayFor(modelItem => item.DONGIA) ₫</b></p>
+                    </div>
+                </div>
+            }
+            <script>
+                function navigateToLink(link) {
+                    window.location.href = link;
+                }
+            </script>
+        </div>
     </div>
 
     <div class="col-12">
