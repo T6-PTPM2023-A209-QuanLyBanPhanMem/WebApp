@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Github\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj": {}
+    "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj": {}
   },
   "projects": {
-    "D:\\Github\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj": {
+    "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Github\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj",
+        "projectUniqueName": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj",
         "projectName": "QLBanPhanMem",
-        "projectPath": "D:\\Github\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj",
-        "packagesPath": "C:\\Users\\zenon\\.nuget\\packages\\",
-        "outputPath": "D:\\Github\\WebAppKhachHang\\QLBanPhanMem\\obj\\",
+        "projectPath": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj",
+        "packagesPath": "C:\\Users\\android\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\zenon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\android\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
