@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis;
 using System.Xml.Linq;
+using MailKit.Security;
+using MimeKit;
 
 namespace QLBanPhanMem.Controllers
 {
@@ -301,6 +303,7 @@ namespace QLBanPhanMem.Controllers
         public async Task<IActionResult> ProcessPayment()
         {
             string maTK = HttpContext.Session.GetString("uid");
+            string email = HttpContext.Session.GetString("email");
             var hoadon = await _context.HoaDons
                 .FirstOrDefaultAsync(hd => hd.MATK == maTK && hd.TINHTRANG == "Chưa thanh toán");
             
@@ -372,9 +375,90 @@ namespace QLBanPhanMem.Controllers
                 _context.Update(account);
                 await _context.SaveChangesAsync();
             }
-           ViewBag.maHD = hoadon.MAHD;
+            var result = new OrderDetailViewModel()
+            {
+                chiTietHoaDonModel = new List<ChiTietHoaDonModel>(),
+                keyPMModel = new List<KEYPMModel>(),
+                cthdKeyModel = new List<CTHDKeyModel>()
+            };
+            var ChiTietHoaDonModel = await _context.CTHDs
+                .Where(ct => ct.MAHD == hoadon.MAHD)
+                .Include(p => p.PhanMem)
+                .ToListAsync();
+            var cthdKeyModel = await _context.CTHDKeys
+                .Where(hd => hd.MAHD == hoadon.MAHD)
+                .Include(p => p.PhanMem)
+                .Include(k => k.KEYPM)
+                .ToListAsync();
+            var keyPMModel = await _context.KEYPMs
+                .Where(k => k.TINHTRANG == 1)
+                .Include(p => p.PhanMem)
+                .ToListAsync();
+            result.chiTietHoaDonModel.AddRange(ChiTietHoaDonModel);
+            result.keyPMModel.AddRange(keyPMModel);
+            result.cthdKeyModel.AddRange(cthdKeyModel);
+            //SendEmail(result,email);
+              
+            ViewBag.maHD = hoadon.MAHD;
            HttpContext.Session.SetString("maHD", hoadon.MAHD);
             return RedirectToAction("PaymentSuccess", "Home");
+        }
+        private async void SendEmail(OrderDetailViewModel result, string emailTo)
+        {
+            var email = new MimeMessage();
+            email.Sender = new MailboxAddress("UpModern", "quangtrung.nguyen.2016@gmail.com");
+            email.From.Add(new MailboxAddress("UpModern", "quangtrung.nguyen.2016@gmail.com"));
+            email.To.Add(MailboxAddress.Parse("qtrung1702@outlook.com"));
+            email.Subject = "Thanh toán thành công | UpModern";
+
+            
+
+            
+
+            var builder = new BodyBuilder();
+            builder.HtmlBody = string.Format("" +
+                "<h1>Thanh toán thành công!</h1>" +
+                "<p>Cảm ơn bạn đã tin dùng sản phẩm tại UpModern</p>" +
+                "<p>Dưới đây là thông tin đăng nhập hoặc khóa kích hoạt cho sản phẩm của bạn</p>");
+            builder.HtmlBody += "<table style=\"width:100%\">";
+            builder.HtmlBody += "<tr>";
+            builder.HtmlBody += "<th>Tên sản phẩm</th>";
+            builder.HtmlBody += "<th>Khóa kích hoạt</th>";
+            builder.HtmlBody += "<th>Tài khoản</th>";
+            builder.HtmlBody += "<th>Mật khẩu</th>";
+            builder.HtmlBody += "</tr>";
+            foreach (var item in result.cthdKeyModel)
+            {
+                builder.HtmlBody += "<tr>";
+                builder.HtmlBody += "<td>" + item.PhanMem.TENPM + "</td>";
+                builder.HtmlBody += "<td>" + item.KEYPM.GIATRI + "</td>";
+                builder.HtmlBody += "<td>" + item.KEYPM.TAIKHOAN + "</td>";
+                builder.HtmlBody += "<td>" + item.KEYPM.MATKHAU + "</td>";
+                builder.HtmlBody += "</tr>";
+            }
+            email.Body = builder.ToMessageBody();
+
+            // dùng SmtpClient của MailKit
+            using var smtp = new MailKit.Net.Smtp.SmtpClient();
+
+            try
+            {
+                smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                smtp.Authenticate("quangtrung.nguyen.2016@gmail.com", "whfq lbmy cbcp vgml");
+                await smtp.SendAsync(email);
+            }
+            catch (Exception ex)
+            {
+                // Gửi mail thất bại, nội dung email sẽ lưu vào thư mục mailssave
+                System.IO.Directory.CreateDirectory("mailssave");
+                var emailsavefile = string.Format(@"mailssave/{0}.eml", Guid.NewGuid());
+                await email.WriteToAsync(emailsavefile);
+
+                //logger.LogInformation("Lỗi gửi mail, lưu tại - " + emailsavefile);
+                // logger.LogError(ex.Message);
+            }
+
+            smtp.Disconnect(true);
         }
         [HttpPost]
         public async Task<IActionResult> Delete(int id)

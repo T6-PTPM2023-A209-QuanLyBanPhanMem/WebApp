@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="FirebaseAuthentication.net" Version="4.1.0" />
+    <PackageReference Include="MailKit" Version="4.2.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="7.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="7.0.13" />

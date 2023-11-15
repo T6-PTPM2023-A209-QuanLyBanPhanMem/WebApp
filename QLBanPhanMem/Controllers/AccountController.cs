@@ -13,6 +13,11 @@ using Microsoft.CodeAnalysis.Differencing;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using QLBanPhanMem;
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
+using MailKit.Net.Pop3;
+using MailKit.Security;
 
 namespace QLBanPhanMem.Controllers
 {
@@ -211,6 +216,9 @@ namespace QLBanPhanMem.Controllers
 
                         ViewBag.email = HttpContext.Session.GetString("email");
                         ViewBag.uid = HttpContext.Session.GetString("uid");
+
+                        
+                        //logger.LogInformation("send mail to " + mailContent.To);
 
                         return RedirectToAction("Index", "Home");
                     }
