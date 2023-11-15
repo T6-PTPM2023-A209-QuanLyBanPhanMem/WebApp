@@ -20,7 +20,8 @@ public class AppDbContext : DbContext
     public DbSet<KEYPMModel> KEYPMs { get; set; }
     public DbSet<ChiTietHoaDonModel> CTHDs { get; set; }
     public DbSet<ThongTinBoSungModel> TTBSs { get; set; }
-
+    
+    public DbSet<BannerKMModel> bannerKMModels { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<PhanMemModel>()
@@ -84,6 +85,11 @@ public class AppDbContext : DbContext
             .HasOne(ttbs => ttbs.PhanMem)
             .WithMany()
             .HasForeignKey(ttbs => ttbs.MAPM);
-        
+        modelBuilder.Entity<BannerKMModel>()
+            .HasKey(bkm => new { bkm.MAPM, bkm.HINHANH });
+        modelBuilder.Entity<BannerKMModel>()
+            .HasOne(bkm => bkm.PhanMem)
+            .WithMany()
+            .HasForeignKey(bkm => bkm.MAPM);
     }
 }

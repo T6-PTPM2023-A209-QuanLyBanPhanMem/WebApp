@@ -12059,11 +12059,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GitHub\\WebAppKhachHang - Sao chép\\QLBanPhanMem\\QLBanPhanMem.csproj",
+      "projectUniqueName": "D:\\GitHub\\WebAppBanPhanMem\\QLBanPhanMem\\QLBanPhanMem.csproj",
       "projectName": "QLBanPhanMem",
-      "projectPath": "D:\\GitHub\\WebAppKhachHang - Sao chép\\QLBanPhanMem\\QLBanPhanMem.csproj",
+      "projectPath": "D:\\GitHub\\WebAppBanPhanMem\\QLBanPhanMem\\QLBanPhanMem.csproj",
       "packagesPath": "C:\\Users\\android17x\\.nuget\\packages\\",
-      "outputPath": "D:\\GitHub\\WebAppKhachHang - Sao chép\\QLBanPhanMem\\obj\\",
+      "outputPath": "D:\\GitHub\\WebAppBanPhanMem\\QLBanPhanMem\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\android17x\\AppData\\Roaming\\NuGet\\NuGet.Config",

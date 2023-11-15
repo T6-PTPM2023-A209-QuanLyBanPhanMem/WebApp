@@ -30,11 +30,11 @@ namespace QLBanPhanMem.Controllers
             var result = new TrangChuViewModel()
                 {
                     ChiTietHoaDonModel = new List<ChiTietHoaDonModel>(),
-                    GroupedResult = new List<SoLuongPMCTHDModel>()
-            
+                    GroupedResult = new List<SoLuongPMCTHDModel>(),
+                    BannerKMModel = new List<BannerKMModel>()
                 };
 
-
+            
             // Lấy danh sách các nhà phát hành từ cơ sở dữ liệu
             var publishers = await _context.NhaPhatHanhs.ToListAsync();
             // Lấy danh sách loại pm
@@ -43,7 +43,7 @@ namespace QLBanPhanMem.Controllers
             var thuocloai = await _context.ThuocLoaiPMs.ToListAsync();
             SelectList loaipmList = new SelectList(loaipm, "MALOAI", "TENLOAI");
             ViewBag.LoaiPMList = loaipmList;
-
+            var banner = await _context.bannerKMModels.ToListAsync();
           
 
 
@@ -69,7 +69,7 @@ namespace QLBanPhanMem.Controllers
                 .Take(8)
                 .ToListAsync();
                 result.GroupedResult.AddRange(ChiTietHoaDonModel);
-
+                result.BannerKMModel.AddRange(banner);
                 return View(result);
         }
 
