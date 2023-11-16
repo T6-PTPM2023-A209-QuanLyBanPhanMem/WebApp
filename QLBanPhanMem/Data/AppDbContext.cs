@@ -86,7 +86,7 @@ public class AppDbContext : DbContext
             .WithMany()
             .HasForeignKey(ttbs => ttbs.MAPM);
         modelBuilder.Entity<BannerKMModel>()
-            .HasKey(bkm => new { bkm.MAPM, bkm.HINHANH });
+            .HasKey(bkm => new {bkm.MaBN, bkm.MAPM, bkm.HINHANH });
         modelBuilder.Entity<BannerKMModel>()
             .HasOne(bkm => bkm.PhanMem)
             .WithMany()

@@ -878,3 +878,8 @@ D:\GitHub\WebAppBanPhanMem\QLBanPhanMem\obj\Debug\net7.0\refint\QLBanPhanMem.dll
 D:\GitHub\WebAppBanPhanMem\QLBanPhanMem\obj\Debug\net7.0\QLBanPhanMem.pdb
 D:\GitHub\WebAppBanPhanMem\QLBanPhanMem\obj\Debug\net7.0\QLBanPhanMem.genruntimeconfig.cache
 D:\GitHub\WebAppBanPhanMem\QLBanPhanMem\obj\Debug\net7.0\ref\QLBanPhanMem.dll
+D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Debug\net7.0\BouncyCastle.Cryptography.dll
+D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Debug\net7.0\MailKit.dll
+D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Debug\net7.0\MimeKit.dll
+D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Debug\net7.0\System.Security.Cryptography.Pkcs.dll
+D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Security.Cryptography.Pkcs.dll

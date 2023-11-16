@@ -3,9 +3,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QLBanPhanMem.Models
 {
-    [Table("BannerKM", Schema = "dbo")]
+    [Table("Banner", Schema = "dbo")]
     public class BannerKMModel
     {
+        public int? MaBN { get; set; }
         public string? HINHANH { get; set; }
         [Required]
         public int? MAPM { get; set; }
