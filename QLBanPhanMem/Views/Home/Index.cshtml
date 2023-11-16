@@ -24,11 +24,24 @@
         <div class="col-6">
             <div id="carouselExampleIndicators" class="carousel slide carousel-dark">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    @{
+                        int dem = 0;
+                        foreach(var item in Model.BannerKMModel)
+                        {
+                            if(dem==0)
+                            {
+                                <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            }
+                            else
+                            {
+                                <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="@dem" aria-label="Slide @dem "></button>
+
+                            }
+                            dem++;
+                        }
+                    }
                 </div>
-                <div class="carousel-inner rounded">
+                <div class="carousel-inner rounded-3">
                     @foreach(var item in Model.BannerKMModel)
                     {
                         var firstItem = Model.BannerKMModel.FirstOrDefault();
@@ -55,14 +68,16 @@
                     
                     
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+
+                <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
+
             </div>
         </div>
             <div class="col-3">
