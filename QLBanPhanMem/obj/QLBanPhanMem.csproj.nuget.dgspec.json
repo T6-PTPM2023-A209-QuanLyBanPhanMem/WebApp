@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Github\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj": {}
+    "D:\\GitHub\\WebAppBanPhanMem\\QLBanPhanMem\\QLBanPhanMem.csproj": {}
   },
   "projects": {
-    "D:\\Github\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj": {
+    "D:\\GitHub\\WebAppBanPhanMem\\QLBanPhanMem\\QLBanPhanMem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Github\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj",
+        "projectUniqueName": "D:\\GitHub\\WebAppBanPhanMem\\QLBanPhanMem\\QLBanPhanMem.csproj",
         "projectName": "QLBanPhanMem",
-        "projectPath": "D:\\Github\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj",
-        "packagesPath": "C:\\Users\\zenon\\.nuget\\packages\\",
-        "outputPath": "D:\\Github\\WebAppKhachHang\\QLBanPhanMem\\obj\\",
+        "projectPath": "D:\\GitHub\\WebAppBanPhanMem\\QLBanPhanMem\\QLBanPhanMem.csproj",
+        "packagesPath": "C:\\Users\\android17x\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHub\\WebAppBanPhanMem\\QLBanPhanMem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\zenon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\android17x\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -46,25 +46,13 @@
             },
             "MailKit": {
               "target": "Package",
-              "version": "[4.2.0, )"
-            },
-            "Microsoft.AspNetCore.Authentication.Facebook": {
-              "target": "Package",
-              "version": "[7.0.13, )"
-            },
-            "Microsoft.AspNetCore.Authentication.Google": {
-              "target": "Package",
-              "version": "[7.0.13, )"
+              "version": "[4.3.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.13, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[7.0.13, )"
-            },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[7.0.13, )"
             },

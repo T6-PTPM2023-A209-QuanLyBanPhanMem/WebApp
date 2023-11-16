@@ -1,8 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Authentication.Facebook;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using QLBanPhanMem;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace QLBanPhanMem
 {

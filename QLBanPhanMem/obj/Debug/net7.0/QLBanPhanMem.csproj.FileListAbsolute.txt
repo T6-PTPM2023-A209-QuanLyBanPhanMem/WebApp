@@ -884,3 +884,4 @@ D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Debug\net7.0\MimeKit.dll
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Debug\net7.0\System.Security.Cryptography.Pkcs.dll
 D:\GitHub\WebAppKhachHang\QLBanPhanMem\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Security.Cryptography.Pkcs.dll
 D:\Github\WebAppKhachHang\QLBanPhanMem\obj\Debug\net7.0\QLBanPhanMem.sourcelink.json
+D:\GitHub\WebAppBanPhanMem\QLBanPhanMem\obj\Debug\net7.0\QLBanPhanMem.sourcelink.json
