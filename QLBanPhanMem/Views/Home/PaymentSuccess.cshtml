@@ -3,7 +3,14 @@
     ViewData["Title"] = "PaymentSuccess";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<nav style="--bs-breadcrumb-divider: '>'; padding-top:20px" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Home/Index">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="/Account/Edit/@ViewBag.uid">Tài khoản</a></li>
+        <li class="breadcrumb-item"><a href="/Cart/Index">Giỏ hàng</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Thanh toán</li>
+    </ol>
+</nav>
 <div style="text-align:center;padding:20px">
     
     <h5>Thanh toán thành công!</h5>

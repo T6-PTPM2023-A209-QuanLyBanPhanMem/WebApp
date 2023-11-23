@@ -14,7 +14,13 @@
     <link rel="stylesheet" href="~/css/productIndex.css" />
     <!-- Các thẻ khác trong phần đầu của trang (head) -->
 </head>
-<body>    
+<body>
+    <nav style="--bs-breadcrumb-divider: '>'; padding-top:20px" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Home/Index">Trang chủ</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Sản phẩm</li>
+        </ol>
+    </nav>
     <div class="row justify-content-center py-3">
         <div class="col-md-auto">
             <select class="form-select" aria-label="Default select example" id="manph" style="width:130px" name="manph" asp-items="@ViewBag.PublisherList">
@@ -57,7 +63,7 @@
     </div>
 
 
-
+    <hr />
     <div class="card-container">
         @foreach (var item in Model)
         {
@@ -95,7 +101,7 @@
             </ul>
         </nav>
     </div>
-
+    <hr/>
 
     <!-- Nội dung trang -->
     <script>

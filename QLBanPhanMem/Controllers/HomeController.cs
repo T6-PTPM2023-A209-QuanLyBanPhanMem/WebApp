@@ -72,11 +72,7 @@ namespace QLBanPhanMem.Controllers
                 return View(result);
         }
 
-        public IActionResult Privacy()
-        {
-            ViewBag.email = HttpContext.Session.GetString("email");
-            return View();
-        }
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

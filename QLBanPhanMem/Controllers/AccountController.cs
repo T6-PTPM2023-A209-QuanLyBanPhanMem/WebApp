@@ -26,14 +26,7 @@ namespace QLBanPhanMem.Controllers
             _context = context;
         }
 
-        //GET: Account
-        public async Task<IActionResult> Index()
-        {
-            ViewBag.email = HttpContext.Session.GetString("email");
-            ViewBag.uid = HttpContext.Session.GetString("uid");
-            ViewBag.idspvuaxem = HttpContext.Session.GetString("idspvuaxem");
-            return View(await _context.Accounts.ToListAsync());
-        }
+        
         // GET: Account/Edit/5
         public async Task<IActionResult> Edit(string id)
         {

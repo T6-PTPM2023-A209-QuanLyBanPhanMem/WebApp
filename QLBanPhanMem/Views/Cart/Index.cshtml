@@ -10,6 +10,13 @@
 @{
     int stt = 1;
 }
+<nav style="--bs-breadcrumb-divider: '>'; padding-top:20px" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Home/Index">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="/Account/Edit/@ViewBag.uid">Tài khoản</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
+    </ol>
+</nav>
 <div class="row" style="margin-top:20px;text-align:center">
     <h2>Giỏ hàng của bạn</h2>
         @if(ViewBag.dem==0||ViewBag.dem==null)

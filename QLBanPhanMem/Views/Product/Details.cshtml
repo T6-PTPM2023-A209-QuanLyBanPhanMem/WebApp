@@ -1,10 +1,18 @@
 ﻿@model QLBanPhanMem.Models.PhanMemModel
 
 @{
-    ViewData["Title"] = "Chi tiết";
+    ViewData["Title"] = @Html.DisplayFor(model => model.TENPM);
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<nav style="--bs-breadcrumb-divider: '>'; padding-top:20px" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Home/Index">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="/Product/Index">Sản phẩm</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Html.DisplayFor(model => model.TENPM)</li>
+    </ol>
+</nav>
 <div class="row justify-content-center py-3">
     <div class="col-md-4">
         <img src="@Model.HINHANH" class="img img-fluid rounded" width="500">
@@ -68,7 +76,24 @@
         </p>
     </div>
     <div class="col-md-3">
-            <p>Mã sản phẩm</p>
+        <p>Mã sản phẩm: @Html.DisplayFor(model => model.MAPM)</p>
+        <p>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://qlbanphanmem.azurewebsites.net/Product/Details/@Html.DisplayFor(model => model.MAPM)" target="_blank" rel="noopener noreferrer">
+                Chia sẻ qua Facebook
+            </a>
+        </p>
+        <p>
+            <a href="fb-messenger://share?link=https://qlbanphanmem.azurewebsites.net/Product/Details/@Html.DisplayFor(model => model.MAPM)" target="_blank" rel="noopener noreferrer" class="share-button">
+                Gửi qua Messenger
+            </a>
+        </p>
+        <p>
+            <a href="https://twitter.com/intent/tweet?url=https://qlbanphanmem.azurewebsites.net/Product/Details/@Html.DisplayFor(model => model.MAPM)" target="_blank" rel="noopener noreferrer" class="share-button twitter-button">
+                Chia sẻ qua X
+            </a>
+        </p>
+        
+        
     </div>
  </div>   
 @* </div>
