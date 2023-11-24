@@ -292,7 +292,7 @@ namespace QLBanPhanMem.Controllers
             result.chiTietHoaDonModel.AddRange(ChiTietHoaDonModel);
             result.keyPMModel.AddRange(keyPMModel);
             result.cthdKeyModel.AddRange(cthdKeyModel);
-            //SendEmail(result,email);            
+            SendEmail(result,email);            
             ViewBag.maHD = hoadon.MAHD;
            HttpContext.Session.SetString("maHD", hoadon.MAHD);
             return RedirectToAction("PaymentSuccess", "Home");
@@ -302,7 +302,7 @@ namespace QLBanPhanMem.Controllers
             var email = new MimeMessage();
             email.Sender = new MailboxAddress("UpModern", "quangtrung.nguyen.2016@gmail.com");
             email.From.Add(new MailboxAddress("UpModern", "quangtrung.nguyen.2016@gmail.com"));
-            email.To.Add(MailboxAddress.Parse("qtrung1702@outlook.com"));
+            email.To.Add(MailboxAddress.Parse(emailTo));
             email.Subject = "Thanh toán thành công!";
             var builder = new BodyBuilder();
             builder.HtmlBody = string.Format("" +

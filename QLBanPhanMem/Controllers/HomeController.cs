@@ -81,7 +81,17 @@ namespace QLBanPhanMem.Controllers
         }
         public IActionResult PaymentSuccess()
         {
+           
+            ViewBag.email = HttpContext.Session.GetString("email");
+            ViewBag.uid = HttpContext.Session.GetString("uid");
             ViewBag.maHD = HttpContext.Session.GetString("maHD");
+            return View();
+        }
+        public IActionResult About()
+        {
+             
+            ViewBag.email = HttpContext.Session.GetString("email");
+            ViewBag.uid = HttpContext.Session.GetString("uid");
             return View();
         }
     }

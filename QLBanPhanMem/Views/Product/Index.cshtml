@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<QLBanPhanMem.Models.PhanMemModel>
 @{
-    ViewData["Title"] = "Tìm kiếm sản phẩm";
+    ViewData["Title"] = "Tìm phần mềm";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -49,7 +49,7 @@
         <div class="col-md-auto">       
             <form style="display: flex;">
                 <div class="input-group mb-3" style="width:150px; margin-left:20px;">
-                    <input type="number" id="min" name="min" class="form-control" placeholder="Giá từ" aria-describedby="basic-addon1">
+                    <input type="number" id="min" name="min" class="form-control" min="1" placeholder="Giá từ" aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group mb-3" style="width:150px; margin-left:20px;">
                     <input type="number" id="max" name="max" class="form-control" placeholder="Đến" aria-describedby="basic-addon1">
@@ -109,7 +109,15 @@
             //lấy text nhà phát hành
             var selectElement = document.getElementById("manph");
             var selectedOption = selectElement.options[selectElement.selectedIndex];
-            var selectedNPH = selectedOption.text;
+            if (selectedOption.text == "Nhà phát hành") {
+                var selectedNPH = "";
+            }
+            else
+{
+                var selectedNPH = selectedOption.text;
+            }
+
+            
             //lấy text thể loại
             var selectElement = document.getElementById("theloai");
             var selectedOption = selectElement.options[selectElement.selectedIndex];

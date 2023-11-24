@@ -90,6 +90,9 @@ namespace QLBanPhanMem.Controllers
         }
         public IActionResult SignIn()
         {
+            
+            ViewBag.email = HttpContext.Session.GetString("email");
+            ViewBag.uid = HttpContext.Session.GetString("uid");
             if (HttpContext.Session.GetString("uid") != null)
             {
                 return RedirectToAction("Index", "Home");
