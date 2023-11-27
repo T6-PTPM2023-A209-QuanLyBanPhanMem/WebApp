@@ -29,24 +29,12 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\image\\Banner\\banner_1.png",
-      "PackagePath": "staticwebassets\\image\\Banner\\banner_1.png"
-    },
-    {
-      "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\image\\Banner\\banner_2.png",
-      "PackagePath": "staticwebassets\\image\\Banner\\banner_2.png"
-    },
-    {
-      "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\image\\Banner\\banner_3.png",
-      "PackagePath": "staticwebassets\\image\\Banner\\banner_3.png"
+      "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\font\\SF-Pro.ttf",
+      "PackagePath": "staticwebassets\\font\\SF-Pro.ttf"
     },
     {
       "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\image\\Logo.jpg",
       "PackagePath": "staticwebassets\\image\\Logo.jpg"
-    },
-    {
-      "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\image\\demo.jpg",
-      "PackagePath": "staticwebassets\\image\\demo.jpg"
     },
     {
       "Id": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\wwwroot\\image\\logo_home.png",

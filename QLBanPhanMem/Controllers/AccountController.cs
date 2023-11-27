@@ -107,6 +107,7 @@ namespace QLBanPhanMem.Controllers
             try
             {
                 var result = await client.SignInWithEmailAndPasswordAsync(model.Email, password);
+                
                 if (result != null)
                 {
                     if (result.User.Uid != null && model.Email != null)
@@ -169,7 +170,7 @@ namespace QLBanPhanMem.Controllers
                     {
                         if(ex.Message.Contains("EmailExists"))
                         {
-                            ViewBag.Error = "Email đã tồn tại";
+                            ViewBag.Error = "Email đã tồn tại.";
                         }
                         else
                         {
@@ -191,7 +192,11 @@ namespace QLBanPhanMem.Controllers
             {
                 if (ex.Message.Contains("EmailExists"))
                 {
-                    ViewBag.Error = "Email đã tồn tại";
+                    ViewBag.Error = "Email đã tồn tại.";
+                }
+                if(ex.Message.Contains("WEAK_PASSWORD"))
+                {
+                    ViewBag.Error = "Mật khẩu phải từ 6 kí tự trở lên.";
                 }
                 else
                 {
@@ -297,6 +302,7 @@ namespace QLBanPhanMem.Controllers
             try
             {
                 var result = await client.SignInWithEmailAndPasswordAsync(email, oldPassword);
+                
                 if (result != null)
                 {
                     //await client.
@@ -341,6 +347,35 @@ namespace QLBanPhanMem.Controllers
             result.cthdKeyModel.AddRange(cthdKeyModel);
             return View(result);         
         }
-        
+        public IActionResult ResetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(string email)
+        {
+            var client = new FirebaseAuthClient(config);
+            try
+            {
+                await client.ResetEmailPasswordAsync(email);
+
+                ViewBag.notice = "Vui lòng kiểm tra email để đổi mật khẩu.";
+                return View();
+
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("MISSING_EMAIL"))
+                {
+                    ViewBag.Error = "Bạn chưa nhập email.";
+                }
+                else
+                {
+                    ViewBag.notice = ex.Message;
+                }
+                
+                return View();
+            }
+        }
     }
 }

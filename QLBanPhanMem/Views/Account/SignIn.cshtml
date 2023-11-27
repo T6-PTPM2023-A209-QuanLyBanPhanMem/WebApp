@@ -1,6 +1,6 @@
 ﻿@model QLBanPhanMem.Models.AccountModel
 @{
-    ViewData["Title"] = "Đăng nhập hoặc đăng ký";
+    ViewData["Title"] = "Đăng nhập hoặc đăng kí";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/css/login.css" rel="stylesheet" />
@@ -24,7 +24,7 @@
         </li>
         <li class="nav-item" role="presentation">
             <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="#pills-register" role="tab"
-               aria-controls="pills-register" aria-selected="false">Đăng ký</a>
+               aria-controls="pills-register" aria-selected="false">Đăng kí</a>
         </li>
     </ul>
     <!-- Pills navs -->
@@ -60,7 +60,7 @@
 
                     <div class="col-md-6 d-flex justify-content-center">
                         <!-- Simple link -->
-                        <a href="#!">Bạn quên mật khẩu?</a>
+                        <a href="/Account/ResetPassword">Bạn quên mật khẩu?</a>
                     </div>
                 </div>
 
@@ -111,7 +111,7 @@
                 </div>
 
                 <!-- Submit button -->
-                <button action="SignUp" type="submit" class="btn btn-primary btn-block mb-3">Đăng ký</button>
+                <button action="SignUp" type="submit" class="btn btn-primary btn-block mb-3">Đăng kí</button>
 
                 @* <div class="text-center mb-3">
                     <p>Hoặc đăng nhập bằng</p>

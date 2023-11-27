@@ -1,4 +1,22 @@
-﻿.myfoother ul {
+﻿
+@font-face {
+    font-family: 'sf-pro';
+    src: url('../font/sf-pro.ttf') format('truetype');
+}
+/*@font-face {
+    font-family: 'sfprotext';
+    src: url('../font/sfprotext-bold.ttf') format('truetype');
+    font-weight:bold;
+}*/
+@font-face {
+    font-family: 'inter';
+    src: url('../font/inter-variablefont_slnt,wght.ttf') format('truetype');
+}
+body {
+    font-family: sf-pro, 'Segoe UI';
+    
+}
+.myfoother ul {
     list-style: none;
 }
 
@@ -22,7 +40,7 @@
 }
 
 form.search_home .input-group {
-    line-height: 2;
+    line-height: 1;
   
     border-radius: 20px; /* Điều chỉnh giá trị theo mong muốn của bạn */
     overflow: hidden; /* Để đảm bảo nếu có bất kỳ nội dung nào vượt ra khỏi phần tử này, nó sẽ được ẩn đi */
