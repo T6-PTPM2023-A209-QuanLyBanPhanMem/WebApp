@@ -94,18 +94,19 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            Phí vận chuyển sẽ được tính ở trang thanh toán.
+                            Tổng tiền đã bao gồm 8% VAT.
                             <br />
-                            Bạn cũng có thể nhập mã giảm giá ở trang thanh toán.
+                            Đơn hàng sẽ không được hoàn tiền nếu thanh toán.
                             
                        </td>
                     </tr>
                     <tr>
                         <td colspan="2">
+                            
                             <p><a style="color:red">@ViewBag.notice</a></p>
                             <form method="post" action="@Url.Action("ProcessPayment", "Cart")">
                                 <!-- Các trường thông tin thanh toán ở đây -->
-                                <input type="submit" value="Thanh toán" class="btn btn-primary" />
+                                <input type="submit" value="Thanh toán" class="btn btn-primary btn-block" />
                             </form>
                         </td>
                     </tr>

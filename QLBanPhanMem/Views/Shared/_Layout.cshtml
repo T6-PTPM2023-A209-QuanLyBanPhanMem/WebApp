@@ -47,7 +47,7 @@
                         <img src="~/image/logo_index.png" class="img-fluid" />
                     </a>
                 </div>
-                <div class="col-md-6 py-2">
+                <div class="col-md-5 py-2">
 
                     <form class="d-flex search_home" action="/Product/Index/" method="get">
                         <div class="input-group">
@@ -77,20 +77,18 @@
                     </form>
 
                 </div>
-                <div class="col-md-auto" style="padding-left: 40px">
+                <div class="col-md-4" style="padding-left: 40px">
                     <div class="row">
-                        <div class="col-md-2">
-                            <div class="fs-2">
-                                <i class="fa-regular fa-circle-user text-primary"></i>                               
-                            </div>                           
-                        </div>    
-                        
-                        <div class="col-md-auto p-2">
+                        <div class="col-md-1 fs-2">
+                            <i class="fa-regular fa-circle-user text-primary"></i>
+                        </div>
+                        <div class="col-md-11 p-2">
+                            
                             @{
                                 if (ViewBag.email == null)
                                 {
                                     <a asp-area="" asp-controller="Account" asp-action="SignIn" style="text-decoration: none; display: flex; align-items: center; margin-left: 10px;">
-                                        <span class="text-primary" style="font-size:18px"> Đăng nhập</span>
+                                        <span class="text-primary" style="font-size:18px">Đăng nhập /Đăng kí</span>
                                     </a>
                                 }
                                 else
@@ -116,28 +114,33 @@
                             }
                         </div>
                         <div class="col-md-auto">
-                            @if (ViewBag.email != null)
-                            {
-                                <a asp-action="Index" asp-controller="Cart" class="position-relative">
-                                    <span class="fs-3 text-black">
-                                        <i class="fa-solid fa-cart-shopping"></i>
-                                    </span>
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                        @if (ViewBag.giohang == null)
-                                        {
-                                            <text>0</text>
-                                        }
-                                        else
-                                        {
-                                            @ViewBag.giohang
-                                        }
-                                    </span>
-                                </a>
-                            }
+                            
                         </div>
-                    </div>                   
+                        
+                    </div> 
+                    
                 </div>
-               
+
+               <div class="col-md-1" style="padding-left: 40px">
+                    @if (ViewBag.email != null)
+                    {
+                        <a asp-action="Index" asp-controller="Cart" class="position-relative">
+                            <span class="fs-3 text-black">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </span>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                @if (ViewBag.giohang == null)
+                                {
+                                    <text>0</text>
+                                }
+                                else
+                                {
+                                    @ViewBag.giohang
+                                }
+                            </span>
+                        </a>
+                    }
+               </div>
 
 
 
@@ -148,7 +151,7 @@
         </div>
     </section>
     <section class="mainMenu bg-info">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row justify-content-center">
                
 
@@ -215,7 +218,7 @@
    
 
     <section class="myfoother text-dark py-4" style="background: #f3f4f6">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row" >
                 <div class="col-md-3">
                     <h4 >
@@ -236,13 +239,11 @@
                     </h5>
 
                     <ul class="list-menu">
-                        <li class="li_menu">
-                            <a href="/" title="">
-                                Hotline 1900 633 305
-                            </a>
-                        </li>
+                        
                         <li class="li_menu"><a>Công ty TNHH Up Modern (UpModern LLC)</a></li>
+                        
                         <li class="li_menu"><a>Địa chỉ: 70 Lý Trấn Tọng, Phường 1, Quận 13, TP.HCM</a></li>
+                        <li class="li_menu"><a>Hotline: 190001020</a></li>
                         <li class="li_menu"><a href="/" title="">Email: Cskh@upmodern.vn</a></li>
                                               
                     </ul>

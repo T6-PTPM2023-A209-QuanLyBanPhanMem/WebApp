@@ -31,6 +31,7 @@ namespace QLBanPhanMem.Controllers
         public async Task<IActionResult> Edit(string id)
         {
             //Lấy 
+            ViewBag.giohang = HttpContext.Session.GetString("dem");
             string? session = HttpContext.Session.GetString("email");
             @ViewBag.email = session;
             if (HttpContext.Session.GetString("uid") == null || id == null || _context.Accounts == null)
@@ -214,6 +215,7 @@ namespace QLBanPhanMem.Controllers
         }        
         public IActionResult TopUp()
         {
+            ViewBag.giohang = HttpContext.Session.GetString("dem");
             ViewBag.email = HttpContext.Session.GetString("email");
             ViewBag.uid = HttpContext.Session.GetString("uid");
             return View();
@@ -248,6 +250,7 @@ namespace QLBanPhanMem.Controllers
         }
         public async Task<IActionResult> History()
         {
+            ViewBag.giohang = HttpContext.Session.GetString("dem");
             var session = HttpContext.Session.GetString("email");
             @ViewBag.email = session;
             var id = HttpContext.Session.GetString("uid");           
@@ -280,6 +283,7 @@ namespace QLBanPhanMem.Controllers
         }
         public async Task<IActionResult> ChangePassword(string id)
         {
+            ViewBag.giohang = HttpContext.Session.GetString("dem");
             string? session = HttpContext.Session.GetString("email");
             @ViewBag.email = session;
             if (HttpContext.Session.GetString("uid") == null || _context.Accounts == null)
@@ -297,6 +301,7 @@ namespace QLBanPhanMem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(string oldPassword, string newPassword)
         {
+            
             string? email = HttpContext.Session.GetString("email");          
             var client = new FirebaseAuthClient(config);
             try
@@ -322,6 +327,7 @@ namespace QLBanPhanMem.Controllers
 
         public async Task<IActionResult> OrderDetail(string id)
         {
+            ViewBag.giohang = HttpContext.Session.GetString("dem");
             string? session = HttpContext.Session.GetString("email");
             @ViewBag.email = session;
             if (HttpContext.Session.GetString("uid") == null || _context.Accounts == null)
@@ -354,6 +360,7 @@ namespace QLBanPhanMem.Controllers
         [HttpPost]
         public async Task<IActionResult> ResetPassword(string email)
         {
+            ViewBag.giohang = HttpContext.Session.GetString("dem");
             var client = new FirebaseAuthClient(config);
             try
             {

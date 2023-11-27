@@ -97,7 +97,8 @@ namespace QLBanPhanMem.Controllers
                     int? tongtien = (int)(await _context.CTHDs
                     .Where(ct => ct.MAHD == hoadon.MAHD)
                     .SumAsync(ct => ct.THANHTIEN)).Value * soluong;
-                    hoadon.TONGTIEN = tongtien;
+                    double vat = (double)tongtien*1.08;
+                    hoadon.TONGTIEN = (int)vat;
                     _context.Update(hoadon);
                     await _context.SaveChangesAsync();
                 }
@@ -128,7 +129,9 @@ namespace QLBanPhanMem.Controllers
                     int? tongtien = (int)(await _context.CTHDs
                     .Where(ct => ct.MAHD == hoadon.MAHD)
                     .SumAsync(ct => ct.THANHTIEN)).Value * soluong;
-                    hoadon.TONGTIEN = tongtien;
+                    double vat = (double)tongtien*1.08;
+                    hoadon.TONGTIEN = (int)vat;
+                    
                     _context.Update(hoadon);
                     await _context.SaveChangesAsync();
                 }
@@ -139,13 +142,8 @@ namespace QLBanPhanMem.Controllers
             catch (Exception ex)
             {
                 // Xử lý ngoại lệ ở đây và tạo đối tượng ProblemDetails
-                var problemDetails = new ProblemDetails
-                {
-                    Title = "Lỗi xử lý yêu cầu",
-                    Status = 500, // Hoặc một mã trạng thái HTTP phù hợp khác
-                    Detail = ex.Message
-                };
-                return StatusCode(problemDetails.Status.Value, problemDetails);
+               ViewBag.MyData = "Có lỗi vừa xảy ra, xin thử lại sau.";
+                return RedirectToAction("Details", "Product", new { id = productID, myData = ViewBag.MyData });
             }
         }
         private async void ThemHoaDon(HoaDonModel hoadon, string maHD, string maTK)
@@ -182,7 +180,9 @@ namespace QLBanPhanMem.Controllers
             int? tongtien = (int)(await _context.CTHDs
             .Where(ct => ct.MAHD == hoadon.MAHD)
             .SumAsync(ct => ct.THANHTIEN)).Value * soluong;
-            hoadon.TONGTIEN = tongtien;
+            double vat = (double)tongtien*1.08;
+            hoadon.TONGTIEN = (int)vat;
+            
             _context.Update(hoadon);
             await _context.SaveChangesAsync();
         }       
@@ -251,25 +251,26 @@ namespace QLBanPhanMem.Controllers
 
             }
 
-            if(hoadon.TINHTRANG=="Chưa thanh toán")
-            {
-                hoadon.TINHTRANG = "Đã thanh toán";
-                _context.Update(hoadon);
-                await _context.SaveChangesAsync();
-            }
+            
             var account = await _context.Accounts
                 .FirstOrDefaultAsync(tk => tk.Uid == maTK);
             if(account.SurPlus<hoadon.TONGTIEN)
             {
-                ViewBag.MyData = "Số dư hiện tại không đủ để thanh toán. <a href=\"Account/TopUp\">Nạp ngay?<a/>";
+                ViewBag.MyData = "Số dư hiện tại không đủ để thanh toán.";
                  return RedirectToAction("Index", "Cart", new { MyData = ViewBag.MyData });
             }
             else
             {
-                account.SurPlus = account.SurPlus - hoadon.TONGTIEN;
-                _context.Update(account);
-                await _context.SaveChangesAsync();
+            account.SurPlus = account.SurPlus - hoadon.TONGTIEN;
+            _context.Update(account);
+                if(hoadon.TINHTRANG=="Chưa thanh toán")
+            {
+                hoadon.TINHTRANG = "Đã thanh toán";
+                _context.Update(hoadon);
+                
             }
+            await _context.SaveChangesAsync();
+            
             var result = new OrderDetailViewModel()
             {
                 chiTietHoaDonModel = new List<ChiTietHoaDonModel>(),
@@ -295,7 +296,8 @@ namespace QLBanPhanMem.Controllers
             SendEmail(result,email);            
             ViewBag.maHD = hoadon.MAHD;
            HttpContext.Session.SetString("maHD", hoadon.MAHD);
-            return RedirectToAction("PaymentSuccess", "Home");
+                return RedirectToAction("PaymentSuccess", "Home");
+            }   
         }
         private async void SendEmail(OrderDetailViewModel result, string emailTo)
         {

@@ -69,6 +69,7 @@ namespace QLBanPhanMem.Controllers
                 .ToListAsync();
                 result.GroupedResult.AddRange(ChiTietHoaDonModel);
                 result.BannerKMModel.AddRange(banner);
+
                 return View(result);
         }
 
