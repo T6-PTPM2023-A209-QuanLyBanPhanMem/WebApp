@@ -60,6 +60,7 @@ namespace QLBanPhanMem.Controllers
             {
                 string? maTK = HttpContext.Session.GetString("uid");
                 string? maHD = HttpContext.Session.GetString("uid") + DateTime.Now.ToString("ddMMyyyyHHmmss");
+                
                 var hoadon = await _context.HoaDons
                     .FirstOrDefaultAsync(hd => hd.MATK == maTK && hd.TINHTRANG == "Chưa thanh toán");
                 //Check số lượng key
@@ -70,6 +71,8 @@ namespace QLBanPhanMem.Controllers
                     ViewBag.MyData = "Xin lỗi, sản phẩm này vừa bán hết 😢.";
                     return RedirectToAction("Details", "Product", new { id= productID, MyData = ViewBag.MyData });
                 }
+                var count = await _context.KEYPMs.CountAsync(k => k.MAPM == productID && k.TINHTRANG == 0);
+
                 if (hoadon == null)
                 {
                     hoadon = new HoaDonModel
@@ -82,14 +85,13 @@ namespace QLBanPhanMem.Controllers
                     };
                     _context.HoaDons.Add(hoadon);
                     await _context.SaveChangesAsync();                  
-                    var cthd = new ChiTietHoaDonModel();
+                        var cthd = new ChiTietHoaDonModel();
                     cthd = new ChiTietHoaDonModel
                     {
                         MAHD = hoadon.MAHD,
                         MAPM = productID,
                         SOLUONG = quantity,
-                        THANHTIEN = (await _context.PhanMems
-                        .FirstOrDefaultAsync(pm => pm.MAPM == productID)).DONGIA
+                        THANHTIEN = (await _context.PhanMems.FirstOrDefaultAsync(pm => pm.MAPM == productID)).DONGIA
                     };
                     _context.CTHDs.Add(cthd);
                     await _context.SaveChangesAsync();
@@ -105,15 +107,20 @@ namespace QLBanPhanMem.Controllers
                 else if (hoadon != null)
                 {
                     var cthd = await _context.CTHDs
-                    .FirstOrDefaultAsync(ct => ct.MAHD == hoadon.MAHD && ct.MAPM == productID);
+                    .FirstOrDefaultAsync(ct => ct.MAHD == hoadon.MAHD && ct.MAPM == productID);                    
                     if (cthd != null)
                     {
+                        if(cthd.SOLUONG >= count)
+                        {
+                            ViewBag.MyData = "Số lượng sản phẩm trong giỏ hàng để ở mức cao nhất tồn kho. Không thể thêm";
+                            return RedirectToAction("Details", "Product", new { id = productID, MyData = ViewBag.MyData });
+                        }
                         cthd.SOLUONG = cthd.SOLUONG + 1;
                         _context.Update(cthd);
                         await _context.SaveChangesAsync();
                     }
                     else if (cthd == null)
-                    {
+                    {                       
                         cthd = new ChiTietHoaDonModel
                         {
                             MAHD = hoadon.MAHD,

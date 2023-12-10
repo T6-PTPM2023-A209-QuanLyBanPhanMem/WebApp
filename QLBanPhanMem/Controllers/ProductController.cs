@@ -138,13 +138,17 @@ namespace QLBanPhanMem.Controllers
             //Check so luong key con lai
             //Check số lượng key
                 var key = await _context.KEYPMs.FirstOrDefaultAsync(k => k.MAPM == id && k.TINHTRANG == 0);
-                if (key == null)
+            var count = await _context.KEYPMs.CountAsync(k => k.MAPM == id && k.TINHTRANG == 0);
+
+            if (key == null)
                 {                   
                     ViewBag.SoldOut = "Đã bán hết";
+                ViewBag.TonKho = 0;
                 }
                 else
                 {
                     ViewBag.SoldOut = "Còn hàng";
+                ViewBag.TonKho = count;
                 }
             HttpContext.Session.SetString("idspvuaxem", id.Value.ToString());
             ViewBag.idspvuaxem = HttpContext.Session.GetString("idspvuaxem");

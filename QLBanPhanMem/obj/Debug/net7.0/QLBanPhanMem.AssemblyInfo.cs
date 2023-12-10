@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QLBanPhanMem")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+37030b94c3a9279d75db951e765fc003e8ab8b30")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5cb289bfdd4e7d6524dd2f975fab82f98378009d")]
 [assembly: System.Reflection.AssemblyProductAttribute("QLBanPhanMem")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QLBanPhanMem")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
