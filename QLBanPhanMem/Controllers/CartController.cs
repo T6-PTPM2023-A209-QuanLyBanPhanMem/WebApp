@@ -89,15 +89,19 @@ namespace QLBanPhanMem.Controllers
                     await _context.SaveChangesAsync();                  
                         var cthd = new ChiTietHoaDonModel();
                     //Thêm key vào cthd
-                    cthd = new ChiTietHoaDonModel
-                    {
-                        MAHD = hoadon.MAHD,
-                        MAPM = productID,
-                        SOLUONG = quantity,
-                        THANHTIEN = (await _context.PhanMems.FirstOrDefaultAsync(pm => pm.MAPM == productID)).DONGIA
-                    };
-                    _context.CTHDs.Add(cthd);
-                    await _context.SaveChangesAsync();
+                    for (int i=1;i<=quantity;i++)
+                        {
+                                cthd = new ChiTietHoaDonModel
+                            {
+                                MAHD = hoadon.MAHD,
+                                MAPM = productID,
+                                SOLUONG = 1,
+                                THANHTIEN = (await _context.PhanMems
+                                .FirstOrDefaultAsync(pm => pm.MAPM == productID)).DONGIA
+                            };
+                            _context.CTHDs.Add(cthd);
+                            await _context.SaveChangesAsync();
+                        }
                     //Cap nhat tinh trang key
                     int? soluong = cthd.SOLUONG;
                     //Cập nhật lại giá tiền
@@ -115,27 +119,42 @@ namespace QLBanPhanMem.Controllers
                     .FirstOrDefaultAsync(ct => ct.MAHD == hoadon.MAHD && ct.MAPM == productID);                    
                     if (cthd != null)
                     {
-                        if(cthd.SOLUONG >= count)
+                        if (cthd.SOLUONG >= count)
                         {
                             ViewBag.MyData = "Số lượng sản phẩm trong giỏ hàng để ở mức cao nhất tồn kho. Không thể thêm";
                             return RedirectToAction("Details", "Product", new { id = productID, MyData = ViewBag.MyData });
                         }
-                        cthd.SOLUONG = cthd.SOLUONG + 1;
-                        _context.Update(cthd);
-                        await _context.SaveChangesAsync();
+                        for (int i=1;i<=quantity;i++)
+                        {
+                                cthd = new ChiTietHoaDonModel
+                            {
+                                MAHD = hoadon.MAHD,
+                                MAPM = productID,
+                                SOLUONG = 1,
+                                THANHTIEN = (await _context.PhanMems
+                                .FirstOrDefaultAsync(pm => pm.MAPM == productID)).DONGIA
+                            };
+                            _context.CTHDs.Add(cthd);
+                            await _context.SaveChangesAsync();
+                        }
+                        
                     }
                     else if (cthd == null)
                     {                       
-                        cthd = new ChiTietHoaDonModel
+                        for(int i=1;i<=quantity;i++)
                         {
-                            MAHD = hoadon.MAHD,
-                            MAPM = productID,
-                            SOLUONG = quantity,
-                            THANHTIEN = (await _context.PhanMems
-                            .FirstOrDefaultAsync(pm => pm.MAPM == productID)).DONGIA
-                        };
-                        _context.CTHDs.Add(cthd);
-                        await _context.SaveChangesAsync();
+                                cthd = new ChiTietHoaDonModel
+                            {
+                                MAHD = hoadon.MAHD,
+                                MAPM = productID,
+                                SOLUONG = 1,
+                                THANHTIEN = (await _context.PhanMems
+                                .FirstOrDefaultAsync(pm => pm.MAPM == productID)).DONGIA
+                            };
+                            _context.CTHDs.Add(cthd);
+                            await _context.SaveChangesAsync();
+                        }
+                        
                     }
                     int? soluong = cthd.SOLUONG;
                     int? tongtien = (int)(await _context.CTHDs
@@ -154,50 +173,50 @@ namespace QLBanPhanMem.Controllers
             catch (Exception ex)
             {
                 // Xử lý ngoại lệ ở đây và tạo đối tượng ProblemDetails
-               ViewBag.MyData = "Có lỗi vừa xảy ra, xin thử lại sau.";
+               ViewBag.MyData = "Có lỗi vừa xảy ra, xin thử lại sau."+ex;
                 return RedirectToAction("Details", "Product", new { id = productID, myData = ViewBag.MyData });
             }
         }
-        private async void ThemHoaDon(HoaDonModel hoadon, string maHD, string maTK)
-        {
-            hoadon = new HoaDonModel
-            {
-                MAHD = maHD,
-                MATK = maTK,
-                THOIGIANLAP = DateTime.Now,
-                TONGTIEN = 0,
-                TINHTRANG = "Chưa thanh toán"
-            };
-            _context.HoaDons.Add(hoadon);
-            await _context.SaveChangesAsync();
-        }
-        private async void ThemCTHD(HoaDonModel hoadon,ChiTietHoaDonModel cthd,int productID)
-        {
-            //Thêm key vào cthd
-            cthd = new ChiTietHoaDonModel
-            {
-                MAHD = hoadon.MAHD,
-                MAPM = productID,
-                SOLUONG = 1,
-                THANHTIEN = (await _context.PhanMems
-                .FirstOrDefaultAsync(pm => pm.MAPM == productID)).DONGIA
-            };
-            _context.CTHDs.Add(cthd);
-            await _context.SaveChangesAsync();
-        }
-        private async void CapNhatTongTienHD(HoaDonModel hoadon, ChiTietHoaDonModel cthd)
-        {            
-            int? soluong = await _context.CTHDs
-            .Where(ct => ct.MAHD == hoadon.MAHD)
-            .SumAsync(ct => ct.SOLUONG);
-            int? tongtien = (int)(await _context.CTHDs
-            .Where(ct => ct.MAHD == hoadon.MAHD)
-            .SumAsync(ct => ct.THANHTIEN)).Value * soluong;
-            double vat = (double)tongtien*1.08;
-            hoadon.TONGTIEN = (int)vat;            
-            _context.Update(hoadon);
-            await _context.SaveChangesAsync();
-        }       
+        //private async void ThemHoaDon(HoaDonModel hoadon, string maHD, string maTK)
+        //{
+        //    hoadon = new HoaDonModel
+        //    {
+        //        MAHD = maHD,
+        //        MATK = maTK,
+        //        THOIGIANLAP = DateTime.Now,
+        //        TONGTIEN = 0,
+        //        TINHTRANG = "Chưa thanh toán"
+        //    };
+        //    _context.HoaDons.Add(hoadon);
+        //    await _context.SaveChangesAsync();
+        //}
+        //private async void ThemCTHD(HoaDonModel hoadon,ChiTietHoaDonModel cthd,int productID)
+        //{
+        //    //Thêm key vào cthd
+        //    cthd = new ChiTietHoaDonModel
+        //    {
+        //        MAHD = hoadon.MAHD,
+        //        MAPM = productID,
+        //        SOLUONG = 1,
+        //        THANHTIEN = (await _context.PhanMems
+        //        .FirstOrDefaultAsync(pm => pm.MAPM == productID)).DONGIA
+        //    };
+        //    _context.CTHDs.Add(cthd);
+        //    await _context.SaveChangesAsync();
+        //}
+        //private async void CapNhatTongTienHD(HoaDonModel hoadon, ChiTietHoaDonModel cthd)
+        //{            
+        //    int? soluong = await _context.CTHDs
+        //    .Where(ct => ct.MAHD == hoadon.MAHD)
+        //    .SumAsync(ct => ct.SOLUONG);
+        //    int? tongtien = (int)(await _context.CTHDs
+        //    .Where(ct => ct.MAHD == hoadon.MAHD)
+        //    .SumAsync(ct => ct.THANHTIEN)).Value * soluong;
+        //    double vat = (double)tongtien*1.08;
+        //    hoadon.TONGTIEN = (int)vat;            
+        //    _context.Update(hoadon);
+        //    await _context.SaveChangesAsync();
+        //}       
         public IActionResult Checkout()
         {
             return View();
@@ -235,12 +254,13 @@ namespace QLBanPhanMem.Controllers
                                 MAHD = hoaDonThanhToan.MAHD,
                                 MAPM = cthd.MAPM,
                                 MAKEY = key.MAKEY
-                            };
-
-                            await _context.CTHDKeys.AddAsync(cthdkey);
+                            };                    
                             //Cap nhat tinh trang key
                             key.TINHTRANG = 1;
-                             _context.Entry(key).State = EntityState.Modified;
+                            _context.KEYPMs.Update(key);
+                            await _context.SaveChangesAsync();
+                            await _context.CTHDKeys.AddAsync(cthdkey);
+                            await _context.SaveChangesAsync();
                         }
                         else
                         {
@@ -252,13 +272,14 @@ namespace QLBanPhanMem.Controllers
                             foreach(var ct in cthdList)
                             {
                                 productsSoldOut.Add(ct.PhanMem.TENPM);
+                                await _context.SaveChangesAsync();
                             }
                             ViewBag.MyData = "Xin lỗi, sản phẩm "+string.Join(", ", productsSoldOut)+" vừa bán hết 😢.";
                             return RedirectToAction("Index", "Cart", new { MyData = ViewBag.MyData });
                         }
                     }
 
-                    await _context.SaveChangesAsync();
+                    
                 }
 
             }

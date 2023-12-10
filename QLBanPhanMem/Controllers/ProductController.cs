@@ -109,7 +109,8 @@ namespace QLBanPhanMem.Controllers
                     // Tìm theo tên nhà phát hành
                 );           
             }
-            var result = await query.Skip(Start).Take(ItemOfPage).ToListAsync();
+            
+            var result = await query.OrderByDescending(query => query.MAPM).Skip(Start).Take(ItemOfPage).ToListAsync();
             return View(result);
         }
         // GET: Product/Details/5

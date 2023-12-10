@@ -39,7 +39,7 @@ public class AppDbContext : DbContext
             .WithMany()
             .HasForeignKey(tlp => tlp.MALOAI);
         _ = modelBuilder.Entity<CTHDKeyModel>()
-            .HasKey(ck => new { ck.MAHD, ck.MAPM, ck.MAKEY });
+            .HasKey(ck=>ck.Id);
         _ = modelBuilder.Entity<CTHDKeyModel>()
             .HasOne(ck => ck.HoaDon)
             .WithMany()
@@ -61,7 +61,7 @@ public class AppDbContext : DbContext
             .WithMany()
             .HasForeignKey(kp => kp.MAPM);
         _ = modelBuilder.Entity<ChiTietHoaDonModel>()
-            .HasKey(cthd => new { cthd.MAHD, cthd.MAPM });
+            .HasKey(cthd => new { cthd.Id});
         _ = modelBuilder.Entity<ChiTietHoaDonModel>()
             .HasOne(cthd => cthd.HoaDon)
             .WithMany()
