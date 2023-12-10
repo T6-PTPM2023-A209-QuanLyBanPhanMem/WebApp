@@ -38,8 +38,10 @@ namespace QLBanPhanMem.Controllers
                 string? maHD = hoadon.MAHD;
                 ViewBag.tongtien = hoadon.TONGTIEN;
                 int dem = 0;
+                //Lấy danh sách sản phẩm trong giỏ hàng
                 if (_context.CTHDs != null)
                 {
+                   
                     var cthd = await _context.CTHDs
                         .Include(p => p.PhanMem)
                         .Where(string.IsNullOrEmpty(maHD) ? p => p.MAHD == maHD : p => p.MAHD == maHD)
@@ -72,7 +74,7 @@ namespace QLBanPhanMem.Controllers
                     return RedirectToAction("Details", "Product", new { id= productID, MyData = ViewBag.MyData });
                 }
                 var count = await _context.KEYPMs.CountAsync(k => k.MAPM == productID && k.TINHTRANG == 0);
-
+                //Check số lượng sản phẩm trong giỏ hàng
                 if (hoadon == null)
                 {
                     hoadon = new HoaDonModel
@@ -86,6 +88,7 @@ namespace QLBanPhanMem.Controllers
                     _context.HoaDons.Add(hoadon);
                     await _context.SaveChangesAsync();                  
                         var cthd = new ChiTietHoaDonModel();
+                    //Thêm key vào cthd
                     cthd = new ChiTietHoaDonModel
                     {
                         MAHD = hoadon.MAHD,
@@ -95,7 +98,9 @@ namespace QLBanPhanMem.Controllers
                     };
                     _context.CTHDs.Add(cthd);
                     await _context.SaveChangesAsync();
+                    //Cap nhat tinh trang key
                     int? soluong = cthd.SOLUONG;
+                    //Cập nhật lại giá tiền
                     int? tongtien = (int)(await _context.CTHDs
                     .Where(ct => ct.MAHD == hoadon.MAHD)
                     .SumAsync(ct => ct.THANHTIEN)).Value * soluong;
@@ -168,6 +173,7 @@ namespace QLBanPhanMem.Controllers
         }
         private async void ThemCTHD(HoaDonModel hoadon,ChiTietHoaDonModel cthd,int productID)
         {
+            //Thêm key vào cthd
             cthd = new ChiTietHoaDonModel
             {
                 MAHD = hoadon.MAHD,
@@ -188,8 +194,7 @@ namespace QLBanPhanMem.Controllers
             .Where(ct => ct.MAHD == hoadon.MAHD)
             .SumAsync(ct => ct.THANHTIEN)).Value * soluong;
             double vat = (double)tongtien*1.08;
-            hoadon.TONGTIEN = (int)vat;
-            
+            hoadon.TONGTIEN = (int)vat;            
             _context.Update(hoadon);
             await _context.SaveChangesAsync();
         }       
@@ -300,6 +305,7 @@ namespace QLBanPhanMem.Controllers
             result.chiTietHoaDonModel.AddRange(ChiTietHoaDonModel);
             result.keyPMModel.AddRange(keyPMModel);
             result.cthdKeyModel.AddRange(cthdKeyModel);
+                //Gửi mail
             SendEmail(result,email);            
             ViewBag.maHD = hoadon.MAHD;
            HttpContext.Session.SetString("maHD", hoadon.MAHD);

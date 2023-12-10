@@ -80,9 +80,7 @@ namespace QLBanPhanMem.Controllers
                     p.MOTA.Contains(search) || // Tìm theo mô tả
                     p.NhaPhatHanh.TENNPH.Contains(search) // Tìm theo tên nhà phát hành
                                                           // Tìm theo tên nhà phát hành
-                );
-
-                
+                );                
             }
             //Phân trang
             int ItemOfPage = 8; // Số sản phẩm trên mỗi trang

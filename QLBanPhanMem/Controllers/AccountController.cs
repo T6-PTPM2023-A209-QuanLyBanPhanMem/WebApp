@@ -9,9 +9,11 @@ namespace QLBanPhanMem.Controllers
 {
     public class AccountController : Controller
     {
+        //Thiết lập kết nối Firebase
         private readonly string realbaseurl= "https://chatapp-c35ec-default-rtdb.asia-southeast1.firebasedatabase.app/";
         private static readonly FirebaseAuthConfig config = new FirebaseAuthConfig()
         {
+
             ApiKey = "AIzaSyAwOrLG01nBCgfLrXje1eKhHoqmb-x33Yg",
             AuthDomain = "chatapp-c35ec.firebaseapp.com",
             Providers = new FirebaseAuthProvider[]
@@ -27,10 +29,10 @@ namespace QLBanPhanMem.Controllers
         }
 
         
-        // GET: Account/Edit/5
+        
         public async Task<IActionResult> Edit(string id)
         {
-            //Lấy 
+            // Kiểm tra xem có đăng nhập hay chưa
             ViewBag.giohang = HttpContext.Session.GetString("dem");
             string? session = HttpContext.Session.GetString("email");
             @ViewBag.email = session;
@@ -50,10 +52,6 @@ namespace QLBanPhanMem.Controllers
             }
             return View(accountModel);
         }
-
-        // POST: Account/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("Username,Uid,FullName,Email,CCCD,PhoneNumber,Address,SurPlus,Avatar")] AccountModel accountModel)
@@ -66,6 +64,7 @@ namespace QLBanPhanMem.Controllers
             {
                 try
                 {
+                    // Thực hiện update chỉ vào các cột FullName, CCCD, PhoneNumber, Address và Avatar
                     _context.Update(accountModel);
                     await _context.SaveChangesAsync();
                 }
@@ -90,8 +89,7 @@ namespace QLBanPhanMem.Controllers
             return (_context.Accounts?.Any(e => e.Uid == id)).GetValueOrDefault();
         }
         public IActionResult SignIn()
-        {
-            
+        {           
             ViewBag.email = HttpContext.Session.GetString("email");
             ViewBag.uid = HttpContext.Session.GetString("uid");
             if (HttpContext.Session.GetString("uid") != null)
@@ -150,10 +148,12 @@ namespace QLBanPhanMem.Controllers
             var client = new FirebaseAuthClient(config);
             try
             {
+                // Thực hiện đăng ký tài khoản trên Firebase Auth
                 var result = await client.CreateUserWithEmailAndPasswordAsync(model.Email, password);
                 var auth = await client.SignInWithEmailAndPasswordAsync(model.Email, password);
                 if (result != null)
                 {
+                    // Thực hiện insert vào bảng Account
                     var user = new AccountModel()
                     {
                         FullName = model.FullName,
@@ -164,6 +164,7 @@ namespace QLBanPhanMem.Controllers
                     };
                     try
                     {
+                        // Thực hiện insert vào bảng Account
                         _context.Accounts.Add(user);
                         await _context.SaveChangesAsync();
                     }
@@ -233,6 +234,7 @@ namespace QLBanPhanMem.Controllers
             {
                 return NotFound();
             }
+            // Nạp tiền
             account.SurPlus += soTien;
             try
             {
@@ -324,7 +326,6 @@ namespace QLBanPhanMem.Controllers
                 return View();
             }
         }
-
         public async Task<IActionResult> OrderDetail(string id)
         {
             ViewBag.giohang = HttpContext.Session.GetString("dem");
@@ -333,13 +334,15 @@ namespace QLBanPhanMem.Controllers
             if (HttpContext.Session.GetString("uid") == null || _context.Accounts == null)
             {
                 return RedirectToAction("SignIn", "Account");
-            }       
+            }
+            // Lấy thông tin hóa đơn
             var result = new OrderDetailViewModel()
             {
                 chiTietHoaDonModel = new List<ChiTietHoaDonModel>(),
                 keyPMModel = new List<KEYPMModel>(),
                 cthdKeyModel = new List<CTHDKeyModel>()
             };
+            // Lấy thông tin hóa đơn
             var ChiTietHoaDonModel = await _context.CTHDs
                 .Where(ct => ct.MAHD == id)
                 .Include(p => p.PhanMem)
@@ -365,7 +368,6 @@ namespace QLBanPhanMem.Controllers
             try
             {
                 await client.ResetEmailPasswordAsync(email);
-
                 ViewBag.notice = "Vui lòng kiểm tra email để đổi mật khẩu.";
                 return View();
 

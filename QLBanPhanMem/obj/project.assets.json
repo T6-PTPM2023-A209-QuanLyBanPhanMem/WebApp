@@ -11670,19 +11670,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\zenon\\.nuget\\packages\\": {}
+    "C:\\Users\\android17x\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Github\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj",
+      "projectUniqueName": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj",
       "projectName": "QLBanPhanMem",
-      "projectPath": "D:\\Github\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj",
-      "packagesPath": "C:\\Users\\zenon\\.nuget\\packages\\",
-      "outputPath": "D:\\Github\\WebAppKhachHang\\QLBanPhanMem\\obj\\",
+      "projectPath": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\QLBanPhanMem.csproj",
+      "packagesPath": "C:\\Users\\android17x\\.nuget\\packages\\",
+      "outputPath": "D:\\GitHub\\WebAppKhachHang\\QLBanPhanMem\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\zenon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\android17x\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
